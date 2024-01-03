@@ -32,23 +32,26 @@ function LeftSidebar() {
         </li>
         {routes.map((route, k) => {
           return (
-            <li className="" key={k}>
+            <li className="text-xl pt-2" key={k}>
               {route.submenu ? (
                 <SidebarSubmenu {...route} />
               ) : (
                 <NavLink
                   end
                   to={route.path}
-                  className={({isActive}) =>
-                    `${
-                      isActive ? 'font-semibold  bg-base-200 ' : 'font-normal'
-                    }`
-                  }>
-                  {route.icon} {route.name}
+                  className={({ isActive }) =>
+                    `${(isActive)
+                      ? 'font-semibold text-white border-green-500 bg-green-500'
+                      : 'font-normal'
+                    } hover:font-semibold hover:text-white hover:border-green-500 hover:bg-green-500`
+                  }
+                >
+                  <span dangerouslySetInnerHTML={{ __html: route.icon }}></span> {route.name}
                   {location.pathname === route.path ? (
                     <span
-                      className="absolute inset-y-0 left-0 w-1 rounded-tr-md rounded-br-md bg-primary "
-                      aria-hidden="true"></span>
+                      className="absolute inset-y-0 left-0 w-1 rounded-tr-md rounded-br-md bg-primary bg-green-500"
+                      aria-hidden="true"
+                    ></span>
                   ) : null}
                 </NavLink>
               )}

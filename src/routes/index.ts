@@ -16,7 +16,7 @@ const routes = [
     exact: true,
   },
   {
-    path: "/profile-setting",
+    path: "/settings-profile",
     component: ProfileSetting,
     exact: true,
   },

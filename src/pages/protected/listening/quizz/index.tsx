@@ -1,17 +1,32 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
+import ReactPlayer from 'react-player'
 
 const QuizzListening = () => {
-    const storedQuizz = JSON.parse(sessionStorage.getItem('quizz') || 'null');
-    const dataQuizz = storedQuizz?.data?.form;
     const [selectedChoice, setSelectedChoice] = useState<string | null>(null);
     const handleChoiceChange = (choiceValue: string) => {
         setSelectedChoice(choiceValue);
     };
-    console.log(selectedChoice);
+
+    const {
+        body, link
+    } = useLocation()?.state?.quizz
 
     return (
-        <div className="flex">
-            <div className="w-8/12" dangerouslySetInnerHTML={{ __html: storedQuizz?.embedCode }} />
+        <div className="flex flex-1 gap-x-4">
+            <div className="w-[760px] h-[450px] rounded-[24px] p-4" >
+                <ReactPlayer
+                     url={link} 
+                    controls
+                    width="100%" 
+                    playsinline
+                    height="100%" 
+                    className="rounded-[24px] overflow-hidden" config={{
+                    youtube: {
+                        playerVars: { showinfo: 1 }
+                    },
+                }} />
+            </div>
             <section className="test-panel scroll container w-4/12" >
                 <div className="test-panel__item">
                     <div className="test-panel__question">
@@ -23,7 +38,7 @@ const QuizzListening = () => {
                     </div>
                     <div className="overflow-auto" style={{ height: "600px" }}>
                         <div data-num="31" data-q_type="6">
-                            {dataQuizz.map((item, index: string) => (
+                            {body?.form?.map((item, index: string) => (
                                 <div key={index}>
                                     <div>{index + 1}.{item.question}</div>
                                     <div data-question-item={index + 1}>

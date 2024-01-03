@@ -10,8 +10,6 @@ function RightSidebar() {
 
   const dispatch = useAppDispatch();
 
-  console.log(isOpen, 'isOpen');
-
   const close = (e: any) => {
     dispatch(closeRightDrawer(e));
   };

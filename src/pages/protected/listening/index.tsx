@@ -1,4 +1,3 @@
-import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "src/app/store";
@@ -7,7 +6,9 @@ import { getListeningContent } from "src/features/common/listening-slice";
 const Listening = () => {
     const dispatch = useAppDispatch();
     const [linkUrl, setLinkUrl] = useState('');
-    const quizz = useAppSelector((state) => state.listening?.quizzs || "");
+    const quizz = useAppSelector((state) => state.listening?.quizzs?.data || "");
+
+
     const navigeUrl = useNavigate();
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
@@ -15,9 +16,10 @@ const Listening = () => {
     };
     const { isLoading } = useAppSelector((state) => state.listening);
     useEffect(() => {
-        if (!isLoading && quizz?.data) {
-            sessionStorage.setItem('quizz', JSON.stringify(quizz));
-            navigeUrl('/listening/quizz');
+        if (!isLoading && quizz) {
+            navigeUrl('/listening/quizz', {
+                state: { quizz }
+            });
         }
     }, [isLoading, quizz]);
 

@@ -16,7 +16,7 @@ const Login = lazy(() => import("./pages/public/login"));
 const ForgotPassword = lazy(() => import("./pages/public/forgot-password"));
 const Register = lazy(() => import("./pages/public/register"));
 const QuizzListening = lazy(() => import("./pages/protected/listening/quizz"))
-
+const QuizzWriting = lazy(() => import("./pages/protected/writing/quizz"))
 // Initializing different libraries
 initializeApp();
 
@@ -37,6 +37,7 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/register" element={<Register />} />
           <Route path="/listening/quizz" element={<QuizzListening />} />
+          <Route path="/writing/quizz" element={<QuizzWriting />} />
           {/* Place new routes over this */}
           <Route path="/app/*" element={<Layout />} />
 

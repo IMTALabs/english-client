@@ -11,21 +11,22 @@ const QuizzListening = () => {
     const {
         body, link
     } = useLocation()?.state?.quizz
+    console.log(body);
 
     return (
         <div className="flex flex-1 gap-x-4">
             <div className="w-[760px] h-[450px] rounded-[24px] p-4" >
                 <ReactPlayer
-                     url={link} 
+                    url={link}
                     controls
-                    width="100%" 
+                    width="100%"
                     playsinline
-                    height="100%" 
+                    height="100%"
                     className="rounded-[24px] overflow-hidden" config={{
-                    youtube: {
-                        playerVars: { showinfo: 1 }
-                    },
-                }} />
+                        youtube: {
+                            playerVars: { showinfo: 1 }
+                        },
+                    }} />
             </div>
             <section className="test-panel scroll container w-4/12" >
                 <div className="test-panel__item">

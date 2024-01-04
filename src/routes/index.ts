@@ -9,6 +9,10 @@ const ProfileSetting = lazy(() => import('src/pages/protected/profile-setting'))
 
 const Listening = lazy(() => import('src/pages/protected/listening'))
 
+const Writing = lazy(() => import('src/pages/protected/writing'))
+
+const Reading = lazy(() => import('src/pages/protected/reading'))
+
 const routes = [
   {
     path: "/welcome",
@@ -32,12 +36,12 @@ const routes = [
   },
   {
     path: "/reading",
-    component: Page404,
+    component: Reading,
     exact: true,
   },
   {
     path: "/writing",
-    component: Page404,
+    component: Writing,
     exact: true,
   },
   {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'src/app/store';
+import TitleCard from 'src/components/cards/title-card';
 import { postWritingContent } from 'src/features/common/writing-slice';
 const Writing = () => {
   const dispatch = useAppDispatch();
@@ -37,20 +38,13 @@ const Writing = () => {
     }
   }, [isLoading, quizz]);
   return (
-    <section className="antialiased  min-h-full h-full bg-red ">
-      <div className="relative max-w-screen mx-auto ">
-        <div className="card w-full p-6 bg-base-100 shadow-xl mt-2">
+    <TitleCard title="Profile Settings" topMargin="mt-2">
+      <section className="antialiased  min-h-full h-full ">
+        <div className=" max-w-screen mx-auto ">
           <div className="flex justify-center mt-2 pt-2">
-            <div className="relative flex w-full sm:gap-3 md:gap-4 gap-5  rounded">
-              <span
-                className="absolute inset-0 m-1 pointer-events-none"
-                aria-hidden="true">
-                <span
-                  className={`absolute inset-0 w-fit bg-white rounded border border-gray-200 shadow-sm transform transition duration-150 ease-in-out ${isCardVisible ? 'translate-x-0' : 'translate-x-full'
-                    }`}></span>
-              </span>
+            <div className=" flex w-full sm:gap-3 md:gap-4 gap-5  rounded">
               <button
-                className={`relative flex-1 text-sm font-medium p-2 transition duration-150 ease-in-out focus:outline-none focus-visible:ring-2 ${isCardVisible
+                className={` flex-1 text-sm font-medium p-2 transition duration-150 ease-in-out focus:outline-none focus-visible:ring-2 ${isCardVisible
                   ? 'bg-[#10B981] text-white rounded-[5px] hover:bg-[#0D7E59]'
                   : 'border-2 border-[#D0D0D0] rounded-[5px] text-gray-400'
                   }`}
@@ -58,7 +52,7 @@ const Writing = () => {
                 Toppic
               </button>
               <button
-                className={`relative flex-1 text-sm font-medium p-2 transition duration-150 ease-in-out focus:outline-none focus-visible:ring-2 ${!isCardVisible
+                className={` flex-1 text-sm font-medium p-2 transition duration-150 ease-in-out focus:outline-none focus-visible:ring-2 ${!isCardVisible
                   ? 'bg-[#10B981] text-white rounded-[5px] hover:bg-[#0D7E59]'
                   : 'border-2 border-[#D0D0D0] rounded-[5px] text-gray-400'
                   }`}
@@ -114,8 +108,9 @@ const Writing = () => {
             </div>
           )}
         </div>
-      </div>
-    </section>
+      </section>
+    </TitleCard>
+
   );
 };
 

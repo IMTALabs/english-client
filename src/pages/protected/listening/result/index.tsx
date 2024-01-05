@@ -32,7 +32,7 @@ const ResultListening = () => {
                     <label className="flex gap-[5px] radio-container">
                         <p className="sm:text-[30px]">D.</p>
                         <div className="flex gap-1 sm:mt-[5px]">
-                            <input checked className="sm:w-6 sm:h-6 mt-[5px] custom-radio" type="radio" name="answer" value="4" />
+                            <input defaultChecked className="sm:w-6 sm:h-6 mt-[5px] custom-radio" type="radio" name="answer" value="4" />
                             <p className="sm:text-[24px]">Mid-term examination.</p>
                         </div>
                     </label>
@@ -65,7 +65,7 @@ const ResultListening = () => {
                     <label className="flex gap-[5px] radio-container">
                         <p className="sm:text-[30px]">D.</p>
                         <div className="flex gap-1 sm:mt-[5px]">
-                            <input checked className="sm:w-6 sm:h-6 mt-[5px] custom-radio" type="radio" name="answer" value="4" />
+                            <input defaultChecked className="sm:w-6 sm:h-6 mt-[5px] custom-radio" type="radio" name="answer" value="4" />
                             <p className="sm:text-[24px]">Mid-term examination.</p>
                         </div>
                     </label>

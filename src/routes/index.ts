@@ -1,16 +1,18 @@
-
 import { lazy } from 'react';
-const Welcome = lazy(() => import('src/pages/protected/welcome'))
 
-const Page404 = lazy(() => import('src/pages/protected/404'))
+const Welcome = lazy(() => import('src/pages/protected/welcome'));
 
-const ProfileSetting = lazy(() => import('src/pages/protected/profile-setting'))
+const Page404 = lazy(() => import('src/pages/protected/404'));
 
-const Listening = lazy(() => import('src/pages/protected/listening'))
+const ProfileSetting = lazy(
+  () => import('src/pages/protected/profile-setting'),
+);
 
-const Writing = lazy(() => import('src/pages/protected/writing'))
+const Listening = lazy(() => import('src/pages/protected/listening'));
 
-const Reading = lazy(() => import('src/pages/protected/reading'))
+const Writing = lazy(() => import('src/pages/protected/writing'));
+
+const Reading = lazy(() => import('src/pages/protected/reading'));
 
 const QuizzListening = lazy(() => import('src/pages/protected/listening/quizz'))
 
@@ -18,37 +20,38 @@ const ResultListening = lazy(() => import('src/pages/protected/listening/result'
 
 const routes = [
   {
-    path: "/welcome",
+    path: '/welcome',
     component: Welcome,
     exact: true,
   },
   {
-    path: "/settings-profile",
+    path: '/settings-profile',
     component: ProfileSetting,
     exact: true,
   },
   {
-    path: "/404",
+    path: '/404',
     component: Page404,
     exact: true,
   },
   {
-    path: "/listening",
+    path: '/listening',
     component: Listening,
     exact: true,
   },
   {
-    path: "/reading",
+    path: '/reading',
     component: Reading,
     exact: true,
   },
   {
-    path: "/writing",
+    path: '/writing',
     component: Writing,
     exact: true,
   },
+
   {
-    path: "/speaking",
+    path: '/speaking',
     component: Page404,
     exact: true,
   },

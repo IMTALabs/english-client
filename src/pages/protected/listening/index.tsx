@@ -75,7 +75,7 @@ const Listening = () => {
             </div> */}
 
             {showOverlay && (
-                <div className="fixed top-0 left-0 w-full h-full bg-[#BEECDD] z-50 flex justify-around items-center" onClick={handleOverlayClick}>
+                <div className="fixed top-0 left-0 w-full h-full bg-gray-300 z-50 opacity-80 flex justify-center gap-4 items-center" onClick={handleOverlayClick}>
                     <p className="font-bold text-black mt-[20px] text-[20px]">Processing generating quizz...</p>
                     <div className="inline-block relative w-[80px] h-[80px] lds-ring"><div></div><div></div><div></div><div></div></div>
                 </div>

@@ -98,7 +98,7 @@ const Reading = () => {
                 <div className="mx-auto" >
                
                 <p className=" bg-base-100 text-[24px]  font-bold my-3 ">Choose Topic</p>
-                <textarea  onChange={handleTextChange} name="" id="" className="  lg:w-full md:w-[800px] sm:w-[90px] bg-white  py-2 px-2 h-[203px] border border-2 border-gray-300 rounded " placeholder="Type or patse the topic here..." ></textarea>
+                <textarea  onChange={handleTextChange} name="" id="" className="  w-full  bg-white  py-2 px-2 h-[203px] border border-2 border-gray-300 rounded " placeholder="Type or patse the topic here..." ></textarea>
                     <div className="flex justify-between">
                         <p></p>
                         <p  >{characterCount}/500</p>
@@ -113,15 +113,15 @@ const Reading = () => {
                     <option value="gen_topic">200-350</option>
                     <option value="no_gen_topic">350-400</option>
                 </select>
-                <button className=" p-2 hover:bg-[#0D7E59] hover:border-[#0D7E59] transition-colors duration-300 border border-[#10B981] bg-[#10B981] text-center text-white lg:w-[830px]  md:w-[700px] sm:w-[400px] mt-4 mt-4 rounded font-medium">Generate Quizz</button>
+                <button className=" p-2 hover:bg-[#0D7E59] hover:border-[#0D7E59] transition-colors duration-300 border border-[#10B981] bg-[#10B981] text-center text-white w-full mt-4 mt-4 rounded font-medium">Generate Quizz</button>
                </div>
             ) : (
                 <div className="">
                     <p className=" font-bold text-[24px] my-3 bg-base-100">From Your Essay</p>
-                    <textarea  onChange={handleTextChange} name="" id="" className="  lg:w-full md:w-[800px] sm:w-[90px] bg-white  py-2 px-2 h-[203px] border border-2 border-gray-300 rounded " placeholder="Type or patse the topic here..." ></textarea>
+                    <textarea  onChange={handleTextChange} name="" id="" className="  w-full  bg-white  py-2 px-2 h-[203px] border border-2 border-gray-300 rounded " placeholder="Type or patse the topic here..." ></textarea>
                     <div className="flex justify-between">
                         <p></p>
-                        <p  >{characterCount}/500</p>
+                        <p >{characterCount}/500</p>
                     </div>
                     
                     <p className=" bg-base-100 text-[24px] font-semibold my-4">Length</p>
@@ -134,7 +134,7 @@ const Reading = () => {
                         <option value="gen_topic">200-350</option>
                         <option value="no_gen_topic">350-400</option>
                     </select>
-                    <button className= " p-2 hover:bg-[#0D7E59] hover:border-[#0D7E59] transition-colors duration-300 border border-[#10B981] bg-[#10B981] text-center text-white lg:w-[830px] md:w-[700px] sm:w-[400px] sm:mx-auto mt-4 rounded font-medium">Generate Quizz</button>
+                    <button className= " p-2 hover:bg-[#0D7E59] hover:border-[#0D7E59] transition-colors duration-300 border border-[#10B981] bg-[#10B981] text-center text-white w-full  sm:mx-auto mt-4 rounded font-medium">Generate Quizz</button>
                 </div>
             )}
             

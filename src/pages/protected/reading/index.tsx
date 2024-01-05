@@ -89,30 +89,21 @@ const Reading = () => {
         //         </button>
         //     </form>
         // </div>
-        <div>
-             <div className="grid lg:grid-cols-2 gap-4">
-                        <button onClick={() => handlePaymentTypeChange(false)} className={`${isCardVisible ? 'text-[#D0D0D0] border border-2 ' : 'border-[#D0D0D0] border-[#10B981] bg-[#10B981] text-white'} hover:bg-[#0D7E59] hover:border-[#0D7E59] transition-colors duration-300 text-center rounded py-2 `}>From Your Essay</button>
-                        <button onClick={() => handlePaymentTypeChange(true)} className={`${isCardVisible ?  'border-[#D0D0D0] border-[#10B981] bg-[#10B981] text-white' : 'text-[#D0D0D0] border border-2 '} hover:bg-[#0D7E59] hover:border-[#0D7E59] transition-colors duration-300 text-center rounded py-2 `}>Generate Topic</button>
+        <div >
+            <div className="bg-base-100 p-4 rounded-2xl  shadow-xl p-6 mt-2 ">
+            <div className="grid lg:grid-cols-2 gap-4">
+                        <button onClick={() => handlePaymentTypeChange(false)} className={`${isCardVisible ? 'text-gray-500 border border-2 ' : 'border-[#D0D0D0] border-[#10B981] bg-[#10B981] text-white'}  text-center rounded py-2 font-semibold `}>From Your Essay</button>
+                        <button onClick={() => handlePaymentTypeChange(true)} className={`${isCardVisible ?  'border-[#D0D0D0] border-[#10B981] bg-[#10B981] text-white' : 'text-gray-500 border border-2 '}  text-center rounded py-2 font-semibold `}>Generate Topic</button>
                 </div>
             {isCardVisible ? (
                 <div className="mx-auto" >
-               
                 <p className=" bg-base-100 text-[24px]  font-bold my-3 ">Choose Topic</p>
                 <textarea  onChange={handleTextChange} name="" id="" className="  w-full  bg-white  py-2 px-2 h-[203px] border border-2 border-gray-300 rounded " placeholder="Type or patse the topic here..." ></textarea>
                     <div className="flex justify-between">
                         <p></p>
                         <p  >{characterCount}/500</p>
                     </div>
-                <p className=" bg-base-100 text-[24px] font-semibold my-4">Length</p>
-                <select
-                    id="countries"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                    value={mode}
-                    onChange={handleModeChange}
-                >
-                    <option value="gen_topic">200-350</option>
-                    <option value="no_gen_topic">350-400</option>
-                </select>
+               
                 <button className=" p-2 hover:bg-[#0D7E59] hover:border-[#0D7E59] transition-colors duration-300 border border-[#10B981] bg-[#10B981] text-center text-white w-full mt-4 mt-4 rounded font-medium">Generate Quizz</button>
                </div>
             ) : (
@@ -123,21 +114,10 @@ const Reading = () => {
                         <p></p>
                         <p >{characterCount}/500</p>
                     </div>
-                    
-                    <p className=" bg-base-100 text-[24px] font-semibold my-4">Length</p>
-                    <select
-                        id="countries"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                        value={mode}
-                        onChange={handleModeChange}
-                    >
-                        <option value="gen_topic">200-350</option>
-                        <option value="no_gen_topic">350-400</option>
-                    </select>
                     <button className= " p-2 hover:bg-[#0D7E59] hover:border-[#0D7E59] transition-colors duration-300 border border-[#10B981] bg-[#10B981] text-center text-white w-full  sm:mx-auto mt-4 rounded font-medium">Generate Quizz</button>
                 </div>
             )}
-            
+            </div>
         </div>
 
     );

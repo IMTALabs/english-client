@@ -42,7 +42,8 @@ function SidebarSubmenu({submenu, name, icon}: ISubmenu) {
             return (
               <li key={k}>
                 <Link to={m.path}>
-                  {m.icon} {m.name}
+                  <img src={m.icon} alt="Description of the image" />
+                   {m.name}
                   {location.pathname == m.path ? (
                     <span
                       className="absolute mt-1 mb-1 inset-y-0 left-0 w-1 rounded-tr-md rounded-br-md bg-primary "

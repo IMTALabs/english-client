@@ -39,12 +39,12 @@ const Writing = () => {
   }, [isLoading, quizz]);
   return (
     <div>
-      <section className="antialiased bg-gray-100 text-gray-600 min-h-full h-full p-4">
+      <section className="antialiased  min-h-full h-full p-4">
         <div className="h-full">
           <div className="relative px-4 sm:px-6 lg:px-8 pb-8 max-w-screen mx-auto">
-            <div className="bg-white px-8 py-6 rounded-b shadow-lg min-h-screen">
+            <div className=" px-8 py-6 rounded-b shadow-lg min-h-screen">
               <div className="flex justify-center mt-2 pt-2">
-                <div className="relative flex w-full sm:gap-3 md:gap-4 gap-5 bg-gray-50 rounded">
+                <div className="relative flex w-full sm:gap-3 md:gap-4 gap-5  rounded">
                   <span
                     className="absolute inset-0 m-1 pointer-events-none"
                     aria-hidden="true">
@@ -87,7 +87,7 @@ const Writing = () => {
                       <textarea
                         value={toppic}
                         onChange={e => setToppic(e.target.value)}
-                        className="bg-gray-50 border resize-none focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block min-w-full sm:w-[85%] w-full min-h-[30vh]   p-2.5"
+                        className="border resize-none focus:outline-none  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block min-w-full sm:w-[85%] w-full min-h-[30vh]   p-2.5"
                         placeholder="Type or patse the topic here..."></textarea>
                       <button
                         type="submit"
@@ -107,7 +107,7 @@ const Writing = () => {
                       <textarea
                         value={paragraph}
                         onChange={e => setParagraph(e.target.value)}
-                        className="bg-gray-50 border border-gray-300 resize-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block min-w-full sm:w-[85%] w-full min-h-[30vh] p-2.5"
+                        className=" border  resize-none  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block min-w-full sm:w-[85%] w-full min-h-[30vh] p-2.5"
                         placeholder="Type or patse the topic here..."
                       />
                       <button

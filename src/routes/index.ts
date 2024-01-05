@@ -1,5 +1,7 @@
 
 import { lazy } from 'react';
+import QuizzListening from 'src/pages/protected/listening/quizz';
+import ResultListening from 'src/pages/protected/listening/result';
 
 const Welcome = lazy(() => import('src/pages/protected/welcome'))
 
@@ -47,6 +49,16 @@ const routes = [
   {
     path: "/speaking",
     component: Page404,
+    exact: true,
+  },
+  {
+    path: "/listening/quizz",
+    component: QuizzListening,
+    exact: true,
+  },
+  {
+    path: "/listening/result",
+    component: ResultListening,
     exact: true,
   },
 ];

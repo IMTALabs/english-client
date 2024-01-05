@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'src/app/store';
+import TitleCard from 'src/components/cards/title-card';
 import { postWritingContent } from 'src/features/common/writing-slice';
 const Writing = () => {
   const dispatch = useAppDispatch();
@@ -37,10 +38,10 @@ const Writing = () => {
     }
   }, [isLoading, quizz]);
   return (
-    <section className="antialiased  min-h-full h-full bg-red ">
-      <div className="relative max-w-screen mx-auto ">
-        <div className="card w-full p-6 bg-base-100 shadow-xl mt-2">
-          <div className="flex justify-center mt-2 pt-2">
+    <TitleCard title="Writing" topMargin="mt-2" >
+      <div>
+        <div className="card bg-red-100">
+          <div className="flex justify-center pt-2">
             <div className="relative flex w-full sm:gap-3 md:gap-4 gap-5  rounded">
               <span
                 className="absolute inset-0 m-1 pointer-events-none"
@@ -115,7 +116,7 @@ const Writing = () => {
           )}
         </div>
       </div>
-    </section>
+    </TitleCard>
   );
 };
 

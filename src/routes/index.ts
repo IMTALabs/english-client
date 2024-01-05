@@ -1,23 +1,21 @@
+
 import { lazy } from 'react';
 
-const Welcome = lazy(() => import('src/pages/protected/welcome'));
+const Welcome = lazy(() => import('src/pages/protected/welcome'))
 
-const Page404 = lazy(() => import('src/pages/protected/404'));
+const Page404 = lazy(() => import('src/pages/protected/404'))
 
-const ProfileSetting = lazy(
-  () => import('src/pages/protected/profile-setting'),
-);
+const ProfileSetting = lazy(() => import('src/pages/protected/profile-setting'))
 
-const Listening = lazy(() => import('src/pages/protected/listening'));
+const Listening = lazy(() => import('src/pages/protected/listening'))
 
-const Writing = lazy(() => import('src/pages/protected/writing'));
+const Writing = lazy(() => import('src/pages/protected/writing'))
 
-const Reading = lazy(() => import('src/pages/protected/reading'));
+const Reading = lazy(() => import('src/pages/protected/reading'))
 
 const QuizzListening = lazy(() => import('src/pages/protected/listening/quizz'))
 
 const ResultListening = lazy(() => import('src/pages/protected/listening/result'))
-
 const routes = [
   {
     path: '/welcome',
@@ -51,7 +49,7 @@ const routes = [
   },
 
   {
-    path: '/speaking',
+    path: "/speaking",
     component: Page404,
     exact: true,
   },
@@ -64,7 +62,8 @@ const routes = [
     path: "/listening/result",
     component: ResultListening,
     exact: true,
-  },
+  }
+
 ];
 
 export default routes;

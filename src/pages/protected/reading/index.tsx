@@ -97,13 +97,13 @@ const Reading = () => {
             {isCardVisible ? (
                 <div className="mx-auto" >
                
-                <p className="text-[#2C2C2C] text-[24px]  font-bold my-3 ">Choose Topic</p>
+                <p className=" bg-base-100 text-[24px]  font-bold my-3 ">Choose Topic</p>
                 <textarea  onChange={handleTextChange} name="" id="" className="  lg:w-full md:w-[800px] sm:w-[90px] bg-white  py-2 px-2 h-[203px] border border-2 border-gray-300 rounded " placeholder="Type or patse the topic here..." ></textarea>
                     <div className="flex justify-between">
                         <p></p>
                         <p  >{characterCount}/500</p>
                     </div>
-                <p className="text-black text-[24px] font-semibold my-4">Length</p>
+                <p className=" bg-base-100 text-[24px] font-semibold my-4">Length</p>
                 <select
                     id="countries"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
@@ -116,16 +116,15 @@ const Reading = () => {
                 <button className=" p-2 hover:bg-[#0D7E59] hover:border-[#0D7E59] transition-colors duration-300 border border-[#10B981] bg-[#10B981] text-center text-white lg:w-[830px]  md:w-[700px] sm:w-[400px] mt-4 mt-4 rounded font-medium">Generate Quizz</button>
                </div>
             ) : (
-                <div>
-                
-                    <p className="text-[#2C2C2C] font-bold text-[24px] my-3 ">From Your Essay</p>
+                <div className="">
+                    <p className=" font-bold text-[24px] my-3 bg-base-100">From Your Essay</p>
                     <textarea  onChange={handleTextChange} name="" id="" className="  lg:w-full md:w-[800px] sm:w-[90px] bg-white  py-2 px-2 h-[203px] border border-2 border-gray-300 rounded " placeholder="Type or patse the topic here..." ></textarea>
                     <div className="flex justify-between">
                         <p></p>
                         <p  >{characterCount}/500</p>
                     </div>
                     
-                    <p className="text-black text-[24px] font-semibold my-4">Length</p>
+                    <p className=" bg-base-100 text-[24px] font-semibold my-4">Length</p>
                     <select
                         id="countries"
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "

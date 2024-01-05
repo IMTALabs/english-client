@@ -23,6 +23,15 @@ const Listening = () => {
         }
     }, [isLoading, quizz]);
 
+    const [showOverlay, setShowOverlay] = useState(false);
+
+    const handleButtonClick = () => {
+        setShowOverlay(true); // Hiển thị overlay khi button được click
+    };
+
+    const handleOverlayClick = () => {
+        setShowOverlay(false); // Ẩn overlay khi click vào nền trắng
+    };
     return (
         <div>
             <h1 className="text-[30px] font-bold mb-[31px]">Enter <span className="text-[#EA6C6C]">Youtube</span> Video Url</h1>
@@ -35,7 +44,7 @@ const Listening = () => {
                         <div className="w-[100%]">
                             <input
                                 type="text"
-                                value="https://www.youtube.com/watch?v=gsnndTUni_Y"
+                                value={linkUrl}
                                 onChange={(e) => setLinkUrl(e.target.value)}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5"
                                 placeholder="Paste your youtube video url here..."
@@ -43,6 +52,7 @@ const Listening = () => {
                         </div>
 
                         <button
+                            onClick={handleButtonClick}
                             type="submit"
                             className="text-white bg-[#10B981] hover:bg-[#0D7E59] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 w-[100%] mt-[34px] relative py-3 btn_generate"
                         >
@@ -52,24 +62,24 @@ const Listening = () => {
                 </form>
             )}
 
-            <div>
-                <p className="mt-[16px] text-center text-[24px]">Your chosen video</p>
-            </div>
 
 
 
-            <div className="mt-5">
-                <iframe className="mx-auto rounded-[10px]" width="776.25px" height="442.93px" src="https://www.youtube.com/embed/gsnndTUni_Y?si=1AyTvH-65t7WmyRr" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
-            </div>
-            <div>
-                <p className="text-[24px] mt-[10px] text-center mb-[20px]">The Ocean's Most Important Crystal</p>
-            </div>
 
 
-            <div className="bg-[#BEECDD] flex rounded-xl justify-around ">
-                <p className="font-bold text-black mt-[20px] text-[24px]">Processing generating quizz...</p>
+
+
+            {/* <div className="bg-[#BEECDD] flex rounded-xl justify-around ">
+                <p className="font-bold text-black mt-[20px] text-[20px]">Processing generating quizz...</p>
                 <div className="inline-block relative w-[80px] h-[80px] lds-ring"><div></div><div></div><div></div><div></div></div>
-            </div>
+            </div> */}
+
+            {showOverlay && (
+                <div className="fixed top-0 left-0 w-full h-full bg-[#BEECDD] z-50 flex justify-around items-center" onClick={handleOverlayClick}>
+                    <p className="font-bold text-black mt-[20px] text-[20px]">Processing generating quizz...</p>
+                    <div className="inline-block relative w-[80px] h-[80px] lds-ring"><div></div><div></div><div></div><div></div></div>
+                </div>
+            )}
         </div>
 
     );

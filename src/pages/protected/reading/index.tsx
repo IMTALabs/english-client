@@ -86,14 +86,14 @@ const Reading = () => {
                 {isCardVisible ? (
                     <div className="mx-auto" >
                         <p className="text-[24px] font-bold my-3 ">Choose Topic</p>
-                        <textarea onChange={handleTextChange} className="w-fullpy-2 px-2 h-[203px] border-2 border-gray-300 rounded " placeholder="Type or patse the topic here..." ></textarea>
+                        <textarea onChange={handleTextChange} className="w-full py-2 px-2 h-[203px] border-2 border-gray-300 rounded " placeholder="Type or patse the topic here..." ></textarea>
                         <div className="flex justify-between">
                             <p>{characterCount}/500</p>
                         </div>
                         <button className="p-2 hover:bg-[#0D7E59] hover:border-[#0D7E59] transition-colors duration-300 border border-[#10B981] bg-[#10B981] text-center text-white w-full mt-4 rounded font-medium">Generate Quizz</button>
                     </div>
                 ) : (
-                    <div>
+                    <div className="mx-auto">
                         <p className="font-bold text-[24px] my-3 ">From Your Essay</p>
                         <textarea onChange={handleTextChange} className="w-full py-2 px-2 h-[203px] border-2 border-gray-300 rounded " placeholder="Type or patse the topic here..." ></textarea>
                         <div className="flex justify-between">

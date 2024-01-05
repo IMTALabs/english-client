@@ -1,8 +1,5 @@
 
 import { lazy } from 'react';
-import QuizzListening from 'src/pages/protected/listening/quizz';
-import ResultListening from 'src/pages/protected/listening/result';
-
 const Welcome = lazy(() => import('src/pages/protected/welcome'))
 
 const Page404 = lazy(() => import('src/pages/protected/404'))
@@ -14,6 +11,10 @@ const Listening = lazy(() => import('src/pages/protected/listening'))
 const Writing = lazy(() => import('src/pages/protected/writing'))
 
 const Reading = lazy(() => import('src/pages/protected/reading'))
+
+const QuizzListening = lazy(() => import('src/pages/protected/listening/quizz'))
+
+const ResultListening = lazy(() => import('src/pages/protected/listening/result'))
 
 const routes = [
   {

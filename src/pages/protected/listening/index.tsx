@@ -33,7 +33,7 @@ const Listening = () => {
         setShowOverlay(false); // Ẩn overlay khi click vào nền trắng
     };
     return (
-        <div>
+        <div className="bg-base-100  rounded-lg mt-[10px] h-[92%] p-4">
             <h1 className="text-[30px] font-bold mb-[31px]">Enter <span className="text-[#EA6C6C]">Youtube</span> Video Url</h1>
 
             {isLoading ? (
@@ -76,7 +76,7 @@ const Listening = () => {
 
             {showOverlay && (
                 <div className="fixed top-0 left-0 w-full h-full bg-gray-300 z-50 opacity-80 flex justify-center gap-4 items-center" onClick={handleOverlayClick}>
-                    <p className="font-bold text-black mt-[20px] text-[20px]">Processing generating quizz...</p>
+                    <p className="font-bold text-black  text-[20px]">Processing generating quizz...</p>
                     <div className="inline-block relative w-[80px] h-[80px] lds-ring"><div></div><div></div><div></div><div></div></div>
                 </div>
             )}

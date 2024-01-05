@@ -14,7 +14,7 @@ const QuizzListening = () => {
     //     console.log(body);
 
     return (
-        <div className="sm:flex items-center flex-1 gap-x-4 ">
+        <div className="sm:flex items-center flex-1 gap-x-4 bg-base-100  rounded-lg mt-[10px] h-[95%] p-4">
             <div className="sm:w-1/2  mb-3">
                 <p className="font-bold text-[30px] mb-[27px]">Listening Quizz</p>
 

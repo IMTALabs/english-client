@@ -13,6 +13,10 @@ const Writing = lazy(() => import('src/pages/protected/writing'))
 
 const Reading = lazy(() => import('src/pages/protected/reading'))
 
+const QuizzReading = lazy(() => import('src/pages/protected/reading/quizz/index'))
+
+const ResultReading = lazy(() => import('src/pages/protected/reading/result/index'))
+
 const routes = [
   {
     path: "/welcome",
@@ -47,6 +51,16 @@ const routes = [
   {
     path: "/speaking",
     component: Page404,
+    exact: true,
+  },
+  {
+    path: "/reading/quizz",
+    component: QuizzReading,
+    exact: true,
+  },
+  {
+    path: "/reading/result",
+    component: ResultReading,
     exact: true,
   },
 ];

@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import reading from 'src/features/services/reading';
+import reading from 'src/features/services/reading/reading-api';
 
 
 
@@ -9,8 +9,8 @@ interface ToppicState {
     paragraph: string
 }
 
-export const postReadingConten = createAsyncThunk(
-    'writing/postReadingConten',
+export const postReadingContent = createAsyncThunk(
+    'writing/postReadingContent',
     async (toppic: ToppicState, { rejectWithValue }) => {
         try {
             const response = await reading.postTopicReading(toppic)
@@ -41,14 +41,14 @@ export const readingSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(postReadingConten.pending, (state) => {
+            .addCase(postReadingContent.pending, (state) => {
                 state.isLoading = true;
             })
-            .addCase(postReadingConten.fulfilled, (state, action) => {
+            .addCase(postReadingContent.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.quizzs = action.payload;
             })
-            .addCase(postReadingConten.rejected, (state) => {
+            .addCase(postReadingContent.rejected, (state) => {
                 state.isLoading = false;
                 // Handle rejection if needed
             })

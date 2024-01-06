@@ -3,6 +3,11 @@ import {Link} from 'react-router-dom';
 import LandingIntro from './landing-intro';
 import ErrorText from 'src/components/typo/error';
 import InputText from 'src/components/input/input-text';
+import authenticationApi from 'src/features/services/authentication/authentication-api';
+import { useAppDispatch } from 'src/app/store';
+import {
+  setUser
+} from 'src/features/common/user-slice'
 
 function Login() {
   const INITIAL_LOGIN_OBJ = {
@@ -14,6 +19,9 @@ function Login() {
   const [errorMessage, setErrorMessage] = useState('');
   const [loginObj, setLoginObj] = useState(INITIAL_LOGIN_OBJ);
 
+  const dispatch = useAppDispatch()
+
+
   const submitForm = async (e: any) => {
     e.preventDefault();
     setErrorMessage('');
@@ -24,23 +32,17 @@ function Login() {
       return setErrorMessage('Password is required! (use any value)');
     else {
       setLoading(true);
-      // try {
-      //   const csrfToken = await authenticationApi.getCsrfToken();
-
-      //   console.log(csrfToken, 'getCsrfToken ne');
-      //   if (csrfToken) {
-      //     const res = await authenticationApi.postLogin(loginObj);
-
-      //     console.log(res, 'res ne');
-      //   }
-      // } catch (error) {
-      //   console.log(error, 'error ne');
-      // }
-
-      // Call API to check user credentials and save token in localstorage
-      localStorage.setItem('token', 'DumyTokenHere');
-      setLoading(false);
-      window.location.href = '/app/welcome';
+      try {
+        const response = await authenticationApi.postLogin(loginObj);
+        if(response) {
+          dispatch(setUser(response))
+        }
+      } catch (error) {
+        console.log(error)
+      } finally {
+        setLoading(false);
+        window.location.href = '/app/welcome';
+      }
     }
   };
 

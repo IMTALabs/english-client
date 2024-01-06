@@ -14,6 +14,7 @@ function PageContent() {
   const mainContentRef = useRef(null);
   const { pageTitle } = useAppSelector(state => state.header);
   const searchParams = useLocation()
+  // side bar hide when screen is small
   const hideSidebar = searchParams.pathname.includes('quizz') || searchParams.pathname.includes('result')
 
   // Scroll back to top on new page load

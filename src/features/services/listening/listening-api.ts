@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 const postYoutubeLink = (youtubeUrl: string) => {
-    return axios.post('https://briteshop.store/public/api/listening', {
+    return axios.post('/listening', {
         listen_link: youtubeUrl,
     });
 }

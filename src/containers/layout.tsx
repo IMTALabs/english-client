@@ -15,7 +15,6 @@ function Layout() {
     useEffect(() => {
         if (newNotificationStatus) {
         dispatch(removeNotificationMessage('aha'));
-        console.log(newNotificationMessage, 'newNotificationMessage')
         }
     }, [newNotificationStatus]);
 

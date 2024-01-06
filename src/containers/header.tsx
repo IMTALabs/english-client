@@ -56,7 +56,7 @@ const Header = () => {
     <>
       <div className="navbar sticky top-0 bg-base-100  z-10 shadow-md ">
         {/* Menu toogle for mobile view or small screen */}
-        <div className="flex-1">
+        <div className="flex-1 pl-[15px]">
           <label
             htmlFor="left-sidebar-drawer"
             className="btn drawer-button lg:hidden">

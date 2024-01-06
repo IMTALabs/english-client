@@ -1,3 +1,5 @@
+import BandScore from "src/components/assessment/band-score";
+
 const ResultWriting = () => {
   return (
     <div className="sm:flex flex-1 gap-x-4 bg-white">
@@ -29,109 +31,11 @@ const ResultWriting = () => {
           I believe the approach method stimulates only minor communities. On
           the one hand, sports... Besides, physical exercises as a group have a
           positive impact; I believe the approach method stimulates only minor
-          communities.On the one hand, sports...
-        </p>
+          communities.On the one hand, sports...</p>
       </div>
-      <section className="test-panel scroll container sm:w-8/12">
-        <div className="hidden sm:block">
-          <p className="text-[96px] text-center font-bold">7.0</p>
-          <p className="text-[36px] text-center">Overall Band Score</p>
-        </div>
-        <div className="flex flex-col gap-5 mt-2 ml-5 mb-5 p-2">
-          <div>
-            <p className="text-2xl">Coherence and cohesion: 5.0</p>
-            <ul>
-              <li className="px-3 py-1">
-                <span className="bg-[#EA6C6C] text-white px-3 py-1 rounded-[10px]">
-                  6
-                </span>{' '}
-                Logical structure
-              </li>
-              <li className="px-3 py-1">
-                <span className="bg-[#EA6C6C] text-white px-3 py-1 rounded-[10px]">
-                  6
-                </span>{' '}
-                Introduction & conclusion present
-              </li>
-              <li className="px-3 py-1">
-                <span className="bg-[#EA6C6C] text-white px-3 py-1 rounded-[10px]">
-                  6
-                </span>{' '}
-                Supported main points
-              </li>
-              <li className="px-3 py-1">
-                <span className="bg-[#EA6C6C] text-white px-3 py-1 rounded-[10px]">
-                  6
-                </span>{' '}
-                Accurate linking words
-              </li>
-            </ul>
-          </div>
-          <div>
-            <p className="text-2xl">Lexical resource: 8.0</p>
-            <ul>
-              <li className="px-3 py-1">
-                <span className="bg-[#EA6C6C] text-white px-3 py-1 rounded-[10px]">
-                  6
-                </span>{' '}
-                Varied vocabulary
-              </li>
-              <li className="px-3 py-1">
-                <span className="bg-[#EA6C6C] text-white px-3 py-1 rounded-[10px]">
-                  6
-                </span>{' '}
-                Accurate spelling & word formation
-              </li>
-            </ul>
-          </div>
-          <div>
-            <ul>
-              <p className="text-2xl">Coherence and cohesion: 5.0</p>
-              <li className="px-3 py-1">
-                <span className="bg-[#EA6C6C] text-white px-3 py-1 rounded-[10px]">
-                  6
-                </span>{' '}
-                Mix of complex & simple sentences
-              </li>
-              <li className="px-3 py-1">
-                <span className="bg-[#EA6C6C] text-white px-3 py-1 rounded-[10px]">
-                  6
-                </span>{' '}
-                Clear and correct grammar
-              </li>
-            </ul>
-          </div>
-          <div>
-            <ul>
-              <p className="text-2xl">Coherence and cohesion: 5.0</p>
-              <li className="px-3 py-1">
-                <span className="bg-[#EA6C6C] text-white px-3 py-1 rounded-[10px]">
-                  6
-                </span>{' '}
-                Complete response
-              </li>
-              <li className="px-3 py-1">
-                <span className="bg-[#EA6C6C] text-white px-3 py-1 rounded-[10px]">
-                  6
-                </span>{' '}
-                Clear & comprehensive ideas
-              </li>
-              <li className="px-3 py-1">
-                <span className="bg-[#EA6C6C] text-white px-3 py-1 rounded-[10px]">
-                  6
-                </span>{' '}
-                Relevant & specific examples
-              </li>
-              <li className="px-3 py-1">
-                <span className="bg-[#EA6C6C] text-white px-3 py-1 rounded-[10px]">
-                  6
-                </span>{' '}
-                Appropriate word count
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
+      <div>
+        <BandScore />
+      </div>
     </div>
   );
 };

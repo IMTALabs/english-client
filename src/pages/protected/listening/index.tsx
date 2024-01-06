@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
 import TitleCard from 'src/components/cards/title-card';
-
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "src/app/store";
 import { getListeningContent } from "src/features/common/listening-slice";
+import Button from "src/components/button";
 
 const Listening = () => {
     const dispatch = useAppDispatch();
     const [linkUrl, setLinkUrl] = useState('');
     const quizz = useAppSelector((state) => state.listening?.quizzs?.data || "");
-
-
     const navigeUrl = useNavigate();
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
@@ -24,13 +22,7 @@ const Listening = () => {
             });
         }
     }, [isLoading, quizz]);
-
     const [showOverlay, setShowOverlay] = useState(false);
-
-    const handleButtonClick = () => {
-        setShowOverlay(true); // Hiển thị overlay khi button được click
-    };
-
     const handleOverlayClick = () => {
         setShowOverlay(false); // Ẩn overlay khi click vào nền trắng
     };
@@ -54,30 +46,10 @@ const Listening = () => {
                                         placeholder="Paste your youtube video url here..."
                                     />
                                 </div>
-
-                                <button
-                                    onClick={handleButtonClick}
-                                    type="submit"
-                                    className="text-white bg-[#10B981] hover:bg-[#0D7E59] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 w-[100%] mt-[34px] relative py-3 btn_generate"
-                                >
-                                    Generate Quizz
-                                </button>
+                                <Button type='submit' text=' Generate Quizz' />
                             </div>
                         </form>
                     )}
-
-
-
-
-
-
-
-
-                    {/* <div className="bg-[#BEECDD] flex rounded-xl justify-around ">
-                <p className="font-bold text-black mt-[20px] text-[20px]">Processing generating quizz...</p>
-                <div className="inline-block relative w-[80px] h-[80px] lds-ring"><div></div><div></div><div></div><div></div></div>
-            </div> */}
-
                     {showOverlay && (
                         <div className="fixed top-0 left-0 w-full h-full bg-gray-300 z-50 opacity-80 flex justify-center gap-4 items-center" onClick={handleOverlayClick}>
                             <p className="font-bold text-black  text-[20px]">Processing generating quizz...</p>

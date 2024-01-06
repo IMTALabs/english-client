@@ -4,7 +4,7 @@ type QuizzProps = {
     title: string;
     answer: string;
     explain: string;
-    answerQuizz: string;
+    answerQuizz?: string;
 };
 
 const Quizz = ({ index, title, answer, explain, answerQuizz }: QuizzProps) => {

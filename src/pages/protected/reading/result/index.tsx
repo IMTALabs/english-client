@@ -1,22 +1,43 @@
+import { useLocation } from "react-router-dom";
 import BandScore from "src/components/assessment/band-score";
 import Quizz from "src/components/assessment/quizz";
+import TitleCard from "src/components/cards/title-card";
+
+interface Question {
+    question: string;
+    choices: {
+        A: string;
+        B: string;
+        C: string;
+        D: string;
+    };
+    explanation: string;
+    answer: string;
+}
 
 const ResultReading = () => {
+    const {
+        CorrectAnswer, answerQuizz
+    } = useLocation()?.state
 
 
     return (
-        <div className="sm:flex flex-1 gap-x-4 ">
-            <div className="sm:w-3/5">
-                <p className="font-bold text-[30px] mb-[22px]">Reading Quizz</p>
-                <p className="text-[30px] mb-[27px]">Your submit</p>
-                <form className="quiz-form mb-2">
-                    <Quizz index={0} title="What does the lecturer provide for those who are interested in doing extra reading?" answer='Mid-term examination.' explain="C Mid-term examination. Daily rountine is wrong because of..." />
-                </form>
+        <TitleCard title="" topMargin="mt-2">
+            <div className="bg-base-100  rounded-lg mt-[10px] h-[95%] p-4">
+                <div className="sm:flex flex-1 gap-x-4 ">
+                    <div className="sm:w-3/5">
+                        <p className="font-bold text-[30px] mb-[22px]">Listening Quizz</p>
+                        <p className="text-[30px] mb-[27px]">Your submit</p>
+                        {
+                            CorrectAnswer?.map((item: Question, index: number) => {
+                                return <Quizz index={index} title={item.question} answer={item.answer} explain={item.explanation} answerQuizz={answerQuizz[index]} />
+                            })
+                        }
+                    </div>
+                    <BandScore  />
+                </div >
             </div>
-            <div className="sm:w-2/5 border-l-2 px-4">
-                <BandScore />
-            </div>
-        </div >
+        </TitleCard>
     );
 };
 

@@ -1,11 +1,11 @@
 import TitleCard from "src/components/cards/title-card";
-import TextareaRadio from "src/components/textarea-radio";
+import Tab from "src/components/tab";
 
 const Reading = () => {
     return (
         <div >
             <TitleCard title="Profile Settings" topMargin="mt-2">
-                <TextareaRadio option1="Generate Topic" option2='From Your Essay' />
+                <Tab option1="Generate Topic" option2='From Your Essay' />
             </TitleCard>
         </div>
 

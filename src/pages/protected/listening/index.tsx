@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from 'react';
 import TitleCard from 'src/components/cards/title-card';
-import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "src/app/store";
-import { getListeningContent } from "src/features/common/listening-slice";
+import {useNavigate} from 'react-router-dom';
+import {useAppDispatch, useAppSelector} from 'src/app/store';
+import {getListeningContent} from 'src/features/common/listening-slice';
 import Button from "src/components/button";
 
 const Listening = () => {

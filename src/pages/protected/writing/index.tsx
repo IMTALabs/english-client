@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'src/app/store';
 import TitleCard from 'src/components/cards/title-card';
+import TitleCard from 'src/components/cards/title-card';
 import { postWritingContent } from 'src/features/common/writing-slice';
 const Writing = () => {
   const dispatch = useAppDispatch();
@@ -51,7 +52,7 @@ const Writing = () => {
                     }`}></span>
               </span>
               <button
-                className={`relative flex-1 text-sm font-medium p-2 transition duration-150 ease-in-out focus:outline-none focus-visible:ring-2 ${isCardVisible
+                className={` flex-1 text-sm font-medium p-2 transition duration-150 ease-in-out focus:outline-none focus-visible:ring-2 ${isCardVisible
                   ? 'bg-[#10B981] text-white rounded-[5px] hover:bg-[#0D7E59]'
                   : 'border-2 border-[#D0D0D0] rounded-[5px] text-gray-400'
                   }`}
@@ -59,7 +60,7 @@ const Writing = () => {
                 Toppic
               </button>
               <button
-                className={`relative flex-1 text-sm font-medium p-2 transition duration-150 ease-in-out focus:outline-none focus-visible:ring-2 ${!isCardVisible
+                className={` flex-1 text-sm font-medium p-2 transition duration-150 ease-in-out focus:outline-none focus-visible:ring-2 ${!isCardVisible
                   ? 'bg-[#10B981] text-white rounded-[5px] hover:bg-[#0D7E59]'
                   : 'border-2 border-[#D0D0D0] rounded-[5px] text-gray-400'
                   }`}

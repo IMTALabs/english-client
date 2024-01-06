@@ -6,24 +6,37 @@ import InputText from 'src/components/input/input-text';
 
 function Login() {
   const INITIAL_LOGIN_OBJ = {
+    email: '',
     password: '',
-    emailId: '',
   };
 
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [loginObj, setLoginObj] = useState(INITIAL_LOGIN_OBJ);
 
-  const submitForm = (e:any) => {
+  const submitForm = async (e: any) => {
     e.preventDefault();
     setErrorMessage('');
 
-    if (loginObj.emailId.trim() === '')
+    if (loginObj.email.trim() === '')
       return setErrorMessage('Email Id is required! (use any value)');
     if (loginObj.password.trim() === '')
       return setErrorMessage('Password is required! (use any value)');
     else {
       setLoading(true);
+      // try {
+      //   const csrfToken = await authenticationApi.getCsrfToken();
+
+      //   console.log(csrfToken, 'getCsrfToken ne');
+      //   if (csrfToken) {
+      //     const res = await authenticationApi.postLogin(loginObj);
+
+      //     console.log(res, 'res ne');
+      //   }
+      // } catch (error) {
+      //   console.log(error, 'error ne');
+      // }
+
       // Call API to check user credentials and save token in localstorage
       localStorage.setItem('token', 'DumyTokenHere');
       setLoading(false);
@@ -31,9 +44,12 @@ function Login() {
     }
   };
 
-  const updateFormValue = ({updateType, value}:{
-    updateType: string,
-    value: any
+  const updateFormValue = ({
+    updateType,
+    value,
+  }: {
+    updateType: string;
+    value: any;
   }) => {
     setErrorMessage('');
     setLoginObj({...loginObj, [updateType]: value});
@@ -51,9 +67,9 @@ function Login() {
             <form onSubmit={e => submitForm(e)}>
               <div className="mb-4">
                 <InputText
-                  type="emailId"
-                  defaultValue={loginObj.emailId}
-                  updateType="emailId"
+                  type="email"
+                  defaultValue={loginObj.email}
+                  updateType="email"
                   containerStyle="mt-4"
                   labelTitle="Email Id"
                   updateFormValue={updateFormValue}

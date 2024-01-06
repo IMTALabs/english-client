@@ -1,5 +1,5 @@
 import Header from './header';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import routes from 'src/routes/index';
 import { Suspense, lazy } from 'react';
 import SuspenseContent from './suspense-content';
@@ -13,6 +13,8 @@ const Page404 = lazy(() => import('src/pages/protected/404'));
 function PageContent() {
   const mainContentRef = useRef(null);
   const { pageTitle } = useAppSelector(state => state.header);
+  const searchParams = useLocation()
+  const hideSidebar = searchParams.pathname.includes('quizz') || searchParams.pathname.includes('result')
 
   // Scroll back to top on new page load
   useEffect(() => {
@@ -26,7 +28,11 @@ function PageContent() {
     <div className="drawer-content flex flex-col h-full">
       <Header />
       <main
-        className="grid grid-cols-6 gap-4 overflow-y-auto md:pt-4 pt-4 px-6 h-full"
+        className={`grid grid-cols-6 gap-4 overflow-y-auto md:pt-4 pt-4 px-6 h-full,
+        ${
+          hideSidebar && 'grid-cols-4'
+        }
+        `}
         ref={mainContentRef}>
         <div className='col-span-full lg:col-span-4'>
           <Suspense fallback={<SuspenseContent />}>
@@ -48,9 +54,12 @@ function PageContent() {
 
           </Suspense>
         </div>
-        <div className='col-span-full lg:col-span-2'>
-          <RightSidebarPageContent />
-        </div>
+        {
+          !hideSidebar && (<div className='col-span-full lg:col-span-2'>
+            <RightSidebarPageContent />
+          </div>)
+        }
+     
 
       </main>
     </div>

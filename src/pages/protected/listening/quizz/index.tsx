@@ -1,214 +1,83 @@
+import { useState } from 'react';
+import ReactPlayer from 'react-player';
+import { useLocation, useNavigate } from 'react-router-dom';
+import AssignmentQuizz from 'src/components/assignment-quizz';
 import Button from 'src/components/button';
+
+
+interface Question {
+    question: string;
+    choices: {
+        A: string;
+        B: string;
+        C: string;
+        D: string;
+    };
+    explanation: string;
+    answer: string;
+}
+
+
+
 const QuizzListening = () => {
+    const {
+        body, link
+    } = useLocation()?.state?.quizz
+    const navigeUrl = useNavigate();
+    const questions: Question[] = body?.form
+
+    const [selectedChoices, setSelectedChoices] = useState<Record<string, string>>({});
+
+    const handleChoiceSelect = (questionIndex: number, choice: string) => {
+        setSelectedChoices((prevChoices) => ({
+            ...prevChoices,
+            [questionIndex]: choice,
+        }));
+    };
+    const handleConfirmQuizz = () => {
+        // Kiểm tra xem đã chọn hết lựa chọn hay chưa
+        const allQuestionsAnswered = Object.keys(selectedChoices).length === questions?.length;
+
+        if (allQuestionsAnswered) {
+            // Nếu đã chọn hết, thì chuyển hướng hoặc thực hiện hành động khác
+            navigeUrl('/app/listening/result', {
+                state: {
+                    answerQuizz: selectedChoices,
+                    CorrectAnswer: questions
+                }
+            });
+        } else {
+            console.log('Please answer all questions before submitting.');
+        }
+    };
+
     return (
         <>
             <div className="sm:flex items-center flex-1 gap-x-4">
                 <div className="sm:w-1/2  mb-3">
                     <p className="font-bold text-[30px] mb-[27px]">Listening Quizz</p>
                     <div className="mx-auto">
-                        <iframe className="rounded-[10px] sm:w-full sm:h-[500px] flex justify-center" src="https://www.youtube.com/embed/gsnndTUni_Y?si=1AyTvH-65t7WmyRr" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
-                    </div>
-                    <div>
-                        <p className="text-[24px] mt-[21px] ">The Ocean's Most Important Crystal</p>
+                        <ReactPlayer
+                            url={link}
+                            controls
+                            width="100%"
+                            playsinline
+                            height="100%"
+                            className="rounded-[10px] sm:w-full sm:h-[500px] flex justify-center" config={{
+                                youtube: {
+                                    playerVars: { showinfo: 1 }
+                                },
+                            }} />
                     </div>
                 </div>
                 <div className="sm:w-1/2 border-l-2 px-2 ">
                     <div>
-                        <p className="font-bold sm:text-[30px]">Question 1-10</p>
-                        <p className="sm:text-[24px]">Choose the correct letter, A, B, С or D.</p>
                         <div className="overflow-y-auto h-[700px]">
-                            <form className="quiz-form mb-2">
-                                <p className="sm:text-[24px] font-bold">1. What does the lecturer provide for those who are interested in doing extra reading?</p>
-                                <label className="flex gap-[5px] radio-container">
-                                    <p className="sm:text-[30px]">A.</p>
-                                    <div className="flex gap-1 sm:mt-[5px]">
-                                        <input className="sm:w-6 sm:h-6 sm:mt-[5px] custom-radio" type="radio" name="answer" value="1" />
-                                        <p className="sm:text-[24px]">Personal consultation sessions.</p>
-                                    </div>
-                                </label>
-                                <label className="flex gap-[5px] radio-container">
-                                    <p className="sm:text-[30px]">B.</p>
-                                    <div className="flex gap-1 sm:mt-[5px]">
-                                        <input className="sm:w-6 sm:h-6 mt-[5px] custom-radio" type="radio" name="answer" value="2" />
-                                        <p className="sm:text-[24px]">Extra materials, such as a booklist.</p>
-                                    </div>
-                                </label>
-                                <label className="flex gap-[5px] radio-container">
-                                    <p className="sm:text-[30px]">C.</p>
-                                    <div className="flex gap-1 sm:mt-[5px]">
-                                        <input className="sm:w-6 sm:h-6 mt-[5px] custom-radio" type="radio" name="answer" value="3" />
-                                        <p className="sm:text-[24px]">Mid-term examination.</p>
-                                    </div>
-                                </label>
-                                <label className="flex gap-[5px] radio-container">
-                                    <p className="sm:text-[30px]">D.</p>
-                                    <div className="flex gap-1 sm:mt-[5px]">
-                                        <input className="sm:w-6 sm:h-6 mt-[5px] custom-radio" type="radio" name="answer" value="4" />
-                                        <p className="sm:text-[24px]">Mid-term examination.</p>
-                                    </div>
-                                </label>
-                            </form>
-
-                            <form className=" mb-2">
-                                <p className="sm:text-[24px] font-bold">10. What does the lecturer provide for those who are interested in doing extra reading?</p>
-                                <label className="flex gap-[5px] radio-container">
-                                    <p className="sm:text-[30px]">A.</p>
-                                    <div className="flex gap-1 sm:mt-[5px]">
-                                        <input className="sm:w-6 sm:h-6 mt-[5px] custom-radio" type="radio" name="answer" value="1" />
-                                        <p className="sm:text-[24px]">Personal consultation sessions.</p>
-                                    </div>
-                                </label>
-                                <label className="flex gap-[5px] radio-container">
-                                    <p className="sm:text-[30px]">B.</p>
-                                    <div className="flex gap-1 sm:mt-[5px]">
-                                        <input className="sm:w-6 sm:h-6 mt-[5px] custom-radio" type="radio" name="answer" value="2" />
-                                        <p className="sm:text-[24px]">Extra materials, such as a booklist.</p>
-                                    </div>
-                                </label>
-                                <label className="flex gap-[5px] radio-container">
-                                    <p className="sm:text-[30px]">C.</p>
-                                    <div className="flex gap-1 sm:mt-[5px]">
-                                        <input className="sm:w-6 sm:h-6 mt-[5px] custom-radio" type="radio" name="answer" value="3" />
-                                        <p className="sm:text-[24px]">Mid-term examination.</p>
-                                    </div>
-                                </label>
-                                <label className="flex gap-[5px] radio-container">
-                                    <p className="sm:text-[30px]">D.</p>
-                                    <div className="flex gap-1 sm:mt-[5px]">
-                                        <input className="sm:w-6 sm:h-6 mt-[5px] custom-radio" type="radio" name="answer" value="4" />
-                                        <p className="sm:text-[24px]">Mid-term examination.</p>
-                                    </div>
-                                </label>
-                            </form>
-                            <form className=" mb-2">
-                                <p className="sm:text-[24px] font-bold">10. What does the lecturer provide for those who are interested in doing extra reading?</p>
-                                <label className="flex gap-[5px] radio-container">
-                                    <p className="sm:text-[30px]">A.</p>
-                                    <div className="flex gap-1 sm:mt-[5px]">
-                                        <input className="sm:w-6 sm:h-6 mt-[5px] custom-radio" type="radio" name="answer" value="1" />
-                                        <p className="sm:text-[24px]">Personal consultation sessions.</p>
-                                    </div>
-                                </label>
-                                <label className="flex gap-[5px] radio-container">
-                                    <p className="sm:text-[30px]">B.</p>
-                                    <div className="flex gap-1 sm:mt-[5px]">
-                                        <input className="sm:w-6 sm:h-6 mt-[5px] custom-radio" type="radio" name="answer" value="2" />
-                                        <p className="sm:text-[24px]">Extra materials, such as a booklist.</p>
-                                    </div>
-                                </label>
-                                <label className="flex gap-[5px] radio-container">
-                                    <p className="sm:text-[30px]">C.</p>
-                                    <div className="flex gap-1 sm:mt-[5px]">
-                                        <input className="sm:w-6 sm:h-6 mt-[5px] custom-radio" type="radio" name="answer" value="3" />
-                                        <p className="sm:text-[24px]">Mid-term examination.</p>
-                                    </div>
-                                </label>
-                                <label className="flex gap-[5px] radio-container">
-                                    <p className="sm:text-[30px]">D.</p>
-                                    <div className="flex gap-1 sm:mt-[5px]">
-                                        <input className="sm:w-6 sm:h-6 mt-[5px] custom-radio" type="radio" name="answer" value="4" />
-                                        <p className="sm:text-[24px]">Mid-term examination.</p>
-                                    </div>
-                                </label>
-                            </form>
-                            <form className=" mb-2">
-                                <p className="sm:text-[24px] font-bold">10. What does the lecturer provide for those who are interested in doing extra reading?</p>
-                                <label className="flex gap-[5px] radio-container">
-                                    <p className="sm:text-[30px]">A.</p>
-                                    <div className="flex gap-1 sm:mt-[5px]">
-                                        <input className="sm:w-6 sm:h-6 mt-[5px] custom-radio" type="radio" name="answer" value="1" />
-                                        <p className="sm:text-[24px]">Personal consultation sessions.</p>
-                                    </div>
-                                </label>
-                                <label className="flex gap-[5px] radio-container">
-                                    <p className="sm:text-[30px]">B.</p>
-                                    <div className="flex gap-1 sm:mt-[5px]">
-                                        <input className="sm:w-6 sm:h-6 mt-[5px] custom-radio" type="radio" name="answer" value="2" />
-                                        <p className="sm:text-[24px]">Extra materials, such as a booklist.</p>
-                                    </div>
-                                </label>
-                                <label className="flex gap-[5px] radio-container">
-                                    <p className="sm:text-[30px]">C.</p>
-                                    <div className="flex gap-1 sm:mt-[5px]">
-                                        <input className="sm:w-6 sm:h-6 mt-[5px] custom-radio" type="radio" name="answer" value="3" />
-                                        <p className="sm:text-[24px]">Mid-term examination.</p>
-                                    </div>
-                                </label>
-                                <label className="flex gap-[5px] radio-container">
-                                    <p className="sm:text-[30px]">D.</p>
-                                    <div className="flex gap-1 sm:mt-[5px]">
-                                        <input className="sm:w-6 sm:h-6 mt-[5px] custom-radio" type="radio" name="answer" value="4" />
-                                        <p className="sm:text-[24px]">Mid-term examination.</p>
-                                    </div>
-                                </label>
-                            </form>
-                            <form className=" mb-2">
-                                <p className="sm:text-[24px] font-bold">10. What does the lecturer provide for those who are interested in doing extra reading?</p>
-                                <label className="flex gap-[5px] radio-container">
-                                    <p className="sm:text-[30px]">A.</p>
-                                    <div className="flex gap-1 sm:mt-[5px]">
-                                        <input className="sm:w-6 sm:h-6 mt-[5px] custom-radio" type="radio" name="answer" value="1" />
-                                        <p className="sm:text-[24px]">Personal consultation sessions.</p>
-                                    </div>
-                                </label>
-                                <label className="flex gap-[5px] radio-container">
-                                    <p className="sm:text-[30px]">B.</p>
-                                    <div className="flex gap-1 sm:mt-[5px]">
-                                        <input className="sm:w-6 sm:h-6 mt-[5px] custom-radio" type="radio" name="answer" value="2" />
-                                        <p className="sm:text-[24px]">Extra materials, such as a booklist.</p>
-                                    </div>
-                                </label>
-                                <label className="flex gap-[5px] radio-container">
-                                    <p className="sm:text-[30px]">C.</p>
-                                    <div className="flex gap-1 sm:mt-[5px]">
-                                        <input className="sm:w-6 sm:h-6 mt-[5px] custom-radio" type="radio" name="answer" value="3" />
-                                        <p className="sm:text-[24px]">Mid-term examination.</p>
-                                    </div>
-                                </label>
-                                <label className="flex gap-[5px] radio-container">
-                                    <p className="sm:text-[30px]">D.</p>
-                                    <div className="flex gap-1 sm:mt-[5px]">
-                                        <input className="sm:w-6 sm:h-6 mt-[5px] custom-radio" type="radio" name="answer" value="4" />
-                                        <p className="sm:text-[24px]">Mid-term examination.</p>
-                                    </div>
-                                </label>
-                            </form>
-                            <form className=" mb-2">
-                                <p className="sm:text-[24px] font-bold">10. What does the lecturer provide for those who are interested in doing extra reading?</p>
-                                <label className="flex gap-[5px] radio-container">
-                                    <p className="sm:text-[30px]">A.</p>
-                                    <div className="flex gap-1 sm:mt-[5px]">
-                                        <input className="sm:w-6 sm:h-6 mt-[5px] custom-radio" type="radio" name="answer" value="1" />
-                                        <p className="sm:text-[24px]">Personal consultation sessions.</p>
-                                    </div>
-                                </label>
-                                <label className="flex gap-[5px] radio-container">
-                                    <p className="sm:text-[30px]">B.</p>
-                                    <div className="flex gap-1 sm:mt-[5px]">
-                                        <input className="sm:w-6 sm:h-6 mt-[5px] custom-radio" type="radio" name="answer" value="2" />
-                                        <p className="sm:text-[24px]">Extra materials, such as a booklist.</p>
-                                    </div>
-                                </label>
-                                <label className="flex gap-[5px] radio-container">
-                                    <p className="sm:text-[30px]">C.</p>
-                                    <div className="flex gap-1 sm:mt-[5px]">
-                                        <input className="sm:w-6 sm:h-6 mt-[5px] custom-radio" type="radio" name="answer" value="3" />
-                                        <p className="sm:text-[24px]">Mid-term examination.</p>
-                                    </div>
-                                </label>
-                                <label className="flex gap-[5px] radio-container">
-                                    <p className="sm:text-[30px]">D.</p>
-                                    <div className="flex gap-1 sm:mt-[5px]">
-                                        <input className="sm:w-6 sm:h-6 mt-[5px] custom-radio" type="radio" name="answer" value="4" />
-                                        <p className="sm:text-[24px]">Mid-term examination.</p>
-                                    </div>
-                                </label>
-                            </form>
+                            <AssignmentQuizz form={questions} onChoiceSelect={handleChoiceSelect} />
                         </div>
                     </div>
-                    <Button type='submit' text='Submit' />
+                    <Button type='submit' text='Submit' onClick={handleConfirmQuizz} />
                 </div>
-
             </div >
         </>
 

@@ -20,9 +20,14 @@ const checkAuth = () => {
     return;
   } else {
     axios.defaults.headers.common["Authorization"] = `Bearer ${TOKEN}`;
-
     axios.interceptors.request.use(
       function (config) {
+        config.headers.Authorization = `Bearer ${TOKEN}`;
+        config.baseURL = 'http://briteshop.store/public/api/';
+        config.timeout= 60000;
+        config.headers['Content-Type'] = 'application/json';
+        config.headers['Accept'] = 'application/json';
+
         // UPDATE: Add this code to show global loading indicator
         document.body.classList.add("loading-indicator");
         return config;
@@ -36,7 +41,7 @@ const checkAuth = () => {
       function (response) {
         // UPDATE: Add this code to hide global loading indicator
         document.body.classList.remove("loading-indicator");
-        return response;
+        return response.data
       },
       function (error) {
         document.body.classList.remove("loading-indicator");

@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 const postInstructionApi = ({ instruction, submission }: { instruction: string, submission: string }) => {
-    return axios.post('https://briteshop.store/public/api/evalue', {
+    return axios.post('evalue', {
         submission,
         instruction
     });
@@ -10,7 +10,7 @@ const postInstructionApi = ({ instruction, submission }: { instruction: string, 
 
 
 const postGenInstructionApi = (topic: string) => {
-    return axios.post('https://briteshop.store/public/api/gen_instruction    ', {
+    return axios.post('gen_instruction', {
         topic
     });
 }

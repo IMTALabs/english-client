@@ -1,13 +1,13 @@
 import axios from "axios";
 
-interface Root {
+interface ReadingTopic {
     mode: string
     topic: string
     paragraph: string
 }
 
-const postTopicReading = ({ mode, topic, paragraph }: Root) => {
-    return axios.post('https://briteshop.store/public/api/reading', {
+const postTopicReading = ({ mode, topic, paragraph }: ReadingTopic) => {
+    return axios.post('reading', {
         mode, topic, paragraph
     });
 }

@@ -12,11 +12,16 @@ const Listening = lazy(() => import('src/pages/protected/listening'))
 const Writing = lazy(() => import('src/pages/protected/writing'))
 
 const Reading = lazy(() => import('src/pages/protected/reading'))
+
 const QuizzReading = lazy(() => import('src/pages/protected/reading/quizz/index'))
 const ResultReading = lazy(() => import('src/pages/protected/reading/result/index'))
+
 const QuizzListening = lazy(() => import('src/pages/protected/listening/quizz'))
 const ResultListening = lazy(() => import('src/pages/protected/listening/result'))
 
+
+const QuizzWriting = lazy(() => import("src/pages/protected/writing/quizz"))
+const ResultWriting = lazy(() => import("src/pages/protected/writing/result"))
 
 const routes = [
   {
@@ -74,8 +79,17 @@ const routes = [
     path: "/listening/result",
     component: ResultListening,
     exact: true,
+  },
+  {
+    path: '/writing/quizz',
+    component: QuizzWriting,
+    exact: true
+  },
+  {
+    path: '/writing/result',
+    component: ResultWriting,
+    exact: true
   }
-
 ];
 
 export default routes;

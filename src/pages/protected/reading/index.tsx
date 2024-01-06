@@ -1,107 +1,15 @@
-import {useState} from 'react';
-import {useAppDispatch} from 'src/app/store';
-import TitleCard from 'src/components/cards/title-card';
-import {postReadingConten} from 'src/features/common/reading-slice';
+import TitleCard from "src/components/cards/title-card";
+import TextareaRadio from "src/components/textarea-radio";
 
 const Reading = () => {
-  const [mode, setMode] = useState('gen_topic');
-  const [topic, setToppic] = useState('');
-  const [paragraph, setParagraph] = useState('');
-  const dispatch = useAppDispatch();
-
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    // Do something with the selected mode, toppic, and paragraph
-    console.log('Selected Mode:', mode);
-    console.log('Toppic:', topic);
-    console.log('Paragraph:', paragraph);
-    const formReading = {
-      mode,
-      topic,
-      paragraph,
-    };
-    dispatch(postReadingConten(formReading));
-  };
-  const [isCardVisible, setCardVisibility] = useState(true);
-
-  const handlePaymentTypeChange = (isCardSelected: boolean) => {
-    setCardVisibility(isCardSelected);
-  };
-  const [text, setText] = useState('');
-
-  const handleTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const newText = event.target.value;
-    setText(newText);
-  };
-
-  const characterCount = text.length;
-
-  return (
-      <TitleCard title="Writing" topMargin="mt-2">
-      <div className="bg-base-100 rounded-2xl shadow-xl p-6 mt-2 ">
-        <div className="grid lg:grid-cols-2 gap-4">
-          <button
-            onClick={() => handlePaymentTypeChange(false)}
-            className={`${
-              isCardVisible
-                ? 'text-gray-500 border-2'
-                : ' border-[#10B981] bg-[#10B981] text-white'
-            }  text-center rounded py-2 font-semibold `}>
-            From Your Essay
-          </button>
-          <button
-            onClick={() => handlePaymentTypeChange(true)}
-            className={`${
-              isCardVisible
-                ? 'border-[#10B981] bg-[#10B981] text-white'
-                : 'text-gray-500 border-2 '
-            }  text-center rounded py-2 font-semibold `}>
-            Generate Topic
-          </button>
+    return (
+        <div >
+            <TitleCard title="Profile Settings" topMargin="mt-2">
+                <TextareaRadio option1="Generate Topic" option2='From Your Essay' />
+            </TitleCard>
         </div>
-        {isCardVisible ? (
-          <div className="mx-auto">
-            <p className=" bg-base-100 text-[24px]  font-bold my-3 ">
-              Choose Topic
-            </p>
-            <textarea
-              onChange={handleTextChange}
-              name=""
-              id=""
-              className="w-full  bg-white  py-2 px-2 h-[203px] border-2 border-gray-300 rounded "
-              placeholder="Type or patse the topic here..."></textarea>
-            <div className="flex justify-between">
-              <p></p>
-              <p>{characterCount}/500</p>
-            </div>
 
-            <button className=" p-2 hover:bg-[#0D7E59] hover:border-[#0D7E59] transition-colors duration-300 border border-[#10B981] bg-[#10B981] text-center text-white w-full mt-4 rounded font-medium">
-              Generate Quizz
-            </button>
-          </div>
-        ) : (
-          <div className="">
-            <p className=" font-bold text-[24px] my-3 bg-base-100">
-              From Your Essay
-            </p>
-            <textarea
-              onChange={handleTextChange}
-              name=""
-              id=""
-              className="  w-full  bg-white  py-2 px-2 h-[203px] border-2 border-gray-300 rounded "
-              placeholder="Type or patse the topic here..."></textarea>
-            <div className="flex justify-between">
-              <p></p>
-              <p>{characterCount}/500</p>
-            </div>
-            <button className=" p-2 hover:bg-[#0D7E59] hover:border-[#0D7E59] transition-colors duration-300 border border-[#10B981] bg-[#10B981] text-center text-white w-full  sm:mx-auto mt-4 rounded font-medium">
-              Generate Quizz
-            </button>
-          </div>
-        )}
-      </div>
-    </TitleCard>
-  );
+    );
 };
 
 export default Reading;

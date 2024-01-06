@@ -22,9 +22,7 @@ const RightSidebarPageContent = (props: Props) => {
         <TitleCard title="" topMargin="mt-2">
             {
                 dataForm?.map((item, index) => {
-                    return <div 
-                    key={index}
-                    className="max-w-sm w-full lg:max-w-full lg:flex">
+                    return <div className="max-w-sm w-full lg:max-w-full lg:flex" key={index}>
                         <img src={item.image} alt="" className='h-40 w-30' />
                         <div className=" rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
                             <div className="mb-8">

@@ -7,7 +7,7 @@ interface ReadingTopic {
 }
 
 const postTopicReading = ({ mode, topic, paragraph }: ReadingTopic) => {
-    return axios.post('reading', {
+    return axios.post('/reading', {
         mode, topic, paragraph
     });
 }

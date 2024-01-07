@@ -8,20 +8,18 @@ import Button from "src/components/button";
 const Listening = () => {
     const dispatch = useAppDispatch();
     const [linkUrl, setLinkUrl] = useState('');
-    const quizz = useAppSelector((state) => state.listening?.quizzs?.data || "");
+    const quizz = useAppSelector((state) => state.listening?.quizzs || "");
     const navigeUrl = useNavigate();
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
         dispatch(getListeningContent(linkUrl));
     };
     const { isLoading } = useAppSelector((state) => state.listening);
-    useEffect(() => {
-        if (!isLoading && quizz) {
-            navigeUrl('quizz', {
-                state: { quizz }
-            });
-        }
-    }, [isLoading, quizz]);
+    if (!isLoading && quizz && quizz.body && quizz.body.form && Array.isArray(quizz.body.form) && quizz.body.form.length > 0) {
+        navigeUrl('quizz', {
+            state: { quizz: quizz }
+        });
+    }
     const [showOverlay, setShowOverlay] = useState(false);
     const handleOverlayClick = () => {
         setShowOverlay(true); // Ẩn overlay khi click vào nền trắng

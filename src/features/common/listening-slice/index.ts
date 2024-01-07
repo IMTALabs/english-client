@@ -15,19 +15,46 @@ export const getListeningContent = createAsyncThunk(
 
 interface ListeningState {
     isLoading: boolean;
-    quizzs: any[];
+    quizzs: Root | null; // Use null as the initial value
 }
 
 const initialState: ListeningState = {
     isLoading: false,
-    quizzs: [],
+    quizzs: null,
 };
 
+export interface Root {
+    body: Body;
+    link: string;
+}
+
+export interface Body {
+    id: string;
+    form: Form[];
+}
+
+export interface Form {
+    question: string;
+    choices: Choices;
+    explanation: string;
+    answer: string;
+}
+
+export interface Choices {
+    A: string;
+    B: string;
+    C: string;
+    D: string;
+}
 export const listeningSlice = createSlice({
     name: 'listening',
     initialState: initialState,
     reducers: {
-
+        clearListeningState: (state) => {
+            console.log("ccc");
+            
+            return;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -45,6 +72,6 @@ export const listeningSlice = createSlice({
     },
 });
 
-export const { } = listeningSlice.actions;
+export const { clearListeningState } = listeningSlice.actions;
 
 export default listeningSlice.reducer;

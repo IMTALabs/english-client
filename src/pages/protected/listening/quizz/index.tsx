@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useAppDispatch } from 'src/app/store';
 import AssignmentQuizz from 'src/components/assignment-quizz';
 import Button from 'src/components/button';
+import { clearListeningState } from 'src/features/common/listening-slice';
 
 
 interface Question {
@@ -23,6 +25,7 @@ const QuizzListening = () => {
     const {
         body, link
     } = useLocation()?.state?.quizz
+    const dispatch = useAppDispatch();
     const navigeUrl = useNavigate();
     const questions: Question[] = body?.form
 
@@ -34,6 +37,9 @@ const QuizzListening = () => {
             [questionIndex]: choice,
         }));
     };
+    useEffect(() => {
+        dispatch(clearListeningState())
+    }, []);
     const handleConfirmQuizz = () => {
         // Kiểm tra xem đã chọn hết lựa chọn hay chưa
         const allQuestionsAnswered = Object.keys(selectedChoices).length === questions?.length;

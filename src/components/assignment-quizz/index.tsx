@@ -44,7 +44,7 @@ const AssignmentQuizz: React.FC<Props> = ({ form, onChoiceSelect, onChoiceTextar
             onChoiceTextarea(value);
         }
     };
-
+    console.log(form);
     if (form) {
         return (
             <div>
@@ -73,7 +73,6 @@ const AssignmentQuizz: React.FC<Props> = ({ form, onChoiceSelect, onChoiceTextar
             </div>
         );
     }
-
     // ... (your existing code for handling "No Questions Available")
 
     return (

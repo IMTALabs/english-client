@@ -3,10 +3,7 @@ import writing from 'src/features/services/writing/writing-api';
 
 
 
-interface ToppicState {
-    instruction: string
-    submission: string
-}
+
 
 export const postWritingPoint = createAsyncThunk(
     'writing/postWritingPoint',
@@ -32,7 +29,11 @@ export const postWritingContent = createAsyncThunk(
     }
 );
 
-
+interface ToppicState {
+    instruction: string
+    submission: string,
+    band_score?: number
+}
 interface WritingState {
     isLoading: boolean;
     quizzs: ToppicState[];
@@ -47,7 +48,9 @@ export const writingSlice = createSlice({
     name: 'writing',
     initialState: initialState,
     reducers: {
-
+        clearWritingState: () => {
+            return initialState;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -76,6 +79,6 @@ export const writingSlice = createSlice({
     },
 });
 
-export const { } = writingSlice.actions;
+export const { clearWritingState } = writingSlice.actions;
 
 export default writingSlice.reducer;

@@ -1,14 +1,14 @@
 import React from 'react';
 
 interface BandScoreProps {
-    valueData: {
+    valueData?: {
         TA?: string;
         CC?: string;
         LR?: string;
         GRA?: string;
         score: string;
     }[];
-    bandScore : number
+    bandScore?: number
 }
 
 const BandScore: React.FC<BandScoreProps> = ({ valueData, bandScore }) => {
@@ -17,7 +17,7 @@ const BandScore: React.FC<BandScoreProps> = ({ valueData, bandScore }) => {
             <div className=" border-l-2 px-2">
                 <p className="text-[96px] text-center font-bold text-[#FFA800]">{bandScore}</p>
                 <p className="text-[36px] font-normal text-center mb-5">Overall Band Score</p>
-                {valueData.map((value, index) => {
+                {valueData?.map((value, index) => {
                     return (
                         <div key={index}>
                             <p className="font-bold text-[24px] mb-5">

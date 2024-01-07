@@ -3,11 +3,11 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from 'src/app/store';
 import Button from 'src/components/button';
-import { postReadingConten } from 'src/features/common/reading-slice';
+import { postReadingContent } from 'src/features/common/reading-slice';
 import { postWritingContent } from 'src/features/common/writing-slice';
 type Props = {
     option: string,
-    mode: string
+    mode?: string
 }
 
 const TextareaRadio = ({ option, mode }: Props) => {
@@ -19,15 +19,16 @@ const TextareaRadio = ({ option, mode }: Props) => {
     const navigeUrl = useNavigate()
     const dispatch = useAppDispatch()
     const handleSubmit = () => {
+        console.log(mode, "Submit");
         if (mode == "gen_topic") {
-            dispatch(postReadingConten(
+            dispatch(postReadingContent(
                 {
                     mode: mode,
                     topic: text,
                     paragraph: ""
                 }));
         } else if (mode == "no_gen_topic") {
-            dispatch(postReadingConten(
+            dispatch(postReadingContent(
                 {
                     mode: mode,
                     topic: "",

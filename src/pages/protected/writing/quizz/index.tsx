@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "src/app/store";
 import AssignmentContent from "src/components/assignment-content";
 import AssignmentQuizz from "src/components/assignment-quizz";
 import Button from "src/components/button";
-import { postWritingPoint } from "src/features/common/writing-slice";
+import { clearWritingState, postWritingPoint } from "src/features/common/writing-slice";
 interface Question {
   question: string;
   choices: {
@@ -18,15 +18,14 @@ interface Question {
 }
 
 const QuizzWriting = () => {
-  // const data = "Write an essay about the role of family in your life. Discuss the importance of family relationships and how they have influenced your personal development. Provide examples and explain how your family has shaped your values and beliefs. Consider the impact of family dynamics on your decision-making and future goals."
-  const data = useLocation()?.state?.quizzWriting
+  const data = useLocation()?.state?.quizz
   const data1 = useLocation()?.state;
   const navigeUrl = useNavigate();
   const questions: string = data
   const [textAreaValue, setTextAreaValue] = useState<string>('');
   const dispatch = useAppDispatch();
-  const quizz = useAppSelector((state) => state.writing?.quizzs?.data || "");
-  const { isLoading } = useAppSelector((state) => state.reading);
+  const quizz = useAppSelector((state) => state.writing?.quizzs || "");
+  const { isLoading } = useAppSelector((state) => state?.writing)
 
   const handleChoiceTextarea = (value: string) => {
     setTextAreaValue(value);
@@ -45,10 +44,13 @@ const QuizzWriting = () => {
   };
 
   useEffect(() => {
-    if (!isLoading && quizz) {
+    if (!isLoading && quizz?.band_score) {
       navigeUrl('/app/writing/result', {
         state: { quizz }
       });
+    }
+    if (quizz.length > 0) {
+      dispatch(clearWritingState())
     }
   }, [isLoading, quizz]);
   return (

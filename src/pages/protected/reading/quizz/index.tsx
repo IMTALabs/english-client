@@ -1,8 +1,10 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
+import { useAppDispatch, useAppSelector } from "src/app/store";
 import AssignmentContent from "src/components/assignment-content"
 import AssignmentQuizz from "src/components/assignment-quizz"
 import Button from "src/components/button";
+import { clearReadingState } from "src/features/common/reading-slice";
 
 interface Question {
     question: string;
@@ -18,7 +20,10 @@ interface Question {
 const QuizzReading = () => {
     const data = useLocation()?.state?.quizz
     const navigeUrl = useNavigate();
+    const dispatch = useAppDispatch();
     const questions: Question[] = data?.form
+    const quizz = useAppSelector((state) => state.reading?.quizzs || "");
+    const check = useAppSelector((state) => state|| "");
     const [selectedChoices, setSelectedChoices] = useState<Record<string, string>>({});
     const handleChoiceSelect = (questionIndex: number, choice: string) => {
         setSelectedChoices((prevChoices) => ({
@@ -39,6 +44,12 @@ const QuizzReading = () => {
             console.log('Please answer all questions before submitting.');
         }
     };
+    useEffect(() => {
+
+        dispatch(clearReadingState())
+        console.log(check, "quizz");
+
+    }, []);
     return (
         <div>
             <div className='grid lg:grid-cols-2 '>

@@ -10,7 +10,7 @@ interface ToppicState {
 }
 
 export const postReadingContent = createAsyncThunk(
-    'writing/postReadingContent',
+    'reading/postReadingContent',
     async (toppic: ToppicState, { rejectWithValue }) => {
         try {
             const response = await reading.postTopicReading(toppic)
@@ -34,10 +34,12 @@ const initialState: ReadingState = {
 };
 
 export const readingSlice = createSlice({
-    name: 'writing',
+    name: 'reading',
     initialState: initialState,
     reducers: {
-
+        clearReadingState: () => {
+            return initialState;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -55,6 +57,6 @@ export const readingSlice = createSlice({
     },
 });
 
-export const { } = readingSlice.actions;
+export const { clearReadingState } = readingSlice.actions;
 
 export default readingSlice.reducer;

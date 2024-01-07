@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import writing from 'src/features/services/writing';
+import writing from 'src/features/services/writing/writing-api';
 
 
 

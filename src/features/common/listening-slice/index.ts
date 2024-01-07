@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import listeningApi from 'src/features/services/listening/listeningApi';
+import listeningApi from 'src/features/services/listening/listening-api';
 
 export const getListeningContent = createAsyncThunk(
     'listening/getListeningContent',

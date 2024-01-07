@@ -1,11 +1,7 @@
 import Login from 'src/features/user/login';
 
-function ExternalPage() {
-  return (
-    <div className="">
-        <Login />
-    </div>
-  );
+const ExternalPage = () => {
+  return <Login />
 }
 
 export default ExternalPage;

@@ -59,10 +59,10 @@ const QuizzListening = () => {
 
     return (
         <>
-            <div className="sm:flex items-center flex-1 gap-x-4">
-                <div className="sm:w-1/2  mb-3">
+            <div className="sm:flex flex-1 gap-x-4">
+                <div className="sm:w-1/2  mb-3 py-2">
                     <p className="font-bold text-[30px] mb-[27px]">Listening Quizz</p>
-                    <div className="mx-auto">
+                    <div className="mx-auto h-[450px]">
                         <ReactPlayer
                             url={link}
                             controls

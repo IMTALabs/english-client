@@ -27,7 +27,7 @@ const Listening = () => {
 
     return (
         <>
-            <TitleCard title="Profile Settings" topMargin="mt-2">
+            <TitleCard title="Listening" topMargin="mt-2">
                 <div className="">
                     <h1 className="text-[30px] font-bold mb-[31px]">Enter <span className="text-[#EA6C6C]">Youtube</span> Video Url</h1>
                     <form className="w-[100%] " onSubmit={handleSubmit}>

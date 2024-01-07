@@ -19,7 +19,9 @@ interface Question {
 
 const QuizzWriting = () => {
   const data = useLocation()?.state?.quizz
-  const data1 = useLocation()?.state;
+  const data1 = useLocation()?.state?.text;
+  console.log(data, data1);
+
   const navigeUrl = useNavigate();
   const questions: string = data
   const [textAreaValue, setTextAreaValue] = useState<string>('');
@@ -54,15 +56,13 @@ const QuizzWriting = () => {
     }
   }, [isLoading, quizz]);
   return (
-    <div className="sm:flex flex-1 gap-x-4 bg-white">
-      <div className='grid lg:grid-cols-2 '>
-        <div>
-          <AssignmentContent paragraph={data} />
-        </div>
-        <div>
-          <AssignmentQuizz onChoiceTextarea={handleChoiceTextarea} />
-          <Button type='submit' text='Submit' onClick={handleConfirmQuizz} />
-        </div>
+    <div className='flex '>
+      <div className="min-w-[400px]">
+        {data1 ? <AssignmentContent paragraph={data1} /> : <AssignmentContent paragraph={data} />}
+      </div>
+      <div className="min-w-[400px]">
+        <AssignmentQuizz onChoiceTextarea={handleChoiceTextarea} />
+        <Button type='submit' text='Submit' onClick={handleConfirmQuizz} />
       </div>
     </div>
   );

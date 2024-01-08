@@ -1,4 +1,5 @@
 import axios from "axios";
+const env = await import.meta.env
 
 const checkAuth = () => {
   /*  Getting token value stored in localstorage, if token is not present we will open login page 
@@ -23,7 +24,7 @@ const checkAuth = () => {
     axios.interceptors.request.use(
       function (config) {
         config.headers.Authorization = `Bearer ${TOKEN}`;
-        config.baseURL = 'https://imtalabs.tech/api/';
+        config.baseURL = env.VITE_BASE_URL ;
         config.withCredentials = true;
         config.withXSRFToken = true;
         config.timeout = 60000;
@@ -47,6 +48,10 @@ const checkAuth = () => {
       },
       function (error) {
         document.body.classList.remove("loading-indicator");
+        if (error.response.status === 401 || error.response.status === 403 ||   error.response.status === 419) {
+          window.location.href = "/login";
+          
+        }
         return Promise.reject(error);
       }
     );

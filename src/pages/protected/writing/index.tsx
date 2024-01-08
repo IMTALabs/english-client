@@ -7,7 +7,7 @@ const Writing = () => {
   const { isLoading } = useAppSelector((state) => state.writing);
   const quizz = useAppSelector((state) => state.writing?.quizzs || "");
   return (
-    <TitleCard title="Profile Settings" topMargin="mt-2">
+    <TitleCard title="Writing" topMargin="mt-2">
       <Tab option1="Generate Topic" option2='From Your Essay' mode1="topic" mode2="" isLoading={isLoading} quizz={quizz} />
       <div className="">
         {

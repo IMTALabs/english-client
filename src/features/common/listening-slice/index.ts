@@ -51,9 +51,7 @@ export const listeningSlice = createSlice({
     initialState: initialState,
     reducers: {
         clearListeningState: (state) => {
-            console.log("ccc");
-            
-            return;
+            return initialState;
         },
     },
     extraReducers: (builder) => {

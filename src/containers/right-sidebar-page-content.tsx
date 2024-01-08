@@ -26,11 +26,11 @@ const RightSidebarPageContent = (props: Props) => {
                         <img src={item.image} alt="" className='h-40 w-30' />
                         <div className=" rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
                             <div className="mb-8">
-                                <p className="text-sm text-gray-600 flex items-center">
+                                <p className="text-sm flex items-center">
                                     {item.nameCard}
                                 </p>
-                                <div className="text-gray-900 font-bold text-xl mb-2">{item.title}</div>
-                                <p className="text-gray-700 text-base">{item.description}</p>
+                                <div className=" font-bold text-xl mb-2">{item.title}</div>
+                                <p className=" text-base">{item.description}</p>
                             </div>
                         </div>
                     </div>

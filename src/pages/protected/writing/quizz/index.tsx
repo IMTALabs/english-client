@@ -5,19 +5,15 @@ import AssignmentContent from "src/components/assignment-content";
 import AssignmentQuizz from "src/components/assignment-quizz";
 import Button from "src/components/button";
 import { clearWritingState, postWritingPoint } from "src/features/common/writing-slice";
-
-
 const QuizzWriting = () => {
   const QuizzWriting = useLocation()?.state?.quizz
   const textWriting = useLocation()?.state?.text;
-
   const navigeUrl = useNavigate();
   const questions: string = QuizzWriting
   const [textAreaValue, setTextAreaValue] = useState<string>('');
   const dispatch = useAppDispatch();
   const quizz = useAppSelector((state) => state.writing?.quizzs || "");
   const { isLoading } = useAppSelector((state) => state?.writing)
-
   const handleChoiceTextarea = (value: string) => {
     setTextAreaValue(value);
   };
@@ -33,7 +29,6 @@ const QuizzWriting = () => {
       console.log('Please answer all questions before submitting.');
     }
   };
-
   useEffect(() => {
     if (!isLoading && quizz?.band_score) {
       navigeUrl('/app/writing/result', {
@@ -56,5 +51,4 @@ const QuizzWriting = () => {
     </div>
   );
 };
-
 export default QuizzWriting;

@@ -31,7 +31,7 @@ function PageContent() {
     <div className="drawer-content flex flex-col h-full">
       <Header />
       <main
-        className={`grid grid-cols-6 gap-4 overflow-y-auto md:pt-4 pt-4 h-full px-2 py-2,
+        className={`grid grid-cols-6 gap-4 overflow-y-auto md:pt-4 pt-4 h-full p-2,
         ${hideSidebar && 'grid-cols-6'
           }
         `}

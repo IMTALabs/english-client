@@ -9,10 +9,7 @@ type Props = {
     option: string,
     mode?: string
 }
-
 const TextareaRadio = ({ option, mode }: Props) => {
-
-    
     const [text, setText] = useState('');
     const handleTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         const newText = event.target.value;

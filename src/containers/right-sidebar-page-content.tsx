@@ -20,9 +20,14 @@ const dataForm = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipisihil.',
   },
 ];
+const theme = localStorage.getItem('theme');
+
 const RightSidebarPageContent = (props: Props) => {
   return (
-    <nav className="w-full bg-[#f9f9f9]">
+    <nav
+      className={`w-full ${
+        theme == 'light' ? ' bg-[#f9f9f9]' : ' bg-base-100'
+      } `}>
       <div className="flex justify-between items-center py-4 px-5">
         <div className="">
           <span className="text-[18px] font-bold text-[#fb992d] pr-2">
@@ -85,7 +90,9 @@ const RightSidebarPageContent = (props: Props) => {
             {Array(3)
               .fill(0)
               .map((num, index) => (
-                <span className="block w-8 h-6 leading-6 bg-white rounded-full text-center">
+                <span
+                  className="block w-8 h-6 leading-6 bg-white rounded-full text-center"
+                  key={index}>
                   {index + 1}
                 </span>
               ))}

@@ -23,8 +23,10 @@ const checkAuth = () => {
     axios.interceptors.request.use(
       function (config) {
         config.headers.Authorization = `Bearer ${TOKEN}`;
-        config.baseURL = 'http://briteshop.store/public/api/';
-        config.timeout= 60000;
+        config.baseURL = 'https://imtalabs.tech/api/';
+        config.withCredentials = true;
+        config.withXSRFToken = true;
+        config.timeout = 60000;
         config.headers['Content-Type'] = 'application/json';
         config.headers['Accept'] = 'application/json';
 
@@ -39,7 +41,7 @@ const checkAuth = () => {
 
     axios.interceptors.response.use(
       function (response) {
-        // UPDATE: Add this code to hide global loading indicator
+        // UPDATE: Add this code to hide global loading indicato
         document.body.classList.remove("loading-indicator");
         return response.data
       },

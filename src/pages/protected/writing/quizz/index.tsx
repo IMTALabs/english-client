@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "src/app/store";
 import AssignmentContent from "src/components/assignment-content";
 import AssignmentQuizz from "src/components/assignment-quizz";
 import Button from "src/components/button";
+import TopSidebarQuizz from "src/containers/top-sidebarQuizz";
 import { clearWritingState, postWritingPoint } from "src/features/common/writing-slice";
 const QuizzWriting = () => {
   const QuizzWriting = useLocation()?.state?.quizz
@@ -41,6 +42,7 @@ const QuizzWriting = () => {
   }, [isLoading, quizz]);
   return (
     <div className='flex '>
+      <TopSidebarQuizz />
       <div className="min-w-[400px]">
         {textWriting ? <AssignmentContent paragraph={textWriting} /> : <AssignmentContent paragraph={QuizzWriting} />}
       </div>

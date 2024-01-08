@@ -2,6 +2,7 @@ import { useLocation } from 'react-router-dom';
 import BandScore from 'src/components/assessment/band-score';
 import Quizz from 'src/components/assessment/quizz';
 import TitleCard from 'src/components/cards/title-card';
+import TopSidebarResult from 'src/containers/top-sidebarResult';
 
 interface Question {
     question: string;
@@ -24,6 +25,8 @@ const ResultListening = () => {
     return (
         <>
             <TitleCard title="Profile Settings" topMargin="mt-2">
+                <TopSidebarResult />
+
                 <div className="bg-base-100  rounded-lg mt-[10px] h-[95%] p-4">
                     <div className="sm:flex flex-1 gap-x-4 ">
                         <div className="sm:w-3/5">

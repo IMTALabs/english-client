@@ -12,11 +12,11 @@ function Layout() {
     (state) => state.header
   );
 
-    useEffect(() => {
-        if (newNotificationStatus) {
-        dispatch(removeNotificationMessage('aha'));
-        }
-    }, [newNotificationStatus]);
+  useEffect(() => {
+    if (newNotificationStatus) {
+      dispatch(removeNotificationMessage('aha'));
+    }
+  }, [newNotificationStatus]);
 
 
 

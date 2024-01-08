@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import BandScore from "src/components/assessment/band-score";
+import TopSidebarResult from "src/containers/top-sidebarResult";
 
 const ResultWriting = () => {
   const data = useLocation()?.state;
@@ -7,6 +8,7 @@ const ResultWriting = () => {
 
   return (
     <div className="sm:flex flex-1 gap-x-4 bg-white">
+      <TopSidebarResult />
       <div className="w-full min-h-screen rounded-[24px] p-4">
         <div className="flex items-center justify-center gap-4">
           <p className="font-bold text-3xl pb-2">Writing Quiz</p>

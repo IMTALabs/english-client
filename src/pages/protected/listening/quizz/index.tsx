@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from 'src/app/store';
 import AssignmentQuizz from 'src/components/assignment-quizz';
 import Button from 'src/components/button';
+import TopSidebarQuizz from 'src/containers/top-sidebarQuizz';
 import { clearListeningState } from 'src/features/common/listening-slice';
 
 
@@ -59,6 +60,8 @@ const QuizzListening = () => {
 
     return (
         <>
+            <TopSidebarQuizz />
+
             <div className="sm:flex flex-1 gap-x-4">
                 <div className="sm:w-1/2  mb-3 py-2">
                     <p className="font-bold text-[30px] mb-[27px]">Listening Quizz</p>

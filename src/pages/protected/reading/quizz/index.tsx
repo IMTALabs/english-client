@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "src/app/store";
 import AssignmentContent from "src/components/assignment-content"
 import AssignmentQuizz from "src/components/assignment-quizz"
 import Button from "src/components/button";
+import TopSidebarQuizz from "src/containers/top-sidebarQuizz";
 import { clearReadingState } from "src/features/common/reading-slice";
 
 interface Question {
@@ -23,7 +24,7 @@ const QuizzReading = () => {
     const dispatch = useAppDispatch();
     const questions: Question[] = data?.form
     const quizz = useAppSelector((state) => state.reading?.quizzs || "");
-    const check = useAppSelector((state) => state|| "");
+    const check = useAppSelector((state) => state || "");
     const [selectedChoices, setSelectedChoices] = useState<Record<string, string>>({});
     const handleChoiceSelect = (questionIndex: number, choice: string) => {
         setSelectedChoices((prevChoices) => ({
@@ -52,6 +53,7 @@ const QuizzReading = () => {
     }, []);
     return (
         <div>
+            <TopSidebarQuizz />
             <div className='grid lg:grid-cols-2 '>
                 <div>
                     <AssignmentContent paragraph={data?.paragraph} />

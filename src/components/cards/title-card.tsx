@@ -1,19 +1,20 @@
 import Subtitle from 'src/components/typo/sub-title';
 
-interface TitleCardProps { 
-    title: string;
-    children: JSX.Element | JSX.Element[];
-    topMargin?: string;
-    TopSideButtons?: string | JSX.Element
+interface TitleCardProps {
+  title: string;
+  children: JSX.Element | JSX.Element[];
+  topMargin?: string;
+  TopSideButtons?: string | JSX.Element;
 }
 
-
-function TitleCard({title, children, topMargin, TopSideButtons}: TitleCardProps) {
+function TitleCard({
+  title,
+  children,
+  topMargin,
+  TopSideButtons,
+}: TitleCardProps) {
   return (
-    <div
-      className={
-        'card w-full p-6 bg-base-100 border ' + (topMargin || 'mt-6')
-      }>
+    <div className={'card w-full bg-base-100 border ' + (topMargin || 'mt-6')}>
       {/* Title for Card */}
       <Subtitle styleClass={TopSideButtons ? 'inline-block' : ''}>
         {title}

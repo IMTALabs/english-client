@@ -1,13 +1,13 @@
-import routes from "../routes/sidebar";
-import { NavLink, Link, useLocation } from "react-router-dom";
-import SidebarSubmenu from "./sidebar-submenu";
-import XMarkIcon from "@heroicons/react/24/outline/XMarkIcon";
+import routes from '../routes/sidebar';
+import {NavLink, Link, useLocation} from 'react-router-dom';
+import SidebarSubmenu from './sidebar-submenu';
+import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
 
 function LeftSidebar() {
   const location = useLocation();
 
   const close = () => {
-    document.getElementById("left-sidebar-drawer")?.click();
+    document.getElementById('left-sidebar-drawer')?.click();
   };
 
   return (
@@ -39,19 +39,19 @@ function LeftSidebar() {
                 <NavLink
                   end
                   to={route.path}
-                  className={({ isActive }) =>
-                    `${(isActive)
-                      ? 'font-semibold text-white border-green-500 bg-green-500'
-                      : 'font-normal'
+                  className={({isActive}) =>
+                    `${
+                      isActive
+                        ? 'font-semibold text-white border-green-500 bg-green-500'
+                        : 'font-normal'
                     } hover:font-semibold hover:text-white hover:border-green-500 hover:bg-green-500`
-                  }
-                >
-                  <span dangerouslySetInnerHTML={{ __html: route.icon }}></span> {route.name}
+                  }>
+                  <span dangerouslySetInnerHTML={{__html: route.icon}}></span>{' '}
+                  {route.name}
                   {location.pathname === route.path ? (
                     <span
                       className="absolute inset-y-0 left-0 w-1 rounded-tr-md rounded-br-md bg-primary bg-green-500"
-                      aria-hidden="true"
-                    ></span>
+                      aria-hidden="true"></span>
                   ) : null}
                 </NavLink>
               )}

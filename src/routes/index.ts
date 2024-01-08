@@ -16,7 +16,7 @@ const Reading = lazy(() => import('src/pages/protected/reading'))
 const QuizzReading = lazy(() => import('src/pages/protected/reading/quizz/index'))
 const ResultReading = lazy(() => import('src/pages/protected/reading/result/index'))
 
-const QuizzListening = lazy(() => import('src/pages/protected/listening/quizz'))
+// const QuizzListening = lazy(() => import('src/pages/protected/listening/quizz'))
 const ResultListening = lazy(() => import('src/pages/protected/listening/result'))
 
 
@@ -70,11 +70,11 @@ const routes = [
     component: ResultReading,
     exact: true,
   },
-  {
-    path: "/listening/quizz",
-    component: QuizzListening,
-    exact: true,
-  },
+  // {
+  //   path: "/listening/quizz",
+  //   component: QuizzListening,
+  //   exact: true,
+  // },
   {
     path: "/listening/result",
     component: ResultListening,

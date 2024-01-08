@@ -14,6 +14,7 @@ const Layout = lazy(() => import("./containers/layout"));
 const Login = lazy(() => import("./pages/public/login"));
 const ForgotPassword = lazy(() => import("./pages/public/forgot-password"));
 const Register = lazy(() => import("./pages/public/register"));
+const QuizzListening = lazy(() => import('src/pages/protected/listening/quizz'))
 
 // Initializing different libraries
 initializeApp();
@@ -37,6 +38,10 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/app/listening/quizz" element={<QuizzListening />} />
+
+
+
           {/* Place new routes over this */}
           <Route path="/app/*" element={<Layout />} />
 
@@ -48,6 +53,7 @@ const App = () => {
           />
         </Routes>
       </Router>
+
     </>
   );
 }

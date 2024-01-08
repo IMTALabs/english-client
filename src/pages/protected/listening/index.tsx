@@ -4,6 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'src/app/store';
 import { getListeningContent } from 'src/features/common/listening-slice';
 import Button from "src/components/button";
+import VideoListening, { VideoData } from 'src/components/video-listening';
+
+
+
+
 
 const Listening = () => {
     const dispatch = useAppDispatch();
@@ -24,6 +29,8 @@ const Listening = () => {
     const handleOverlayClick = () => {
         setShowOverlay(true); // Ẩn overlay khi click vào nền trắng
     };
+
+
 
     return (
         <>
@@ -50,6 +57,13 @@ const Listening = () => {
                             <div className="inline-block relative w-[80px] h-[80px] lds-ring"><div></div><div></div><div></div><div></div></div>
                         </div>
                     )}
+                </div>
+                <div>
+                    {
+                        VideoData.map(item => {
+                            return <VideoListening item={item} />
+                        })
+                    }
                 </div>
             </TitleCard>
         </>

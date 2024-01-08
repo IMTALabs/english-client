@@ -5,25 +5,14 @@ import AssignmentContent from "src/components/assignment-content";
 import AssignmentQuizz from "src/components/assignment-quizz";
 import Button from "src/components/button";
 import { clearWritingState, postWritingPoint } from "src/features/common/writing-slice";
-interface Question {
-  question: string;
-  choices: {
-    A: string;
-    B: string;
-    C: string;
-    D: string;
-  };
-  explanation: string;
-  answer: string;
-}
+
 
 const QuizzWriting = () => {
-  const data = useLocation()?.state?.quizz
-  const data1 = useLocation()?.state?.text;
-  console.log(data, data1);
+  const QuizzWriting = useLocation()?.state?.quizz
+  const textWriting = useLocation()?.state?.text;
 
   const navigeUrl = useNavigate();
-  const questions: string = data
+  const questions: string = QuizzWriting
   const [textAreaValue, setTextAreaValue] = useState<string>('');
   const dispatch = useAppDispatch();
   const quizz = useAppSelector((state) => state.writing?.quizzs || "");
@@ -37,7 +26,7 @@ const QuizzWriting = () => {
       dispatch(postWritingPoint(
         {
           submission: textAreaValue,
-          instruction: questions || data1?.text
+          instruction: questions || textWriting?.text
         }
       ))
     } else {
@@ -58,7 +47,7 @@ const QuizzWriting = () => {
   return (
     <div className='flex '>
       <div className="min-w-[400px]">
-        {data1 ? <AssignmentContent paragraph={data1} /> : <AssignmentContent paragraph={data} />}
+        {textWriting ? <AssignmentContent paragraph={textWriting} /> : <AssignmentContent paragraph={QuizzWriting} />}
       </div>
       <div className="min-w-[400px]">
         <AssignmentQuizz onChoiceTextarea={handleChoiceTextarea} />

@@ -17,11 +17,9 @@ const Tab = ({ option1, option2, mode1, mode2, isLoading, quizz }: Props) => {
     const handlePaymentTypeChange = (isCardSelected: boolean) => {
         setCardVisibility(isCardSelected);
     };
+ 
     const navigeUrl = useNavigate();
-    console.log(quizz);
-
     useEffect(() => {
-
         if (!isLoading && quizz && quizz?.id || !isLoading && quizz?.length > 0) {
             navigeUrl('quizz', {
                 state: { quizz }

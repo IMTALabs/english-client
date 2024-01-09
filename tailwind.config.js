@@ -3,7 +3,7 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-     screens: {
+    screens: {
       'sm': '640px',
       // => @media (min-width: 640px) { ... }
       'md': '768px',
@@ -18,7 +18,7 @@ export default {
     extend: {},
   },
   plugins: [
-    require("@tailwindcss/typography"), 
+    require("@tailwindcss/typography"),
     require("daisyui")],
   daisyui: {
     themes: ["lofi", "dark"],

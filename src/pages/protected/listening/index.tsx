@@ -29,7 +29,7 @@ const Listening = () => {
         <>
             <TitleCard title="Listening" topMargin="mt-2">
                 <div className="">
-                    <h1 className="text-[30px] font-bold mb-[31px]">Enter <span className="text-[#EA6C6C]">Youtube</span> Video Url</h1>
+                    <h1 className="text-[24px] font-bold mb-[31px]">Enter <span className="text-[#EA6C6C]">Youtube</span> Video Url</h1>
                     <form className="w-[100%] " onSubmit={handleSubmit}>
                         <div className=" items-center  mb-2 ">
                             <div className="w-[100%]">

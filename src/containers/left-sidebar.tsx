@@ -40,16 +40,14 @@ function LeftSidebar() {
                   end
                   to={route.path}
                   className={({ isActive }) =>
-                    `${(isActive)
-                      ? 'font-semibold text-white border-green-500 bg-green-500'
-                      : 'font-normal'
-                    } hover:font-semibold hover:text-white hover:border-green-500 hover:bg-green-500`
+                    `${(isActive) ? 'font-semibold bg-gray' : 'font-normal'
+                    } hover:font-semibold hover:text-white `
                   }
                 >
                   <span dangerouslySetInnerHTML={{ __html: route.icon }}></span> {route.name}
                   {location.pathname === route.path ? (
                     <span
-                      className="absolute inset-y-0 left-0 w-1 rounded-tr-md rounded-br-md bg-primary bg-green-500"
+                      className="absolute inset-y-0 left-0 w-1 rounded-tr-md rounded-br-md bg-primary "
                       aria-hidden="true"
                     ></span>
                   ) : null}

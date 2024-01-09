@@ -54,12 +54,12 @@ const Header = () => {
     // navbar fixed  flex-none justify-between bg-base-300  z-10 shadow-md
 
     <>
-      <div className="navbar sticky top-0 bg-base-100  z-10 shadow-md ">
+      <div className="navbar sticky top-0 bg-base-100  z-10 border rounded">
         {/* Menu toogle for mobile view or small screen */}
         <div className="flex-1">
           <label
             htmlFor="left-sidebar-drawer"
-            className="btn btn-primary drawer-button lg:hidden bg-[#10B981] border-none hover:bg-[#3da281]">
+            className="btn btn-primary drawer-button lg:hidden  border-none">
             <Bars3Icon className="h-5 inline-block w-5 " />
           </label>
           <h1 className="text-2xl font-semibold ml-2">{pageTitle}</h1>

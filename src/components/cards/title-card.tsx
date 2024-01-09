@@ -26,7 +26,7 @@ function TitleCard({title, children, topMargin, TopSideButtons}: TitleCardProps)
       <div className="divider mt-2"></div>
 
       {/** Card Body */}
-      <div className="h-full w-full pb-6 bg-base-100">{children}</div>
+      <div className="h-full w-full bg-base-100">{children}</div>
     </div>
   );
 }

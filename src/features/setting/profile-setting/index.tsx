@@ -22,7 +22,7 @@ function ProfileSettings() {
 
   return (
     <>
-      <TitleCard title="Profile Settings" topMargin="mt-2">
+      <TitleCard title="Profile Settings" topMargin="0">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <InputText
             labelTitle="Name"

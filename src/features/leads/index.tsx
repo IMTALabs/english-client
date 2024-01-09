@@ -70,7 +70,7 @@ function Leads() {
     <>
       <TitleCard
         title="Current Leads"
-        topMargin="mt-2"
+        topMargin="0"
         TopSideButtons={<TopSideButtons />}>
         {/* Leads List in table format loaded from slice after api call */}
         <div className="overflow-x-auto w-full">

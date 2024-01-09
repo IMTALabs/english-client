@@ -22,7 +22,7 @@ const ResultReading = () => {
 
 
     return (
-        <TitleCard title="" topMargin="mt-2">
+        <TitleCard title="" topMargin="0">
             <div className="bg-base-100  rounded-lg mt-[10px] h-[95%] p-4">
                 <div className="sm:flex flex-1 gap-x-4 ">
                     <div className="sm:w-3/5">

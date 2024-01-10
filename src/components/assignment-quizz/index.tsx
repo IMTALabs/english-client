@@ -44,7 +44,6 @@ const AssignmentQuizz: React.FC<Props> = ({ form, onChoiceSelect, onChoiceTextar
             onChoiceTextarea(value);
         }
     };
-    console.log(form);
     if (form) {
         return (
             <div>

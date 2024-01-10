@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { authInstance } from "src/utils/auth-instance";
 
 export type postLoginPayload = {
     email: string;
@@ -8,21 +8,20 @@ export type postLoginPayload = {
 
 
 const postLogin = (payload: postLoginPayload) => {
-    return axios.get("sanctum/csrf-cookie", {
-        baseURL: "https://imtalabs.tech/"
-    }).then(() => {
-        console.log(payload);
-
-        return axios.post('login', payload)
+    return authInstance.get("sanctum/csrf-cookie").then(() => {
+        return authInstance.post('api/login', payload)
     })
 }
 
 const postLogout = () => {
-    return axios.post('logout');
+    return authInstance.post('api/logout');
 }
 
 const postRegister = (payload: postLoginPayload) => {
-    return axios.post('register', payload);
+    return authInstance.post('api/register', payload);
 }
+
+
+
 
 export default { postLogin, postLogout, postRegister }

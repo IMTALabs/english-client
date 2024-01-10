@@ -1,12 +1,13 @@
-import {useState} from 'react';
-import {Link} from 'react-router-dom';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import LandingIntro from './landing-intro';
 import ErrorText from 'src/components/typo/error';
 import InputText from 'src/components/input/input-text';
 import authenticationApi from 'src/features/services/authentication/authentication-api';
 import { useAppDispatch } from 'src/app/store';
 import {
-  setUser
+  setUserInfo, setLoginInfo,
+  UserState
 } from 'src/features/common/user-slice'
 
 function Login() {
@@ -34,8 +35,10 @@ function Login() {
       setLoading(true);
       try {
         const response = await authenticationApi.postLogin(loginObj);
-        if(response) {
-          dispatch(setUser(response))
+        if (response) {
+          const { isLoggedIn, user, accessToken } = response.data as UserState
+          dispatch(setUserInfo(user));
+          dispatch(setLoginInfo({ isLoggedIn, accessToken }));
         }
       } catch (error) {
         console.log(error)
@@ -54,7 +57,7 @@ function Login() {
     value: any;
   }) => {
     setErrorMessage('');
-    setLoginObj({...loginObj, [updateType]: value});
+    setLoginObj({ ...loginObj, [updateType]: value });
   };
 
   return (

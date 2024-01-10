@@ -45,10 +45,7 @@ const Header = () => {
     );
   };
 
-  const logoutUser = () => {
-    localStorage.removeItem("token");
-    window.location.href = "/";
-  };
+
 
   return (
     // navbar fixed  flex-none justify-between bg-base-300  z-10 shadow-md
@@ -113,30 +110,7 @@ const Header = () => {
           </button>
 
           {/* Profile icon, opening menu on click */}
-          <div className="dropdown dropdown-end ml-4">
-            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 rounded-full">
-                <img
-                  src="https://i.pinimg.com/originals/58/94/70/58947055dab9ae19404a4ec5e3c30b3c.jpg"
-                  alt="profile"
-                />
-              </div>
-            </label>
-            <ul
-              tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-              <li className="justify-between">
-                <Link to={'/app/settings-profile'}>
-                  Profile Settings
-                  <span className="badge">New</span>
-                </Link>
-              </li>
-              <div className="divider mt-0 mb-0"></div>
-              <li>
-                <a onClick={logoutUser}>Logout</a>
-              </li>
-            </ul>
-          </div>
+          
         </div>
       </div>
     </>

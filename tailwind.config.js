@@ -21,6 +21,6 @@ export default {
     require("@tailwindcss/typography"),
     require("daisyui")],
   daisyui: {
-    themes: ["lofi", "dark"],
+    themes: ["lofi"],
   },
 };

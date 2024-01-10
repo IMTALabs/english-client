@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 const postInstructionApi = ({ instruction, submission }: { instruction: string, submission: string }) => {
-    return axios.post('evalue', {
+    return axios.post('/english/v1/writing/evalue', {
         submission,
         instruction
     });
@@ -10,7 +10,7 @@ const postInstructionApi = ({ instruction, submission }: { instruction: string, 
 
 
 const postGenInstructionApi = (topic: string) => {
-    return axios.post('gen_instruction', {
+    return axios.post('/english/v1/writing/gen_instruction', {
         topic
     });
 }

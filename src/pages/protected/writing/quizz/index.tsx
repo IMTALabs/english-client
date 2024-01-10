@@ -6,13 +6,18 @@ import AssignmentQuizz from "src/components/assignment-quizz";
 import Button from "src/components/button";
 import { clearWritingState, postWritingPoint } from "src/features/common/writing-slice";
 const QuizzWriting = () => {
+
+
+
   const QuizzWriting = useLocation()?.state?.quizz
   const textWriting = useLocation()?.state?.text;
   const navigeUrl = useNavigate();
   const questions: string = QuizzWriting
   const [textAreaValue, setTextAreaValue] = useState<string>('');
   const dispatch = useAppDispatch();
-  const quizz = useAppSelector((state) => state.writing?.quizzs || "");
+
+
+  const quizz = useAppSelector((state) => state.writing?.WritingQuizz || "");
   const { isLoading } = useAppSelector((state) => state?.writing)
   const handleChoiceTextarea = (value: string) => {
     setTextAreaValue(value);
@@ -22,7 +27,7 @@ const QuizzWriting = () => {
       dispatch(postWritingPoint(
         {
           submission: textAreaValue,
-          instruction: questions || textWriting?.text
+          instruction: questions?.body || textWriting?.text
         }
       ))
     } else {
@@ -30,19 +35,21 @@ const QuizzWriting = () => {
     }
   };
   useEffect(() => {
+    console.log(quizz);
+
     if (!isLoading && quizz?.band_score) {
       navigeUrl('/app/writing/result', {
         state: { quizz }
       });
     }
-    if (quizz.length > 0) {
+    if (Object.keys(quizz).length > 0) {
       dispatch(clearWritingState())
     }
   }, [isLoading, quizz]);
   return (
     <div className='flex '>
       <div className="min-w-[400px]">
-        {textWriting ? <AssignmentContent paragraph={textWriting} /> : <AssignmentContent paragraph={QuizzWriting} />}
+        {textWriting ? <AssignmentContent paragraph={textWriting} /> : <AssignmentContent paragraph={QuizzWriting?.body} />}
       </div>
       <div className="min-w-[400px]">
         <AssignmentQuizz onChoiceTextarea={handleChoiceTextarea} />

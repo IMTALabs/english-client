@@ -30,11 +30,13 @@ const ResultReading = () => {
                         <p className="text-[30px] mb-[27px]">Your submit</p>
                         {
                             CorrectAnswer?.map((item: Question, index: number) => {
-                                return <Quizz index={index} title={item.question} answer={item.answer} explain={item.explanation} answerQuizz={answerQuizz[index]} />
+                                return <div key={item.question}>
+                                    <Quizz index={index} title={item.question} answer={item.answer} explain={item.explanation} answerQuizz={answerQuizz[index]} />
+                                </div>
                             })
                         }
                     </div>
-                    <BandScore  />
+                    <BandScore />
                 </div >
             </div>
         </TitleCard>

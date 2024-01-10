@@ -4,10 +4,11 @@ import Tab from "src/components/tab";
 
 const Writing = () => {
   const { isLoading } = useAppSelector((state) => state.writing);
-  const quizz = useAppSelector((state) => state.writing?.quizzs || "");
+  const quizz = useAppSelector((state) => state.writing?.WritingQuizz || "");
+  
   return (
     <TitleCard title="Writing" topMargin="0">
-      <Tab option1="Generate Topic" option2='From Your Essay' mode1="topic" mode2="" isLoading={isLoading} quizz={quizz} />
+      <Tab option1=" From Your Essay" option2='Generate Topic' mode1="topic" mode2="" isLoading={isLoading} quizz={quizz} />
     </TitleCard>
   );
 };

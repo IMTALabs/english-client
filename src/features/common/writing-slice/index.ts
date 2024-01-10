@@ -10,7 +10,9 @@ export const postWritingPoint = createAsyncThunk(
     async (toppic: ToppicState, { rejectWithValue }) => {
         try {
             const response = await writing.postInstructionApi(toppic)
-            return response.data;
+            console.log('point', response);
+
+            return response;
         } catch (error: any) {
             return rejectWithValue({ error: error.message });
         }
@@ -22,7 +24,8 @@ export const postWritingContent = createAsyncThunk(
     async (toppic: string, { rejectWithValue }) => {
         try {
             const response = await writing.postGenInstructionApi(toppic)
-            return response.data;
+            console.log('conten', response);
+            return response;
         } catch (error: any) {
             return rejectWithValue({ error: error.message });
         }
@@ -36,12 +39,19 @@ interface ToppicState {
 }
 interface WritingState {
     isLoading: boolean;
-    quizzs: ToppicState[];
+    WritingQuizz: WritingPros;
 }
+
+export interface WritingPros {
+    body?: string
+    hash?: string
+}
+
+
 
 const initialState: WritingState = {
     isLoading: false,
-    quizzs: [],
+    WritingQuizz: {},
 };
 
 export const writingSlice = createSlice({
@@ -59,7 +69,7 @@ export const writingSlice = createSlice({
             })
             .addCase(postWritingPoint.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.quizzs = action.payload;
+                state.WritingQuizz = action.payload;
             })
             .addCase(postWritingPoint.rejected, (state) => {
                 state.isLoading = false;
@@ -70,7 +80,7 @@ export const writingSlice = createSlice({
             })
             .addCase(postWritingContent.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.quizzs = action.payload;
+                state.WritingQuizz = action.payload;
             })
             .addCase(postWritingContent.rejected, (state) => {
                 state.isLoading = false;

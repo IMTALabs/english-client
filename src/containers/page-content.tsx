@@ -8,6 +8,7 @@ import { useAppSelector } from 'src/app/store';
 import RightSidebarPageContent from '../containers/right-sidebar-page-content';
 
 
+
 const Page404 = lazy(() => import('src/pages/protected/404'));
 
 function PageContent() {
@@ -26,7 +27,6 @@ function PageContent() {
   }, [pageTitle]);
 
 
-
   return (
     <div className="drawer-content flex flex-col h-full">
       <Header />
@@ -35,9 +35,11 @@ function PageContent() {
         ${hideSidebar && 'grid-cols-6'}`}
         ref={mainContentRef}>
         <div
-          className={`col-span-full  ${
-            hideSidebar ? `lg:col-span-6` : `lg:col-span-4`
-          }`}>
+          className={`col-span-full  ${hideSidebar ? `lg:col-span-6` : `lg:col-span-4`
+            }`}>
+
+
+
           <Suspense fallback={<SuspenseContent />}>
             <Routes>
               {routes.map((route, key) => {
@@ -63,11 +65,6 @@ function PageContent() {
         )}
         <div className="h-16"></div>
       </main>
-      <footer className="footer footer-center p-4 border-t text-base-content">
-        <aside>
-          <p>Copyright © 2024 - All right reserved by IMTALabs</p>
-        </aside>
-      </footer>
     </div>
   );
 }

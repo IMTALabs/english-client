@@ -12,11 +12,11 @@ function TitleCard({ title, children, topMargin, TopSideButtons }: TitleCardProp
   return (
     <div
       className={
-        'card w-full p-6 bg-base-100 border mp-10 ' + (topMargin || 'mt-6')
+        'card w-full p-6 bg-base-100 border mb-10 ' + (topMargin || 'mt-6')
       }>
       {/* Title for Card */}
       {
-        title.trim() === "" ? "" : <>
+        !title ? "" : <>
           <Subtitle styleClass={TopSideButtons ? 'inline-block' : ''}>
             {title}
             {/* Top side button, show only if present */}

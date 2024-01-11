@@ -10,8 +10,6 @@ export const postWritingPoint = createAsyncThunk(
     async (toppic: ToppicState, { rejectWithValue }) => {
         try {
             const response = await writing.postInstructionApi(toppic)
-            console.log('point', response);
-
             return response;
         } catch (error: any) {
             return rejectWithValue({ error: error.message });
@@ -24,7 +22,6 @@ export const postWritingContent = createAsyncThunk(
     async (toppic: string, { rejectWithValue }) => {
         try {
             const response = await writing.postGenInstructionApi(toppic)
-            console.log('conten', response);
             return response;
         } catch (error: any) {
             return rejectWithValue({ error: error.message });

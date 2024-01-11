@@ -45,21 +45,18 @@ const Header = () => {
     );
   };
 
-  const logoutUser = () => {
-    localStorage.removeItem("token");
-    window.location.href = "/";
-  };
+
 
   return (
     // navbar fixed  flex-none justify-between bg-base-300  z-10 shadow-md
 
     <>
-      <div className="navbar sticky top-0 bg-base-100  z-10 shadow-md ">
+      <div className="navbar sticky top-0 bg-base-100 z-10 border-b">
         {/* Menu toogle for mobile view or small screen */}
         <div className="flex-1">
           <label
             htmlFor="left-sidebar-drawer"
-            className="btn btn-primary drawer-button lg:hidden bg-[#10B981] border-none hover:bg-[#3da281]">
+            className="btn btn-primary drawer-button lg:hidden  border-none">
             <Bars3Icon className="h-5 inline-block w-5 " />
           </label>
           <h1 className="text-2xl font-semibold ml-2">{pageTitle}</h1>
@@ -113,30 +110,7 @@ const Header = () => {
           </button>
 
           {/* Profile icon, opening menu on click */}
-          <div className="dropdown dropdown-end ml-4">
-            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 rounded-full">
-                <img
-                  src="https://i.pinimg.com/originals/58/94/70/58947055dab9ae19404a4ec5e3c30b3c.jpg"
-                  alt="profile"
-                />
-              </div>
-            </label>
-            <ul
-              tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-              <li className="justify-between">
-                <Link to={'/app/settings-profile'}>
-                  Profile Settings
-                  <span className="badge">New</span>
-                </Link>
-              </li>
-              <div className="divider mt-0 mb-0"></div>
-              <li>
-                <a onClick={logoutUser}>Logout</a>
-              </li>
-            </ul>
-          </div>
+          
         </div>
       </div>
     </>

@@ -6,7 +6,7 @@ export const getListeningContent = createAsyncThunk(
     async (listen_link: string, { rejectWithValue }) => {
         try {
             const response = await listeningApi.postYoutubeLink(listen_link)
-            return response.data;
+            return response;
         } catch (error: any) {
             return rejectWithValue({ error: error.message });
         }
@@ -15,37 +15,39 @@ export const getListeningContent = createAsyncThunk(
 
 interface ListeningState {
     isLoading: boolean;
-    quizzs: Root | null; // Use null as the initial value
+    listeningQuizz: Root; // Use null as the initial value
 }
 
 const initialState: ListeningState = {
     isLoading: false,
-    quizzs: null,
+    listeningQuizz: {},
 };
 
 export interface Root {
-    body: Body;
-    link: string;
+    body?: Body
+    link?: string
+    hash?: string
 }
 
 export interface Body {
-    id: string;
-    form: Form[];
+    id: string
+    form: Form[]
 }
 
 export interface Form {
-    question: string;
-    choices: Choices;
-    explanation: string;
-    answer: string;
+    question: string
+    choices: Choices
+    explanation: string
+    answer: string
 }
 
 export interface Choices {
-    A: string;
-    B: string;
-    C: string;
-    D: string;
+    A: string
+    B: string
+    C: string
+    D: string
 }
+
 export const listeningSlice = createSlice({
     name: 'listening',
     initialState: initialState,
@@ -61,7 +63,7 @@ export const listeningSlice = createSlice({
             })
             .addCase(getListeningContent.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.quizzs = action.payload;
+                state.listeningQuizz = action.payload;
             })
             .addCase(getListeningContent.rejected, (state) => {
                 state.isLoading = false;

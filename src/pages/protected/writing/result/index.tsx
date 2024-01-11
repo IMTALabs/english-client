@@ -3,10 +3,9 @@ import BandScore from "src/components/assessment/band-score";
 
 const ResultWriting = () => {
   const data = useLocation()?.state;
-  console.log(data);
 
   return (
-    <div className="sm:flex flex-1 gap-x-4 bg-white">
+    <div className="sm:flex flex-1 gap-x-4">
       <div className="w-full min-h-screen rounded-[24px] p-4">
         <div className="flex items-center justify-center gap-4">
           <p className="font-bold text-3xl pb-2">Writing Quiz</p>

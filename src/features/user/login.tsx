@@ -1,12 +1,13 @@
-import {useState} from 'react';
-import {Link} from 'react-router-dom';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import LandingIntro from './landing-intro';
 import ErrorText from 'src/components/typo/error';
 import InputText from 'src/components/input/input-text';
 import authenticationApi from 'src/features/services/authentication/authentication-api';
 import { useAppDispatch } from 'src/app/store';
 import {
-  setUser
+  setUserInfo, setLoginInfo,
+  UserState
 } from 'src/features/common/user-slice'
 
 function Login() {
@@ -34,8 +35,10 @@ function Login() {
       setLoading(true);
       try {
         const response = await authenticationApi.postLogin(loginObj);
-        if(response) {
-          dispatch(setUser(response))
+        if (response) {
+          const { isLoggedIn, user, accessToken } = response.data as UserState
+          dispatch(setUserInfo(user));
+          dispatch(setLoginInfo({ isLoggedIn, accessToken }));
         }
       } catch (error) {
         console.log(error)
@@ -54,13 +57,13 @@ function Login() {
     value: any;
   }) => {
     setErrorMessage('');
-    setLoginObj({...loginObj, [updateType]: value});
+    setLoginObj({ ...loginObj, [updateType]: value });
   };
 
   return (
     <div className="min-h-screen bg-base-200 flex items-center">
-      <div className="card mx-auto w-full max-w-5xl  shadow-xl">
-        <div className="grid  md:grid-cols-2 grid-cols-1  bg-base-100 rounded-xl">
+      <div className="card mx-auto w-full max-w-5xl">
+        <div className="grid md:grid-cols-2 grid-cols-1 bg-base-100 rounded-xl border">
           <div className="">
             <LandingIntro />
           </div>
@@ -73,8 +76,9 @@ function Login() {
                   defaultValue={loginObj.email}
                   updateType="email"
                   containerStyle="mt-4"
-                  labelTitle="Email Id"
+                  labelTitle="Email"
                   updateFormValue={updateFormValue}
+                  placeholder="student@demo.com"
                 />
 
                 <InputText
@@ -84,30 +88,22 @@ function Login() {
                   containerStyle="mt-4"
                   labelTitle="Password"
                   updateFormValue={updateFormValue}
+                  placeholder="********"
                 />
               </div>
 
-              <div className="text-right text-primary">
-                <Link to="/forgot-password">
-                  <span className="text-sm  inline-block  hover:text-primary hover:underline hover:cursor-pointer transition duration-200">
-                    Forgot Password?
-                  </span>
-                </Link>
-              </div>
-
-              <ErrorText className="mt-8">{errorMessage}</ErrorText>
-              <button
-                type="submit"
-                className={
-                  'btn mt-2 w-full btn-primary' + (loading ? ' loading' : '')
-                }>
+              <ErrorText className="mt-8 text-sm">{errorMessage}</ErrorText>
+              <button type="submit" className={'btn mt-2 w-full btn-primary'} disabled={loading}>
+                {loading ? (
+                  <span className="loading loading-spinner"></span>
+                ) : null}
                 Login
               </button>
 
               <div className="text-center mt-4">
                 Don't have an account yet?{' '}
                 <Link to="/register">
-                  <span className="  inline-block  hover:text-primary hover:underline hover:cursor-pointer transition duration-200">
+                  <span className="inline-block underline hover:text-primary hover:underline hover:cursor-pointer transition duration-200">
                     Register
                   </span>
                 </Link>

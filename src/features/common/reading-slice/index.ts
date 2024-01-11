@@ -14,23 +14,47 @@ export const postReadingContent = createAsyncThunk(
     async (toppic: ToppicState, { rejectWithValue }) => {
         try {
             const response = await reading.postTopicReading(toppic)
-            return response.data;
+            return response;
         } catch (error: any) {
             return rejectWithValue({ error: error.message });
         }
     }
 );
 
+export interface ReadingInterface {
+    body?: Body
+    hash?: string
+}
+
+export interface Body {
+    id?: string
+    form?: Form[]
+    paragraph?: string
+}
+
+export interface Form {
+    question?: string
+    choices?: Choices
+    explanation?: string
+    answer?: string
+}
+
+export interface Choices {
+    A?: string
+    B?: string
+    C?: string
+    D?: string
+}
 
 
 interface ReadingState {
-    isLoading: boolean;
-    quizzs: ToppicState[];
+    isLoading?: boolean;
+    readingQuizz?: ReadingInterface;
 }
 
 const initialState: ReadingState = {
     isLoading: false,
-    quizzs: [],
+    readingQuizz: {},
 };
 
 export const readingSlice = createSlice({
@@ -48,7 +72,7 @@ export const readingSlice = createSlice({
             })
             .addCase(postReadingContent.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.quizzs = action.payload;
+                state.readingQuizz = action.payload;
             })
             .addCase(postReadingContent.rejected, (state) => {
                 state.isLoading = false;

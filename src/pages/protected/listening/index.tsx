@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import TitleCard from 'src/components/cards/title-card';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'src/app/store';
@@ -8,14 +8,17 @@ import Button from "src/components/button";
 const Listening = () => {
     const dispatch = useAppDispatch();
     const [linkUrl, setLinkUrl] = useState('');
-    const quizz = useAppSelector((state) => state.listening?.quizzs || "");
+    const quizz = useAppSelector((state) => state.listening?.listeningQuizz || "");
     const navigeUrl = useNavigate();
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
         dispatch(getListeningContent(linkUrl));
     };
     const { isLoading } = useAppSelector((state) => state.listening);
-    if (!isLoading && quizz && quizz.body && quizz.body.form && Array.isArray(quizz.body.form) && quizz.body.form.length > 0) {
+
+    console.log("listen", quizz, isLoading);
+
+    if (!isLoading && Object.keys(quizz).length > 0) {
         navigeUrl('quizz', {
             state: { quizz: quizz }
         });
@@ -27,12 +30,12 @@ const Listening = () => {
 
     return (
         <>
-            <TitleCard title="Listening" topMargin="mt-2">
+            <TitleCard title="Listening" topMargin="0">
                 <div className="">
-                    <h1 className="text-[30px] font-bold mb-[31px]">Enter <span className="text-[#EA6C6C]">Youtube</span> Video Url</h1>
+                    <h1 className="text-[24px] font-bold mb-[31px]">Enter <span className="text-[#EA6C6C]">Youtube</span> Video Url</h1>
                     <form className="w-[100%] " onSubmit={handleSubmit}>
                         <div className=" items-center  mb-2 ">
-                            <div className="w-[100%]">
+                            <div className="w-[100%] mb-4">
                                 <input
                                     type="url"
                                     value={linkUrl}

@@ -22,7 +22,7 @@ const ResultReading = () => {
 
 
     return (
-        <TitleCard title="" topMargin="mt-2">
+        <TitleCard title="" topMargin="0">
             <div className="bg-base-100  rounded-lg mt-[10px] h-[95%] p-4">
                 <div className="sm:flex flex-1 gap-x-4 ">
                     <div className="sm:w-3/5">
@@ -30,11 +30,13 @@ const ResultReading = () => {
                         <p className="text-[30px] mb-[27px]">Your submit</p>
                         {
                             CorrectAnswer?.map((item: Question, index: number) => {
-                                return <Quizz index={index} title={item.question} answer={item.answer} explain={item.explanation} answerQuizz={answerQuizz[index]} />
+                                return <div key={item.question}>
+                                    <Quizz index={index} title={item.question} answer={item.answer} explain={item.explanation} answerQuizz={answerQuizz[index]} />
+                                </div>
                             })
                         }
                     </div>
-                    <BandScore  />
+                    <BandScore />
                 </div >
             </div>
         </TitleCard>

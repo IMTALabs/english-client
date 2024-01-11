@@ -8,6 +8,7 @@ import { useAppSelector } from 'src/app/store';
 import RightSidebarPageContent from '../containers/right-sidebar-page-content';
 
 
+
 const Page404 = lazy(() => import('src/pages/protected/404'));
 
 function PageContent() {
@@ -26,17 +27,19 @@ function PageContent() {
   }, [pageTitle]);
 
 
-
   return (
     <div className="drawer-content flex flex-col h-full">
       <Header />
       <main
-        className={`grid grid-cols-6 gap-4 overflow-y-auto md:pt-4 pt-4 h-full p-2,
-        ${hideSidebar && 'grid-cols-6'
-          }
-        `}
+        className={`grid grid-cols-6 gap-4 overflow-y-auto md:pt-4 pt-4 h-full p-4
+        ${hideSidebar && 'grid-cols-6'}`}
         ref={mainContentRef}>
-        <div className={`col-span-full  ${hideSidebar ? `lg:col-span-6` : `lg:col-span-4`}`}>
+        <div
+          className={`col-span-full  ${hideSidebar ? `lg:col-span-6` : `lg:col-span-4`
+            }`}>
+
+
+
           <Suspense fallback={<SuspenseContent />}>
             <Routes>
               {routes.map((route, key) => {
@@ -53,16 +56,14 @@ function PageContent() {
               {/* Redirecting unknown url to 404 page */}
               <Route path="*" element={<Page404 />} />
             </Routes>
-
           </Suspense>
         </div>
-        {
-          !hideSidebar && (<div className='col-span-full lg:col-span-2'>
+        {!hideSidebar && (
+          <div className="col-span-full lg:col-span-2">
             <RightSidebarPageContent />
-          </div>)
-        }
-
-
+          </div>
+        )}
+        <div className="h-16"></div>
       </main>
     </div>
   );

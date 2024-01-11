@@ -49,6 +49,7 @@ const checkAuth = () => {
       function (error) {
         document.body.classList.remove("loading-indicator");
         if (error.response.status === 401 || error.response.status === 403 || error.response.status === 419) {
+          localStorage.clear();
           window.location.href = "/login";
         }
         return Promise.reject(error);

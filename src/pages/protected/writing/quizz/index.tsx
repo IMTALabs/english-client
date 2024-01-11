@@ -11,6 +11,8 @@ const QuizzWriting = () => {
 
   const QuizzWriting = useLocation()?.state?.quizz
   const textWriting = useLocation()?.state?.text;
+
+
   const navigeUrl = useNavigate();
   const questions: string = QuizzWriting
   const [textAreaValue, setTextAreaValue] = useState<string>('');
@@ -35,7 +37,6 @@ const QuizzWriting = () => {
     }
   };
   useEffect(() => {
-    console.log(quizz);
 
     if (!isLoading && quizz?.band_score) {
       navigeUrl('/app/writing/result', {

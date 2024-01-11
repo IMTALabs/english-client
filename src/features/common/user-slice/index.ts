@@ -1,4 +1,4 @@
-import {  createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 export interface UserState {
   isLoggedIn: boolean;
@@ -46,9 +46,15 @@ const userSlice = createSlice({
       localStorage.removeItem('token');
       return initialState;
     },
+    updateCharge(state, action) {
+      state.user = {
+        ...state.user,
+        accounting_charge : action.payload
+      }
+    }
   },
 });
 
-export const { setUserInfo, logout, setLoginInfo } = userSlice.actions;
+export const { setUserInfo, logout, setLoginInfo, updateCharge } = userSlice.actions;
 
 export default userSlice.reducer;

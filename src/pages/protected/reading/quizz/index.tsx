@@ -5,6 +5,7 @@ import AssignmentContent from "src/components/assignment-content"
 import AssignmentQuizz from "src/components/assignment-quizz"
 import Button from "src/components/button";
 import { clearReadingState } from "src/features/common/reading-slice";
+import { updateCharge } from "src/features/common/user-slice";
 
 interface Question {
     question: string;
@@ -31,7 +32,7 @@ const QuizzReading = () => {
     };
     const handleConfirmQuizz = () => {
         const allQuestionsAnswered = Object.keys(selectedChoices).length === questions?.length;
-        
+
         if (allQuestionsAnswered) {
             navigeUrl('/app/reading/result', {
                 state: {
@@ -44,7 +45,7 @@ const QuizzReading = () => {
         }
     };
     useEffect(() => {
-
+        dispatch(updateCharge(data?.remaining_accounting_charge))
         dispatch(clearReadingState())
 
     }, []);

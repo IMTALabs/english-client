@@ -12,15 +12,21 @@ const Login = lazy(() => import("src/pages/public/login"));
 const ForgotPassword = lazy(() => import("src/pages/public/forgot-password"));
 const Register = lazy(() => import("src/pages/public/register"));
 
-import { useAppDispatch } from "src/app/store";
+import { useAppDispatch, useAppSelector } from "src/app/store";
 import { setUserInfo } from "src/features/common/user-slice";
 import userApi from "src/features/services/user/user-api";
+import historyApi from "src/features/services/history/history-api";
+import { setHistory } from "src/features/common/history-slice";
 
 
 
 const AppRouter = () => {
     const token = checkAuth();
     const dispatch = useAppDispatch()
+
+
+    const { user } = useAppSelector(x => x.user)
+
     const getUser = async () => {
         try {
             const response = await userApi.getInfoUser();
@@ -31,11 +37,28 @@ const AppRouter = () => {
             console.log("api error", error);
         }
     }
-    const alreadyHaveInfo = token
+
+
+    const alreadyHaveInfo = token && Object.keys(user).length > 0;
+
+    const getHistory = async () => {
+        try {
+            const response = await historyApi.getHistory();
+            console.log("response ", response);
+
+            if (Object.keys(response).length > 0) {
+                dispatch(setHistory(response));
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     useEffect(() => {
         if (token) {
             getUser();
+            getHistory();
         }
     }, [])
     return (

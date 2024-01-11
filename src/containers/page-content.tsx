@@ -35,9 +35,8 @@ function PageContent() {
         ${hideSidebar && 'grid-cols-6'}`}
         ref={mainContentRef}>
         <div
-          className={`col-span-full  ${hideSidebar ? `lg:col-span-8` : `lg:col-span-6`
+          className={`col-span-full  ${hideSidebar ? `lg:col-span-8` : `max-[1362px]:col-span-6`
             }`}>
-
 
 
           <Suspense fallback={<SuspenseContent />}>
@@ -59,7 +58,7 @@ function PageContent() {
           </Suspense>
         </div>
         {!hideSidebar && (
-          <div className="col-span-full lg:col-span-2">
+          <div className="col-span-full lg:col-span-2 max-lg:hidden max-[1362px]:hidden ">
             <RightSidebarPageContent />
           </div>
         )}

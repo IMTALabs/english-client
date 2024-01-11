@@ -1,11 +1,10 @@
-import axios from "axios";
 import { authInstance } from "src/utils/auth-instance";
 
 export type postLoginPayload = {
-    email: string;
-    password: string;
+    email?: string | undefined;
+    password?: string | undefined;
+    full_name?: String | undefined;
 }
-
 
 const postLogin = (payload: postLoginPayload) => {
     return authInstance.get("sanctum/csrf-cookie").then(() => {

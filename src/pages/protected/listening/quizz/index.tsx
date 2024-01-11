@@ -5,6 +5,7 @@ import { useAppDispatch } from 'src/app/store';
 import AssignmentQuizz from 'src/components/assignment-quizz';
 import Button from 'src/components/button';
 import { clearListeningState } from 'src/features/common/listening-slice';
+import { updateCharge } from 'src/features/common/user-slice';
 
 
 interface Question {
@@ -23,7 +24,7 @@ interface Question {
 
 const QuizzListening = () => {
     const {
-        body, link
+        body, link, remaining_accounting_charge
     } = useLocation()?.state?.quizz
     const dispatch = useAppDispatch();
     const navigeUrl = useNavigate();
@@ -38,12 +39,12 @@ const QuizzListening = () => {
         }));
     };
     useEffect(() => {
+        dispatch(updateCharge(remaining_accounting_charge))
         dispatch(clearListeningState())
     }, []);
     const handleConfirmQuizz = () => {
         // Kiểm tra xem đã chọn hết lựa chọn hay chưa
         const allQuestionsAnswered = Object.keys(selectedChoices).length === questions?.length;
-
         if (allQuestionsAnswered) {
             // Nếu đã chọn hết, thì chuyển hướng hoặc thực hiện hành động khác
             navigeUrl('/app/listening/result', {

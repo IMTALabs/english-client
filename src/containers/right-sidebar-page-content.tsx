@@ -24,14 +24,14 @@ const RightSidebarPageContent = () => {
           />
         </div>
         <div className="flex justify-center ">
-          <div className="rounded-b lg:rounded-b-none lg:rounded-r pl-4 flex flex-col justify-between leading-normal pt-[16px]">
+          <div className="flex flex-col justify-between leading-normal pt-4">
             <div className="text-2xl font-bold flex justify-center truncate">
               {user?.username}
             </div>
             <div className="text-base flex justify-center">
               {user?.email}
             </div>
-            <div className="badge badge-primary mx-auto">Student</div>
+            <div className="badge badge-primary mx-auto mt-2">Student</div>
           </div>
         </div>
       </TitleCard>
@@ -56,8 +56,6 @@ const RightSidebarPageContent = () => {
         <div
           className="max-w-sm w-full lg:max-w-full mb-6 last:mb-0 space-y-2"
         >
-
-
           {
             history?.map((item: any) => {
               return <div className=" group" key={item.id}>
@@ -65,17 +63,14 @@ const RightSidebarPageContent = () => {
                   <div className='flex items-center gap-2'>
                     <span dangerouslySetInnerHTML={{ __html: Icon(item.skill) }} />
                     <div className="space-y-2">
-                      <p className="0">{item.skill}</p>
+                      <p className="text-sm">{item.skill}</p>
                     </div>
                   </div>
-                  <span className='text-xs text-gray-400'>{item.updated_at}</span>
+                  <div className='text-xs text-gray-400 truncate'>{item.created_at}</div>
                 </div>
               </div>
             })
           }
-
-
-
         </div>
       </TitleCard>
     </div>

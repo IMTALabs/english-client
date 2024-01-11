@@ -35,10 +35,7 @@ function PageContent() {
         ${hideSidebar && 'grid-cols-6'}`}
         ref={mainContentRef}>
         <div
-          className={`col-span-full  ${hideSidebar ? `lg:col-span-8` : `max-[1362px]:col-span-6`
-            }`}>
-
-
+          className={`col-span-full ${hideSidebar ? `lg:col-span-8` : `min-[1362px]:col-span-6`}`}>
           <Suspense fallback={<SuspenseContent />}>
             <Routes>
               {routes.map((route, key) => {

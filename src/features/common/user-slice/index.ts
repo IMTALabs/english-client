@@ -15,6 +15,7 @@ export interface User {
   about?: string | any;
   language?: string;
   timezone?: string;
+  accounting_charge?: number;
   created_at?: string;
   deleted_at?: string | any;
   updated_at?: string | any;

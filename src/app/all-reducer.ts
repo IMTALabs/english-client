@@ -1,6 +1,7 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
 import headerSlice from 'src/features/common/header-slice';
+import historySlice from 'src/features/common/history-slice';
 import listeningSlice from 'src/features/common/listening-slice';
 import modalSlice from 'src/features/common/modal-slice';
 import readingSlice from 'src/features/common/reading-slice';
@@ -15,5 +16,6 @@ export const allReducer = combineReducers({
   listening: listeningSlice,
   writing: writingSlice,
   reading: readingSlice,
-  user: userSlice
+  user: userSlice,
+  history: historySlice
 });

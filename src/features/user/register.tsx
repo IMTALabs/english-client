@@ -1,36 +1,56 @@
-import {useState} from 'react';
-import {Link} from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import LandingIntro from './landing-intro';
 import InputText from 'src/components/input/input-text';
 import ErrorText from 'src/components/typo/error';
+import authenticationApi, { postLoginPayload } from '../services/authentication/authentication-api';
+import { useAppDispatch } from 'src/app/store';
+import { setLoginInfo, setUserInfo } from '../common/user-slice';
 
 function Register() {
   const INITIAL_REGISTER_OBJ = {
-    name: '',
+    full_name: '',
     password: '',
-    emailId: '',
+    email: '',
   };
 
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [registerObj, setRegisterObj] = useState(INITIAL_REGISTER_OBJ);
+  const [registerObj, setRegisterObj] = useState<postLoginPayload>(INITIAL_REGISTER_OBJ);
 
-  const submitForm = (e: any) => {
+  const dispatch = useAppDispatch()
+
+
+  const navigate = useNavigate()
+  const submitForm = async (e: any) => {
     e.preventDefault();
     setErrorMessage('');
 
-    if (registerObj.name.trim() === '')
+    if (registerObj.full_name.trim() === '')
       return setErrorMessage('Name is required! (use any value)');
-    if (registerObj.emailId.trim() === '')
+    if (registerObj.email.trim() === '')
       return setErrorMessage('Email Id is required! (use any value)');
     if (registerObj.password.trim() === '')
       return setErrorMessage('Password is required! (use any value)');
     else {
-      setLoading(true);
-      // Call API to check user credentials and save token in localstorage
-      localStorage.setItem('token', 'DumyTokenHere');
-      setLoading(false);
-      window.location.href = '/app/welcome';
+      try {
+
+
+        setLoading(true);
+        // Call API to check user credentials and save token in localstorage
+        const response = await authenticationApi.postRegister(registerObj)
+
+        if (response?.data?.user && response?.data?.accessToken) {
+          dispatch(setUserInfo(response?.data.user));
+          dispatch(setLoginInfo({ isLoggedIn: true, accessToken: response.data.accessToken }));
+        }
+        localStorage.setItem('token', response?.data?.accessToken);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+        navigate('/app/welcome');
+      }
     }
   };
 
@@ -42,7 +62,7 @@ function Register() {
     value: any;
   }) => {
     setErrorMessage('');
-    setRegisterObj({...registerObj, [updateType]: value});
+    setRegisterObj({ ...registerObj, [updateType]: value });
   };
 
   return (
@@ -59,8 +79,8 @@ function Register() {
             <form onSubmit={e => submitForm(e)}>
               <div className="mb-4">
                 <InputText
-                  defaultValue={registerObj.name}
-                  updateType="name"
+                  defaultValue={registerObj.full_name}
+                  updateType="full_name"
                   containerStyle="mt-4"
                   labelTitle="Name"
                   updateFormValue={updateFormValue}
@@ -68,8 +88,8 @@ function Register() {
                 />
 
                 <InputText
-                  defaultValue={registerObj.emailId}
-                  updateType="emailId"
+                  defaultValue={registerObj.email}
+                  updateType="email"
                   containerStyle="mt-4"
                   labelTitle="Email"
                   updateFormValue={updateFormValue}

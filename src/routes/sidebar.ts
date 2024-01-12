@@ -1,3 +1,4 @@
+import { Icon } from "src/assets/icon";
 
 
 const iconClasses = `h-6 w-6`
@@ -9,25 +10,25 @@ const routes = [
         submenu: "",
         path: "listening",
         name: "Listening",
-        icon: ` `
+        icon: Icon("listening")
     },
     {
         submenu: "",
         path: "reading",
         name: "Reading",
-        icon: ""
+        icon: Icon("reading")
     },
     {
         submenu: "",
         path: "writing",
         name: "Writing",
-        icon: ""
+        icon: Icon("writing")
     },
     {
         submenu: "",
         path: "speaking",
         name: "Speaking",
-        icon: ""
+        icon: Icon("speaking")
     }
 ]
 

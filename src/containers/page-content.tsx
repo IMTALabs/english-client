@@ -31,15 +31,11 @@ function PageContent() {
     <div className="drawer-content flex flex-col h-full">
       <Header />
       <main
-        className={`grid grid-cols-6 gap-4 overflow-y-auto md:pt-4 pt-4 h-full p-4
+        className={`grid grid-cols-8 gap-4 overflow-y-auto md:pt-4 pt-4 h-full p-4
         ${hideSidebar && 'grid-cols-6'}`}
         ref={mainContentRef}>
         <div
-          className={`col-span-full  ${hideSidebar ? `lg:col-span-6` : `lg:col-span-4`
-            }`}>
-
-
-
+          className={`col-span-full ${hideSidebar ? `lg:col-span-8` : `min-[1362px]:col-span-6`}`}>
           <Suspense fallback={<SuspenseContent />}>
             <Routes>
               {routes.map((route, key) => {
@@ -59,7 +55,7 @@ function PageContent() {
           </Suspense>
         </div>
         {!hideSidebar && (
-          <div className="col-span-full lg:col-span-2">
+          <div className="col-span-full lg:col-span-2 max-lg:hidden max-[1362px]:hidden ">
             <RightSidebarPageContent />
           </div>
         )}

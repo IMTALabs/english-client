@@ -36,7 +36,7 @@ interface ToppicState {
 }
 interface WritingState {
     isLoading: boolean;
-    WritingQuizz: WritingPros;
+    WritingQuizz: WritingPros ;
 }
 
 export interface WritingPros {

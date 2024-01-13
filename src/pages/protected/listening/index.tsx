@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'src/app/store';
 import { getListeningContent } from 'src/features/common/listening-slice';
 import Button from "src/components/button";
+import Recommendation from 'src/components/recommendation';
 
 const Listening = () => {
     const dispatch = useAppDispatch();
@@ -55,6 +56,7 @@ const Listening = () => {
                     )}
                 </div>
             </TitleCard>
+            <Recommendation />
         </>
 
 

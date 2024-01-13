@@ -46,10 +46,17 @@ const TextareaRadio = ({ option, mode }: Props) => {
         <div>
             <div className="mx-auto" >
                 <p className="text-[24px] font-bold my-3 ">{option}</p>
-                <textarea onChange={handleTextChange} className="w-full py-2 px-2 h-[203px] border-2 border-gray-300 rounded " placeholder="Type or patse the topic here..." ></textarea>
-                <div className="flex justify-between">
-                    <p>{characterCount}/500</p>
-                </div>
+                {
+                    mode === "gen_topic"  || mode === "topic"? <div>
+                        <input type="text" placeholder="Type here" defaultValue={text} className="input w-full py-2 px-2 border-2 border-gray-300 rounded mb-8" />
+                    </div> : <div>
+                        <textarea onChange={handleTextChange} className="w-full py-2 px-2 h-[203px] border-2 border-gray-300 rounded " placeholder="Type or patse the topic here..." ></textarea>
+                        <div className="flex justify-between">
+                            <p>{characterCount}/400</p>
+                        </div>
+                    </div>
+                }
+
                 <Button type="submit" text='Generate Quizz' onClick={handleSubmit} />
             </div>
         </div>

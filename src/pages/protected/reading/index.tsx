@@ -8,7 +8,7 @@ const Reading = () => {
     return (
         <div >
             <TitleCard title="Reading" topMargin="0">
-                <Tab option1="From Your Essay " option2='Generate Topic' mode1="gen_topic" mode2="no_gen_topic" isLoading={isLoading} quizz={quizz} />
+                <Tab option1="Enter Article " option2='Topic' mode1="gen_topic" mode2="no_gen_topic" isLoading={isLoading} quizz={quizz} />
             </TitleCard>
         </div>
 

@@ -12,7 +12,7 @@ function TitleCard({ title, children, topMargin, TopSideButtons }: TitleCardProp
   return (
     <div
       className={
-        'card w-full p-6 bg-base-100 border ' + (topMargin || 'mt-6')
+        'card w-full p-6 bg-base-100 border-gray-300 border ' + (topMargin || 'mt-6')
       }>
       {/* Title for Card */}
       {

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { setPageTitle } from 'src/features/common/header-slice';
-import FaceFrownIcon from '@heroicons/react/24/solid/FaceFrownIcon';
+
 import { useAppDispatch } from 'src/app/store';
 
 function InternalPage() {
@@ -11,7 +11,7 @@ function InternalPage() {
   }, []);
 
   return (
-    <div className="hero h-4/5 ">
+    <div className="hero h-4/5 my-4">
       <div className="hero-content text-accent text-center">
         <div className="max-w-md">
           <div className='text-center'>
@@ -44,7 +44,7 @@ function InternalPage() {
           </div>
 
 
-          <h1 className="text-5xl  font-bold text-primary">Coming soon</h1>
+          <h1 className="text-5xl  font-bold text-primary my-4">Coming soon</h1>
         </div>
       </div>
     </div>

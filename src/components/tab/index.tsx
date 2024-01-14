@@ -19,7 +19,7 @@ const Tab = ({ option1, option2, mode1, mode2, isLoading, quizz }: Props) => {
     };
 
     const navigeUrl = useNavigate();
-    
+
     useEffect(() => {
         if (!isLoading && Object.keys(quizz).length > 0) {
             navigeUrl('quizz', {
@@ -33,14 +33,14 @@ const Tab = ({ option1, option2, mode1, mode2, isLoading, quizz }: Props) => {
 
         <div>
             < div className="grid lg:grid-cols-2 gap-4" >
-                <button onClick={() => handlePaymentTypeChange(false)} className={`${isCardVisible ? 'text-gray-500 border-2' : ' border-[#10B981] bg-[#10B981] text-white'}  text-center rounded py-2 font-semibold `}>{option1}</button>
-                <button onClick={() => handlePaymentTypeChange(true)} className={`${isCardVisible ? 'border-[#10B981] bg-[#10B981] text-white' : 'text-gray-500 border-2 '}  text-center rounded py-2 font-semibold `}>{option2}</button>
+                <button onClick={() => handlePaymentTypeChange(false)} className={`${isCardVisible ? 'text-gray-500 border-2' : ' bg-secondary text-white'}  text-center rounded py-2 font-semibold `}>{option1}</button>
+                <button onClick={() => handlePaymentTypeChange(true)} className={`${isCardVisible ? 'bg-secondary text-white' : 'text-gray-500 border-2 '}  text-center rounded py-2 font-semibold `}>{option2}</button>
             </div >
             {
                 isCardVisible ? (
-                    <TextareaRadio option={option1} mode={mode1} />
+                    <TextareaRadio option={option2} mode={mode1} />
                 ) : (
-                    <TextareaRadio option={option2} mode={mode2} />
+                    <TextareaRadio option={option1} mode={mode2} />
                 )}
             {!isLoading ? '' : <Spin />}
         </div >

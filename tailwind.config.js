@@ -21,6 +21,18 @@ export default {
     require("@tailwindcss/typography"),
     require("daisyui")],
   daisyui: {
-    themes: ["lofi"],
+    themes: [
+      {
+        light: {
+          ...require("daisyui/src/theming/themes")["lofi"],
+          primary: "black",
+          secondary: "teal",
+          third: "gray",
+          "accent": "#fff",
+          "--rounded-btn": "0.5rem",
+          "--rounded-box": "1rem"
+        },
+      },
+    ],
   },
 };

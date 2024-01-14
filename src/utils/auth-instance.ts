@@ -1,7 +1,9 @@
 import axios from "axios";
 
+const env = await import.meta.env
+
 export const authInstance = axios.create({
-    baseURL: 'https://briteshop.store/pulic/',
+    baseURL: env.VITE_AUTH_BASE_URL,
     withCredentials: true,
     withXSRFToken: true,
     headers: {

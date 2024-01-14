@@ -27,7 +27,7 @@ const RightSidebarPageContent = () => {
           <img
             src={
               user?.avatar
-                ? `https://imtalabs.tech/${user.avatar}`
+                ? `http://imta.edu/${user.avatar}`
                 : defaultAvataUrl
             }
             alt=""

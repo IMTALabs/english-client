@@ -21,8 +21,8 @@ import { setHistory } from "src/features/common/history-slice";
 
 
 const AppRouter = () => {
-    // const token = checkAuth();
-    const token = 'ascsacsacas';
+    const token = checkAuth();
+    // const token = 'ascsacsacas';
     const dispatch = useAppDispatch()
 
 

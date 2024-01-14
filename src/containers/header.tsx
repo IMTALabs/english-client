@@ -47,8 +47,8 @@ const Header = () => {
     // navbar fixed  flex-none justify-between bg-base-300  z-10 shadow-md
 
     <>
-      <div className="navbar sticky top-0 z-10 p-4 pb-0">
-        <div className="bg-primary w-full rounded pr-2">
+      <div className="navbar sticky top-0 z-10 p-0 m-0 min-h-0  ">
+        <div className="bg-primary w-full rounded-tr rounded-br pr-2">
           {/* Menu toogle for mobile view or small screen */}
           <div className="flex-1">
             <label

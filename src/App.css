@@ -47,3 +47,8 @@
 .divider::after {
   height: 1px !important;
 }
+
+.item-link:focus {
+  background-color: #008080 !important;
+  color: #fff !important;
+}

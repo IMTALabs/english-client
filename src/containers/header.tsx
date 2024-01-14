@@ -57,21 +57,7 @@ const Header = () => {
               <Bars3Icon className="h-5 inline-block w-5" />
             </label>
             <h1 className="text-2xl font-semibold ml-2">{pageTitle}</h1>
-            <button className="rounded-l-none btn btn-xs pl-4 btn-primary">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24">
-                <path
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="m21 21l-4.343-4.343m0 0A8 8 0 1 0 5.343 5.343a8 8 0 0 0 11.314 11.314"></path>
-              </svg>
-            </button>
+           
           </div>
 
           <div className="flex-none ">
@@ -124,22 +110,7 @@ const Header = () => {
                 </svg>
               </div>
             </button>
-            <button
-              className="btn btn-ghost btn-circle"
-              onClick={() => openNotification()}>
-              <div className="indicator">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  className="text-white">
-                  <path
-                    fill="currentColor"
-                    d="M5 19h2q.425 0 .713.288T8 20q0 .425-.288.713T7 21H4q-.425 0-.712-.288T3 20v-3q0-.425.288-.712T4 16q.425 0 .713.288T5 17zm14 0v-2q0-.425.288-.712T20 16q.425 0 .713.288T21 17v3q0 .425-.288.713T20 21h-3q-.425 0-.712-.288T16 20q0-.425.288-.712T17 19zM5 5v2q0 .425-.288.713T4 8q-.425 0-.712-.288T3 7V4q0-.425.288-.712T4 3h3q.425 0 .713.288T8 4q0 .425-.288.713T7 5zm14 0h-2q-.425 0-.712-.288T16 4q0-.425.288-.712T17 3h3q.425 0 .713.288T21 4v3q0 .425-.288.713T20 8q-.425 0-.712-.288T19 7z"></path>
-                </svg>
-              </div>
-            </button>
+            
             <button
               className="btn btn-ghost btn-circle"
               onClick={() => openNotification()}>

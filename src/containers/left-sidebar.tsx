@@ -33,11 +33,11 @@ function LeftSidebar() {
           onClick={e => close(e)}>
           <XMarkIcon className="h-5 inline-block w-5" />
         </button>
-        <li className="mb-2 font-semibold text-xl">
-          <Link to={'/app/welcome'}>
+        <li className="mb-2 font-semibold text-xl ">
+          <Link to={'/app/welcome'} className="item-link">
             <img
               className="mask mask-squircle w-10"
-              src="https://i.pinimg.com/originals/58/94/70/58947055dab9ae19404a4ec5e3c30b3c.jpg"
+              src="/src/assets/z5058492179376_cd303294aa3b35e442b1bbadb2d0fb44.jpg"
               alt="Doraemon Logo"
             />
             English
@@ -56,7 +56,7 @@ function LeftSidebar() {
                       to={route.path}
                       className={({ isActive }) =>
                         `${(isActive) ? 'font-semibold bg-secondary' : 'font-normal'
-                        } hover:font-semibold `
+                        } hover:font-semibold hover:bg-secondary item-link`
                       }
                     >
                       <span dangerouslySetInnerHTML={{ __html: route.icon }}></span> {route.name}

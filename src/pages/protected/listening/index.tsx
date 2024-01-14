@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TitleCard from 'src/components/cards/title-card';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'src/app/store';
@@ -16,17 +16,22 @@ const Listening = () => {
     };
     const { isLoading } = useAppSelector((state) => state.listening);
 
-    console.log("listen", quizz, isLoading);
 
-    if (!isLoading && Object.keys(quizz).length > 0) {
-        navigeUrl('quizz', {
-            state: { quizz: quizz }
-        });
-    }
+    useEffect(() => {
+        if (!isLoading && Object.keys(quizz).length > 0) {
+            navigeUrl('quizz', {
+                state: { quizz: quizz }
+            });
+        } else {
+            setShowOverlay(false);
+        }
+    }, [isLoading])
     const [showOverlay, setShowOverlay] = useState(false);
     const handleOverlayClick = () => {
         setShowOverlay(true); // Ẩn overlay khi click vào nền trắng
     };
+
+
 
     return (
         <>

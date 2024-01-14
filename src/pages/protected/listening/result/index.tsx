@@ -19,7 +19,6 @@ const ResultListening = () => {
     const {
         CorrectAnswer, answerQuizz
     } = useLocation()?.state
-    console.log(CorrectAnswer, answerQuizz);
 
     return (
         <>

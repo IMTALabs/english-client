@@ -4,7 +4,7 @@ import {
     Routes,
     Navigate,
 } from "react-router-dom";
-import { lazy, useEffect } from "react";
+import { lazy, useEffect, useLayoutEffect } from "react";
 import checkAuth from "src/app/auth";
 
 const Layout = lazy(() => import("src/containers/layout"));
@@ -21,7 +21,8 @@ import { setHistory } from "src/features/common/history-slice";
 
 
 const AppRouter = () => {
-    const token = checkAuth();
+    // const token = checkAuth();
+    const token = 'ascsacsacas';
     const dispatch = useAppDispatch()
 
 
@@ -38,7 +39,6 @@ const AppRouter = () => {
         }
     }
 
-
     const alreadyHaveInfo = token && Object.keys(user).length > 0;
 
     const getHistory = async () => {
@@ -49,18 +49,18 @@ const AppRouter = () => {
             if (Object.keys(response).length > 0) {
                 dispatch(setHistory(response));
             }
-
         } catch (error) {
             console.log(error);
         }
     }
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (token) {
             getUser();
             getHistory();
         }
-    }, [])
+    }, []);
+
     return (
         <div>
             <Router>

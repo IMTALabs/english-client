@@ -87,29 +87,31 @@ const RightSidebarPageContent = () => {
         </div>
       </TitleCard>
 
-      <TitleCard title="History" topMargin="mt-4 text-center">
-        <div className="max-w-sm w-full lg:max-w-full mb-6 last:mb-0 space-y-2">
-          {history?.data?.map((item: any) => {
-            return (
-              <div className=" group" key={item.id}>
-                <div className=" py-2 px-4  border rounded-lg leading-none flex items-center justify-between space-x-6">
-                  <div className="flex items-center gap-2">
-                    <span
-                      dangerouslySetInnerHTML={{ __html: Icon(item.skill) }}
-                    />
-                    <div className="space-y-2">
-                      <p className="text-sm">{item.skill}</p>
+      {
+        history.length > 0 && <TitleCard title="History" topMargin="mt-4 text-center">
+          <div className="max-w-sm w-full lg:max-w-full mb-6 last:mb-0 space-y-2">
+            {history?.map((item: any) => {
+              return (
+                <div className=" group" key={item.id}>
+                  <div className=" py-2 px-4  border rounded-lg leading-none flex items-center justify-between space-x-6">
+                    <div className="flex items-center gap-2">
+                      <span
+                        dangerouslySetInnerHTML={{ __html: Icon(item.skill) }}
+                      />
+                      <div className="space-y-2">
+                        <p className="text-sm">{item.skill}</p>
+                      </div>
+                    </div>
+                    <div className="text-xs text-gray-400 truncate">
+                      {item.created_at}
                     </div>
                   </div>
-                  <div className="text-xs text-gray-400 truncate">
-                    {item.created_at}
-                  </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
-      </TitleCard>
+              );
+            })}
+          </div>
+        </TitleCard>
+      }
     </div>
   );
 };

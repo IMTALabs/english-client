@@ -1,9 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 
+type historyState = {
+    created_at: string,
+    id: number,
+    skill: string,
+}
 
-const initialState: any = {
-    isLoading: false,
+type initialState = {
+    history: historyState[]
+}
+
+
+const initialState: initialState = {
     history: [],
 };
 
@@ -14,6 +23,7 @@ export const listeningSlice = createSlice({
         setHistory: (state, action) => {
             state.history = action.payload;
         },
+        
     },
 });
 

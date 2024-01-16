@@ -32,15 +32,15 @@ const AssignmentQuizz: React.FC<Props> = ({ form, onChoiceSelect, onChoiceTextar
         if (onChoiceSelect) {
             onChoiceSelect(questionIndex, choice);
         }
-        // const checkboxes = document.getElementsByName(`group_${questionIndex}`);
+        const checkboxes = document.getElementsByName(`group_${questionIndex}`);
 
-        // // Loop qua tất cả checkboxes và bỏ chọn hết trước khi chọn checkbox mới
-        // checkboxes.forEach((checkbox) => {
-        //     checkbox.checked = false;
-        // });
+        // Loop qua tất cả checkboxes và bỏ chọn hết trước khi chọn checkbox mới
+        checkboxes.forEach((checkbox) => {
+            checkbox.checked = false;
+        });
 
-        // // Bỏ chọn tất cả các checkboxes trong cùng một nhóm
-        // document.getElementById(`checkbox_${questionIndex}_${choice}`).checked = true;
+        // Bỏ chọn tất cả các checkboxes trong cùng một nhóm
+        document.getElementById(`checkbox_${questionIndex}_${choice}`).checked = true;
     };
 
 
@@ -55,7 +55,7 @@ const AssignmentQuizz: React.FC<Props> = ({ form, onChoiceSelect, onChoiceTextar
     };
     if (form) {
         return (
-            <div className='overflow-y-auto h-[670px]'>
+            <div className='overflow-y-auto h-[748px] '>
                 <div className='p-4 lg:mt-0 sm:mt-[70px]'>
                     <p className='font-bold bg-base-100 text-[30px]'>Question 1-10</p>
                     <p className='my-3'>Choose the correct letter, A, B, C, or D.</p>

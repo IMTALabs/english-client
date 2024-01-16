@@ -11,7 +11,8 @@ const Listening = () => {
     const dispatch = useAppDispatch();
     const [linkUrl, setLinkUrl] = useState('');
     const [showOverlay, setShowOverlay] = useState(false);
-    const { listeningQuizz, error, isLoading } = useAppSelector((state) => state.listening || "");
+    const { listeningQuizz, errorText, isLoading } = useAppSelector((state) => state.listening || "");
+
     const navigeUrl = useNavigate();
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -62,7 +63,7 @@ const Listening = () => {
                             <div className="inline-block relative w-[80px] h-[80px] lds-ring"><div></div><div></div><div></div><div></div></div>
                         </div>
                     )}
-                    {error !== '' && <Error text={error} />}
+                    {errorText !== '' && <Error text={errorText} />}
                 </div>
             </TitleCard>
         </>

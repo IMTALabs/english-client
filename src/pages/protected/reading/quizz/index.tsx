@@ -32,7 +32,7 @@ const QuizzReading = () => {
     };
 
 
-    
+
     const handleConfirmQuizz = () => {
         const allQuestionsAnswered = Object.keys(selectedChoices).length === questions?.length;
 

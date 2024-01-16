@@ -62,7 +62,7 @@ const QuizzListening = () => {
 
     return (
         <>
-            {/* {!isLoadingError ? <Error text="Please complete all information" /> : null} */}
+            {!isLoadingError ? <Error text="Please complete all information" /> : null}
 
             <div className="sm:flex flex-1 gap-x-4">
                 <div className="sm:w-1/2  mb-3 py-2">

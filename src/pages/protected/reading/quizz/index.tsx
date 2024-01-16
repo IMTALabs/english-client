@@ -30,6 +30,9 @@ const QuizzReading = () => {
             [questionIndex]: choice,
         }));
     };
+
+
+    
     const handleConfirmQuizz = () => {
         const allQuestionsAnswered = Object.keys(selectedChoices).length === questions?.length;
 
@@ -44,6 +47,9 @@ const QuizzReading = () => {
             console.log('Please answer all questions before submitting.');
         }
     };
+
+
+
     useEffect(() => {
         dispatch(updateCharge(data?.remaining_accounting_charge))
         dispatch(clearReadingState())
@@ -52,11 +58,11 @@ const QuizzReading = () => {
 
     return (
         <div>
-            <div className='grid lg:grid-cols-2 '>
+            <div className='grid lg:grid-cols-2 mt-10 border rounded-[2.25rem]'>
                 <div>
                     <AssignmentContent paragraph={data?.body?.paragraph} />
                 </div>
-                <div>
+                <div className="mb-2">
                     <AssignmentQuizz form={data?.body?.form} onChoiceSelect={handleChoiceSelect} />
                     <Button type='submit' text='Submit' onClick={handleConfirmQuizz} />
                 </div>

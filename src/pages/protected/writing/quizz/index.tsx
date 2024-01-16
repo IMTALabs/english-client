@@ -19,8 +19,7 @@ const QuizzWriting = () => {
   const dispatch = useAppDispatch();
 
 
-  const quizz = useAppSelector((state) => state.writing?.WritingQuizz || "");
-  const { isLoading } = useAppSelector((state) => state?.writing)
+  const { isLoading, writingQuizz } = useAppSelector((state) => state?.writing)
   const handleChoiceTextarea = (value: string) => {
     setTextAreaValue(value);
   };
@@ -38,15 +37,15 @@ const QuizzWriting = () => {
   };
   useEffect(() => {
 
-    if (!isLoading && quizz?.band_score) {
+    if (!isLoading && writingQuizz?.band_score) {
       navigeUrl('/app/writing/result', {
-        state: { quizz }
+        state: { writingQuizz }
       });
     }
-    if (Object.keys(quizz).length > 0) {
+    if (Object.keys(writingQuizz).length > 0) {
       dispatch(clearWritingState())
     }
-  }, [isLoading, quizz]);
+  }, [isLoading, writingQuizz]);
   return (
     <div className='flex '>
       <div className="min-w-[400px]">

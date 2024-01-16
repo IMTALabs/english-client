@@ -4,15 +4,13 @@ import TextareaRadio from '../textarea-radio';
 import { useNavigate } from 'react-router-dom';
 import Spin from '../spin';
 type Props = {
-    option1: string,
-    option2: string,
-    mode1?: string,
-    mode2?: string,
     isLoading?: boolean | false;
-    quizz?: any
+    quizz?: any,
+    text?: string,
+    setText?: (text: string) => void
 }
 
-const Tab = ({ option1, option2, mode1, mode2, isLoading, quizz }: Props) => {
+const Tab = ({ isLoading, quizz, text, setText }: Props) => {
     const [isCardVisible, setCardVisibility] = useState(true);
     const handlePaymentTypeChange = (isCardSelected: boolean) => {
         setCardVisibility(isCardSelected);
@@ -28,6 +26,9 @@ const Tab = ({ option1, option2, mode1, mode2, isLoading, quizz }: Props) => {
         }
     }, [isLoading, quizz]);
 
+    console.log(isLoading);
+
+
 
     return (
 
@@ -38,9 +39,9 @@ const Tab = ({ option1, option2, mode1, mode2, isLoading, quizz }: Props) => {
             </div >
             {
                 isCardVisible ? (
-                    <TextareaRadio option={option2} mode={mode1} />
+                    <TextareaRadio text={text} setText={setText}/>
                 ) : (
-                    <TextareaRadio option={option1} mode={mode2} />
+                    <TextareaRadio text={text} setText={setText}/>
                 )}
             {!isLoading ? '' : <Spin />}
         </div >

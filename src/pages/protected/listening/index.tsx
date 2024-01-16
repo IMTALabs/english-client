@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'src/app/store';
 import { getListeningContent } from 'src/features/common/listening-slice';
 import Button from "src/components/button";
+import Carousel from 'src/components/carousel';
 
 const Listening = () => {
     const dispatch = useAppDispatch();
@@ -58,7 +59,13 @@ const Listening = () => {
                             <div className="inline-block relative w-[80px] h-[80px] lds-ring"><div></div><div></div><div></div><div></div></div>
                         </div>
                     )}
+                    <Carousel />
                 </div>
+
+                    {/* carousel */}
+
+                  
+
             </TitleCard>
         </>
 

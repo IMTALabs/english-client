@@ -17,17 +17,7 @@ export const postWritingPoint = createAsyncThunk(
     }
 );
 
-export const postWritingContent = createAsyncThunk(
-    'writing/postWritingContent',
-    async (toppic: string, { rejectWithValue }) => {
-        try {
-            const response = await writing.postGenInstructionApi(toppic)
-            return response;
-        } catch (error: any) {
-            return rejectWithValue({ error: error.message });
-        }
-    }
-);
+
 
 interface ToppicState {
     instruction: string
@@ -36,7 +26,8 @@ interface ToppicState {
 }
 interface WritingState {
     isLoading: boolean;
-    WritingQuizz: WritingPros ;
+    writingQuizz: WritingPros;
+    error: string;
 }
 
 export interface WritingPros {
@@ -45,10 +36,10 @@ export interface WritingPros {
 }
 
 
-
 const initialState: WritingState = {
     isLoading: false,
-    WritingQuizz: {},
+    writingQuizz: {},
+    error: ''
 };
 
 export const writingSlice = createSlice({
@@ -58,6 +49,9 @@ export const writingSlice = createSlice({
         clearWritingState: () => {
             return initialState;
         },
+        postReadingState: (state, action) => {
+            state.writingQuizz = action.payload
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -66,26 +60,16 @@ export const writingSlice = createSlice({
             })
             .addCase(postWritingPoint.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.WritingQuizz = action.payload;
+                state.writingQuizz = action.payload;
             })
             .addCase(postWritingPoint.rejected, (state) => {
                 state.isLoading = false;
                 // Handle rejection if needed
             })
-            .addCase(postWritingContent.pending, (state) => {
-                state.isLoading = true;
-            })
-            .addCase(postWritingContent.fulfilled, (state, action) => {
-                state.isLoading = false;
-                state.WritingQuizz = action.payload;
-            })
-            .addCase(postWritingContent.rejected, (state) => {
-                state.isLoading = false;
-                // Handle rejection if needed
-            });
+
     },
 });
 
-export const { clearWritingState } = writingSlice.actions;
+export const { clearWritingState, postReadingState } = writingSlice.actions;
 
 export default writingSlice.reducer;

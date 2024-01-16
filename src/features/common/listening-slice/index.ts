@@ -1,26 +1,18 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import listeningApi from 'src/features/services/listening/listening-api';
+import { createSlice } from '@reduxjs/toolkit';
 
-export const getListeningContent = createAsyncThunk(
-    'listening/getListeningContent',
-    async (listen_link: string, { rejectWithValue }) => {
-        try {
-            const response = await listeningApi.postYoutubeLink(listen_link)
-            return response;
-        } catch (error: any) {
-            return rejectWithValue({ error: error.message });
-        }
-    }
-);
+
 
 interface ListeningState {
     isLoading: boolean;
     listeningQuizz: Root; // Use null as the initial value
+    errorText: string
 }
+
 
 const initialState: ListeningState = {
     isLoading: false,
     listeningQuizz: {},
+    errorText: ''
 };
 
 export interface Root {
@@ -52,26 +44,18 @@ export const listeningSlice = createSlice({
     name: 'listening',
     initialState: initialState,
     reducers: {
-        clearListeningState: (state) => {
+        clearListeningState: () => {
             return initialState;
         },
-    },
-    extraReducers: (builder) => {
-        builder
-            .addCase(getListeningContent.pending, (state) => {
-                state.isLoading = true;
-            })
-            .addCase(getListeningContent.fulfilled, (state, action) => {
-                state.isLoading = false;
-                state.listeningQuizz = action.payload;
-            })
-            .addCase(getListeningContent.rejected, (state) => {
-                state.isLoading = false;
-                // Handle rejection if needed
-            });
+        setListeningState: (state, action) => {
+            state.listeningQuizz = action.payload;
+        },
+        setErrorListeningState: (state, action) => {
+            state.errorText = action.payload;
+        }
     },
 });
 
-export const { clearListeningState } = listeningSlice.actions;
+export const { clearListeningState, setListeningState, setErrorListeningState } = listeningSlice.actions;
 
 export default listeningSlice.reducer;

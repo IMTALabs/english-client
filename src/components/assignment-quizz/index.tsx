@@ -32,6 +32,15 @@ const AssignmentQuizz: React.FC<Props> = ({ form, onChoiceSelect, onChoiceTextar
         if (onChoiceSelect) {
             onChoiceSelect(questionIndex, choice);
         }
+        const checkboxes = document.getElementsByName(`group_${questionIndex}`);
+
+        // Loop qua tất cả checkboxes và bỏ chọn hết trước khi chọn checkbox mới
+        checkboxes.forEach((checkbox) => {
+            checkbox.checked = false;
+        });
+
+        // Bỏ chọn tất cả các checkboxes trong cùng một nhóm
+        document.getElementById(`checkbox_${questionIndex}_${choice}`).checked = true;
     };
 
 
@@ -46,7 +55,7 @@ const AssignmentQuizz: React.FC<Props> = ({ form, onChoiceSelect, onChoiceTextar
     };
     if (form) {
         return (
-            <div>
+            <div className='overflow-y-auto h-[748px] '>
                 <div className='p-4 lg:mt-0 sm:mt-[70px]'>
                     <p className='font-bold bg-base-100 text-[30px]'>Question 1-10</p>
                     <p className='my-3'>Choose the correct letter, A, B, C, or D.</p>
@@ -55,13 +64,15 @@ const AssignmentQuizz: React.FC<Props> = ({ form, onChoiceSelect, onChoiceTextar
                             <p className='bg-base-100 text-[15px] font-bold'>{index + 1}. {item.question}</p>
                             <ul>
                                 {Object.entries(item.choices).map(([key, choice]) => (
-                                    <li key={key} className='my-3 flex justify-start'>
+                                    <li key={key} className='my-3 flex justify-start items-center gap-1'>
                                         <span className='w-[-10px]'>{key}.</span>
-                                        <div
-                                            className={`border border-gray-400 rounded-full w-6 h-6 mx-2 cursor-pointer ${userAnswers[index] === key ? 'bg-blue-500' : ''
-                                                }`}
-                                            onClick={() => handleChoiceSelection(index, key)}
-                                        ></div>
+                                        <input
+                                            type="checkbox"
+                                            name={`group_${index}`}  // Đặt cùng một tên cho tất cả checkboxes để tạo nhóm
+                                            id={`checkbox_${index}_${key}`} // ID định danh duy nhất cho mỗi checkbox
+                                            className="checkbox checkbox-xs"
+                                            onChange={() => handleChoiceSelection(index, key)}
+                                        />
                                         {choice}
                                     </li>
                                 ))}

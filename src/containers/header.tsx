@@ -7,7 +7,7 @@ import { openRightDrawer } from "src/features/common/right-drawer-slice";
 
 import { RIGHT_DRAWER_TYPES } from "src/utils/global-constants";
 import { useAppDispatch, useAppSelector } from "src/app/store";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -47,42 +47,24 @@ const Header = () => {
     // navbar fixed  flex-none justify-between bg-base-300  z-10 shadow-md
 
     <>
-      <div className="navbar sticky top-0 z-10 p-0 m-0 min-h-0  ">
-        <div className="bg-primary w-full rounded-tr rounded-br pr-2">
+      <div className="navbar sticky top-0 z-10 p-0 m-0 min-h-0 ">
+        <div className="bg-primary w-full rounded-tr rounded-br pr-2 h-14">
+          <li className=" ml-4 font-semibold text-xl flex flex-1 items-center justify-between ">
+            <NavLink to={'/app/welcome'} className="flex items-center justify-start gap-x-4 text-white" >
+              <img
+                className="mask mask-squircle w-10 h-10 object-cover aspect-square"
+                src="/src/assets/z5058492179376_cd303294aa3b35e442b1bbadb2d0fb44.jpg"
+                alt="Doraemon Logo"
+                
+              />
+             <span className="text-xl"> English</span>
+            </NavLink>{' '}
+          </li>
           {/* Menu toogle for mobile view or small screen */}
-          <div className="flex-1">
-            <label
-              htmlFor="left-sidebar-drawer"
-              className="btn btn-primary drawer-button lg:hidden border-none">
-              <Bars3Icon className="h-5 inline-block w-5" />
-            </label>
-            <h1 className="text-2xl font-semibold ml-2">{pageTitle}</h1>
-           
-          </div>
+      
 
           <div className="flex-none ">
-            {/* Light and dark theme selection toogle **/}
-            {/* <label className="swap ">
-              <input type="checkbox" />
-              <SunIcon
-                data-set-theme="light"
-                data-act-class="ACTIVECLASS"
-                className={
-                  'fill-current w-6 h-6 text-white' +
-                  (currentTheme === 'dark' ? 'swap-on' : 'swap-off')
-                }
-              />
-              <MoonIcon
-                data-set-theme="dark"
-                data-act-class="ACTIVECLASS"
-                className={
-                  'fill-current w-6 h-6 text-white' +
-                  (currentTheme === 'light' ? 'swap-on' : 'swap-off')
-                }
-              />
-            </label> */}
-
-            {/* Notification icon */}
+           
             <button
               className="btn btn-ghost btn-circle"
               onClick={() => openNotification()}>
@@ -110,7 +92,7 @@ const Header = () => {
                 </svg>
               </div>
             </button>
-            
+
             <button
               className="btn btn-ghost btn-circle"
               onClick={() => openNotification()}>

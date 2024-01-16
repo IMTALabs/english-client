@@ -1,25 +1,19 @@
 import { useEffect } from 'react'
-import { useState } from 'react';
 import TextareaRadio from '../textarea-radio';
 import { useNavigate } from 'react-router-dom';
 import Spin from '../spin';
 type Props = {
-    option1: string,
-    option2: string,
-    mode1?: string,
-    mode2?: string,
     isLoading?: boolean | false;
-    quizz?: any
+    quizz?: any,
+    text: string,
+    setText: (text: string) => void,
+    setMode: (mode: string) => void,
+    wordCount: number,
+    mode: string
 }
 
-const Tab = ({ option1, option2, mode1, mode2, isLoading, quizz }: Props) => {
-    const [isCardVisible, setCardVisibility] = useState(true);
-    const handlePaymentTypeChange = (isCardSelected: boolean) => {
-        setCardVisibility(isCardSelected);
-    };
-
+const Tab = ({ isLoading, quizz, text, setText, setMode, wordCount, mode }: Props) => {
     const navigeUrl = useNavigate();
-
     useEffect(() => {
         if (!isLoading && Object.keys(quizz).length > 0) {
             navigeUrl('quizz', {
@@ -27,22 +21,23 @@ const Tab = ({ option1, option2, mode1, mode2, isLoading, quizz }: Props) => {
             });
         }
     }, [isLoading, quizz]);
-
-
     return (
 
         <div>
             < div className="grid lg:grid-cols-2 gap-4" >
-                <button onClick={() => handlePaymentTypeChange(false)} className={`${isCardVisible ? 'text-gray-500 border-2' : ' bg-secondary text-white'}  text-center rounded py-2 font-semibold `}>{option1}</button>
-                <button onClick={() => handlePaymentTypeChange(true)} className={`${isCardVisible ? 'bg-secondary text-white' : 'text-gray-500 border-2 '}  text-center rounded py-2 font-semibold `}>{option2}</button>
+                <button
+                    onClick={() => setMode('gen_topic')}
+                    className={`${mode === 'gen_topic' && 'bg-secondary text-white'} text-gray-500 border text-center rounded-md py-2 font-semibold '`} >
+                    Gen Topic
+                </button>
+                <button
+                    onClick={() => setMode('no_gen_topic')}
+                    className={`${mode !== 'gen_topic' && 'bg-secondary text-white'} text-gray-500 border text-center rounded-md py-2 font-semibold '`} >
+                    Article
+                </button>
             </div >
-            {
-                isCardVisible ? (
-                    <TextareaRadio option={option2} mode={mode1} />
-                ) : (
-                    <TextareaRadio option={option1} mode={mode2} />
-                )}
-            {!isLoading ? '' : <Spin />}
+            <TextareaRadio text={text} setText={setText} wordCount={wordCount} />
+            {!isLoading ? '' : <Spin />} 
         </div >
     )
 }

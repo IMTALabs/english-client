@@ -4,7 +4,7 @@ import {
     Routes,
     Navigate,
 } from "react-router-dom";
-import { lazy, useEffect, useLayoutEffect } from "react";
+import { lazy, useLayoutEffect } from "react";
 import checkAuth from "src/app/auth";
 
 const Layout = lazy(() => import("src/containers/layout"));
@@ -31,6 +31,7 @@ const AppRouter = () => {
     const getUser = async () => {
         try {
             const response = await userApi.getInfoUser();
+
             if (Object.keys(response).length > 0) {
                 dispatch(setUserInfo(response.user));
             }
@@ -44,11 +45,9 @@ const AppRouter = () => {
     const getHistory = async () => {
         try {
             const response = await historyApi.getHistory();
-            console.log("response ", response);
+            console.log(response, 'response');
 
-            if (Object.keys(response).length > 0) {
-                dispatch(setHistory(response));
-            }
+            dispatch(setHistory(response));
         } catch (error) {
             console.log(error);
         }

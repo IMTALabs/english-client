@@ -50,3 +50,15 @@ body {
         transform: rotate(360deg);
     }
 }
+
+h1 {
+    font-size: 24px !important;
+    font-weight: bold !important;
+    margin: 4px 0;
+}
+
+h2 {
+    font-size: 18px !important;
+    font-weight: bold !important;
+    margin: 4px 0;
+}

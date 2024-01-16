@@ -25,7 +25,7 @@ function LeftSidebar() {
   };
 
   return (
-    <div className="drawer-side z-30 ">
+    <div className="drawer-side z-30 h-[calc(100vh-56px)] ">
       <label htmlFor="left-sidebar-drawer" className="drawer-overlay"></label>
       <ul className="menu pt-2 w-80 bg-primary min-h-full text-accent">
         <button
@@ -33,21 +33,12 @@ function LeftSidebar() {
           onClick={e => close(e)}>
           <XMarkIcon className="h-5 inline-block w-5" />
         </button>
-        <li className="mb-2 font-semibold text-xl ">
-          <Link to={'/app/welcome'} className="item-link">
-            <img
-              className="mask mask-squircle w-10"
-              src="/src/assets/z5058492179376_cd303294aa3b35e442b1bbadb2d0fb44.jpg"
-              alt="Doraemon Logo"
-            />
-            English
-          </Link>{' '}
-        </li>
+      
         <div className="flex flex-1 flex-col justify-between ">
           <div className="">
             {routes.map((route, k) => {
               return (
-                <li className="text-xl pt-2" key={k}>
+                <li className="text-base pt-2" key={k}>
                   {route.submenu ? (
                     <SidebarSubmenu {...route} />
                   ) : (

@@ -27,7 +27,7 @@ const checkAuth = () => {
         config.baseURL = env.VITE_BASE_URL;
         config.withCredentials = true;
         config.withXSRFToken = true;
-        config.timeout = 60000;
+        config.timeout = 120000;
         config.headers['Content-Type'] = 'application/json';
         config.headers['Accept'] = 'application/json';
 

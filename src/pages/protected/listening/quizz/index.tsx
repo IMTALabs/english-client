@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from 'src/app/store';
+import { Error } from 'src/components/alert';
 import AssignmentQuizz from 'src/components/assignment-quizz';
 import Button from 'src/components/button';
 import { clearListeningState } from 'src/features/common/listening-slice';
@@ -31,12 +32,13 @@ const QuizzListening = () => {
     const questions: Question[] = body?.form
 
     const [selectedChoices, setSelectedChoices] = useState<Record<string, string>>({});
-
+    const [isLoadingError, setIsLoadingError] = useState(true);
     const handleChoiceSelect = (questionIndex: number, choice: string) => {
         setSelectedChoices((prevChoices) => ({
             ...prevChoices,
             [questionIndex]: choice,
         }));
+        setIsLoadingError(true)
     };
     useEffect(() => {
         dispatch(updateCharge(remaining_accounting_charge))
@@ -54,12 +56,14 @@ const QuizzListening = () => {
                 }
             });
         } else {
-            console.log('Please answer all questions before submitting.');
+            setIsLoadingError(false)
         }
     };
 
     return (
         <>
+            {!isLoadingError ? <Error text="Please complete all information" /> : null}
+
             <div className="sm:flex flex-1 gap-x-4">
                 <div className="sm:w-1/2  mb-3 py-2">
                     <p className="font-bold text-[30px] mb-[27px]">Listening Quizz</p>
@@ -79,9 +83,7 @@ const QuizzListening = () => {
                 </div>
                 <div className="sm:w-1/2 border-l-2 px-2 ">
                     <div>
-                        <div className="overflow-y-auto h-[700px]">
-                            <AssignmentQuizz form={questions} onChoiceSelect={handleChoiceSelect} />
-                        </div>
+                        <AssignmentQuizz form={questions} onChoiceSelect={handleChoiceSelect} />
                     </div>
                     <Button type='submit' text='Submit' onClick={handleConfirmQuizz} />
                 </div>

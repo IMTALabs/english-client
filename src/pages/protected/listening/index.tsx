@@ -2,36 +2,42 @@ import { useEffect, useState } from 'react';
 import TitleCard from 'src/components/cards/title-card';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'src/app/store';
-import { getListeningContent } from 'src/features/common/listening-slice';
 import Button from "src/components/button";
+import listeningApi from 'src/features/services/listening/listening-api';
+import { setErrorListeningState, setListeningState } from 'src/features/common/listening-slice';
 import Carousel from 'src/components/carousel';
 
 const Listening = () => {
     const dispatch = useAppDispatch();
     const [linkUrl, setLinkUrl] = useState('');
-    const quizz = useAppSelector((state) => state.listening?.listeningQuizz || "");
+    const [showOverlay, setShowOverlay] = useState(false);
+    const { listeningQuizz, errorText, isLoading } = useAppSelector((state) => state.listening || "");
+
+
     const navigeUrl = useNavigate();
-    const handleSubmit = (event: React.FormEvent) => {
+    const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        dispatch(getListeningContent(linkUrl));
+        setShowOverlay(true);
+        try {
+            const response = await listeningApi.postYoutubeLink(linkUrl)
+            dispatch(setListeningState(response));
+
+        } catch (error: any) {
+            dispatch(setErrorListeningState(error.message));
+        } finally {
+            setShowOverlay(false);
+        }
     };
-    const { isLoading } = useAppSelector((state) => state.listening);
+
 
 
     useEffect(() => {
-        if (!isLoading && Object.keys(quizz).length > 0) {
+        if (!isLoading && Object.keys(listeningQuizz).length > 0) {
             navigeUrl('quizz', {
-                state: { quizz: quizz }
+                state: { quizz: listeningQuizz }
             });
-        } else {
-            setShowOverlay(false);
         }
     }, [isLoading])
-    const [showOverlay, setShowOverlay] = useState(false);
-    const handleOverlayClick = () => {
-        setShowOverlay(true); // Ẩn overlay khi click vào nền trắng
-    };
-
 
 
     return (
@@ -50,21 +56,23 @@ const Listening = () => {
                                     placeholder="Paste your youtube video url here..."
                                 />
                             </div>
-                            <Button type='submit' text=' Generate Quizz' onClick={handleOverlayClick} />
+                            <Button type='submit' text=' Generate Quizz' />
+                            <Button type='submit' text=' Generate Quizz' />
                         </div>
                     </form>
                     {showOverlay && (
-                        <div className="fixed top-0 left-0 w-full h-full bg-gray-300 z-50 opacity-80 flex justify-center gap-4 items-center" onClick={handleOverlayClick}>
-                            <p className="font-bold text-black  text-[20px]">Processing generating quizz...</p>
-                            <div className="inline-block relative w-[80px] h-[80px] lds-ring"><div></div><div></div><div></div><div></div></div>
-                        </div>
+                        <div className="fixed top-0 left-0 w-full h-full bg-gray-300 z-50 opacity-80 flex justify-center gap-4 items-center" >
+                            <div className="fixed top-0 left-0 w-full h-full bg-gray-300 z-50 opacity-80 flex justify-center gap-4 items-center" >
+                                <p className="font-bold text-black  text-[20px]">Processing generating quizz...</p>
+                                <div className="inline-block relative w-[80px] h-[80px] lds-ring"><div></div><div></div><div></div><div></div></div>
+                            </div>
                     )}
-                    <Carousel />
-                </div>
+                            <Carousel />
+                        </div>
 
                     {/* carousel */}
 
-                  
+
 
             </TitleCard>
         </>

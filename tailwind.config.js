@@ -30,7 +30,7 @@ export default {
           third: "gray",
           "accent": "#fff",
           "--rounded-btn": "0.5rem",
-          "--rounded-box": "1rem"
+          "--rounded-box": "1rem",
         },
       },
     ],

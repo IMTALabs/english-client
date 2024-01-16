@@ -51,9 +51,6 @@ export const writingSlice = createSlice({
         },
         postReadingState: (state, action) => {
             state.writingQuizz = action.payload
-        },
-        setErrorReading: (state, action) => {
-            state.error = action.payload
         }
     },
     extraReducers: (builder) => {
@@ -73,6 +70,6 @@ export const writingSlice = createSlice({
     },
 });
 
-export const { clearWritingState, postReadingState, setErrorReading } = writingSlice.actions;
+export const { clearWritingState, postReadingState } = writingSlice.actions;
 
 export default writingSlice.reducer;

@@ -1,6 +1,6 @@
 import { typoProps } from "./model";
 
-function ErrorText({className, children}: typoProps) {
+function ErrorText({ className, children }: typoProps) {
   return <p className={`text-center  text-error ${className}`}>{children}</p>;
 }
 

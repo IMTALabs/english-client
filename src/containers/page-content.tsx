@@ -1,4 +1,3 @@
-import Header from './header';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import routes from 'src/routes/index';
 import { Suspense, lazy } from 'react';
@@ -29,7 +28,6 @@ function PageContent() {
 
   return (
     <div className="drawer-content flex flex-col h-full">
-      <Header />
       <main
         className={`grid grid-cols-8 gap-4 overflow-y-auto md:pt-4 pt-4 h-full p-4
         ${hideSidebar && 'grid-cols-6'}`}
@@ -59,7 +57,6 @@ function PageContent() {
             <RightSidebarPageContent />
           </div>
         )}
-        <div className="h-16"></div>
       </main>
     </div>
   );

@@ -5,16 +5,14 @@ import { createSlice } from '@reduxjs/toolkit';
 interface ListeningState {
     isLoading: boolean;
     listeningQuizz: Root; // Use null as the initial value
-    error: string
+    errorText: string
 }
-
-
 
 
 const initialState: ListeningState = {
     isLoading: false,
     listeningQuizz: {},
-    error: ''
+    errorText: ''
 };
 
 export interface Root {
@@ -46,14 +44,14 @@ export const listeningSlice = createSlice({
     name: 'listening',
     initialState: initialState,
     reducers: {
-        clearListeningState: (state) => {
+        clearListeningState: () => {
             return initialState;
         },
         setListeningState: (state, action) => {
             state.listeningQuizz = action.payload;
         },
         setErrorListeningState: (state, action) => {
-            state.error = action.payload;
+            state.errorText = action.payload;
         }
     },
 });

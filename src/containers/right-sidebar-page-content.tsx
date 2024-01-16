@@ -10,12 +10,6 @@ const RightSidebarPageContent = () => {
   const { history } = useAppSelector(state => state.history)
 
 
-  const tooltipContent = `
-  Listening -1
-  Reading (Your article): 1
-  Reading ( Generate Article): 2
-  Writing -2
-`;
 
 
   const defaultAvataUrl = "https://1.bp.blogspot.com/-rt6mn1dJJ7M/XqZl2p-TboI/AAAAAAAAjO8/SzKdmwQAFhUH2CXgUH6kluj_G8Gig2-xgCLcBGAsYHQ/s1600/Anh-avatar-dep-cho-con-trai%2B%25281%2529.jpg"
@@ -27,7 +21,7 @@ const RightSidebarPageContent = () => {
           <img
             src={
               user?.avatar
-                ? `http://imta.edu/${user.avatar}`
+                ? `http://imta-chatbot.online${user.avatar}`
                 : defaultAvataUrl
             }
             alt=""
@@ -95,7 +89,7 @@ const RightSidebarPageContent = () => {
 
       <TitleCard title="History" topMargin="mt-4 text-center">
         <div className="max-w-sm w-full lg:max-w-full mb-6 last:mb-0 space-y-2">
-          {history?.map((item: any) => {
+          {history?.data?.map((item: any) => {
             return (
               <div className=" group" key={item.id}>
                 <div className=" py-2 px-4  border rounded-lg leading-none flex items-center justify-between space-x-6">

@@ -11,21 +11,25 @@ const Listening = () => {
     const dispatch = useAppDispatch();
     const [linkUrl, setLinkUrl] = useState('');
     const [showOverlay, setShowOverlay] = useState(false);
-    const { listeningQuizz, errorText, isLoading } = useAppSelector((state) => state.listening || "");
+    const [isLoading, setIsLoading] = useState(false);
+
+    const { listeningQuizz, errorText } = useAppSelector((state) => state.listening || "");
 
 
     const navigeUrl = useNavigate();
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         setShowOverlay(true);
+        setIsLoading(true);
         try {
             const response = await listeningApi.postYoutubeLink(linkUrl)
             dispatch(setListeningState(response));
-            console.log(response , "response");
-            
+            console.log(response, "response");
+
         } catch (error: any) {
             dispatch(setErrorListeningState(error.message));
         } finally {
+            setIsLoading(false);
             setShowOverlay(false);
         }
     };
@@ -34,7 +38,7 @@ const Listening = () => {
 
     useEffect(() => {
         console.log(listeningQuizz);
-        
+
         if (!isLoading && Object.keys(listeningQuizz).length > 0) {
             navigeUrl('quizz', {
                 state: { quizz: listeningQuizz }

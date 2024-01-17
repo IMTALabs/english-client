@@ -4,11 +4,12 @@ interface TitleCardProps {
   title: string;
   children: JSX.Element | JSX.Element[];
   topMargin?: string;
-  TopSideButtons?: string | JSX.Element
+  TopSideButtons?: string | JSX.Element,
+  titleStyle?: string
 }
 
 
-function TitleCard({ title, children, topMargin, TopSideButtons }: TitleCardProps) {
+function TitleCard({ title, children, topMargin, TopSideButtons, titleStyle }: TitleCardProps) {
   return (
     <div
       className={
@@ -18,7 +19,7 @@ function TitleCard({ title, children, topMargin, TopSideButtons }: TitleCardProp
       {
         !title ? "" : <>
           <Subtitle styleClass={TopSideButtons ? 'inline-block' : ''}>
-            {title}
+            <p className={titleStyle}>{title}</p>
             {/* Top side button, show only if present */}
             {TopSideButtons && (
               <div className="inline-block float-right">{TopSideButtons}</div>

@@ -76,7 +76,7 @@ const routes = [
     exact: true,
   },
   {
-    path: "/listening/result",
+    path: "/listening/result/:id",
     component: ResultListening,
     exact: true,
   },

@@ -7,7 +7,9 @@ import { openRightDrawer } from "src/features/common/right-drawer-slice";
 
 import { RIGHT_DRAWER_TYPES } from "src/utils/global-constants";
 import { useAppDispatch, useAppSelector } from "src/app/store";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
+import RabbitLogo from 'assets/rabbit-logo.jpg';
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -50,21 +52,30 @@ const Header = () => {
       <div className="navbar sticky top-0 z-10 p-0 m-0 min-h-0 ">
         <div className="bg-primary w-full rounded-tr rounded-br pr-2 h-14">
           <li className=" ml-4 font-semibold text-xl flex flex-1 items-center justify-between ">
-            <NavLink to={'/app/welcome'} className="flex items-center justify-start gap-x-4 text-white" >
+            <NavLink to={'/app/welcome'} className="flex items-center justify-start gap-x-4 text-white max-lg:hidden" >
               <img
                 className="mask mask-squircle w-10 h-10 object-cover aspect-square"
-                src="/src/assets/z5058492179376_cd303294aa3b35e442b1bbadb2d0fb44.jpg"
+                src={RabbitLogo}
                 alt="Doraemon Logo"
-                
+
               />
-             <span className="text-xl"> English</span>
+              <span className="text-xl"> English</span>
             </NavLink>{' '}
+
+            <div className="flex-1">
+              <label
+                htmlFor="left-sidebar-drawer"
+                className="btn btn-primary drawer-button lg:hidden border-none">
+                <Bars3Icon className="h-8 inline-block w-8" />
+              </label>
+              <h1 className="text-2xl font-semibold ml-2">{pageTitle}</h1>
+
+            </div>
           </li>
           {/* Menu toogle for mobile view or small screen */}
-      
+
 
           <div className="flex-none ">
-           
             <button
               className="btn btn-ghost btn-circle"
               onClick={() => openNotification()}>
@@ -91,7 +102,9 @@ const Header = () => {
                   </g>
                 </svg>
               </div>
+
             </button>
+
 
             <button
               className="btn btn-ghost btn-circle"

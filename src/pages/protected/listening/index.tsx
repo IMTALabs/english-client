@@ -21,7 +21,8 @@ const Listening = () => {
         try {
             const response = await listeningApi.postYoutubeLink(linkUrl)
             dispatch(setListeningState(response));
-
+            console.log(response , "response");
+            
         } catch (error: any) {
             dispatch(setErrorListeningState(error.message));
         } finally {
@@ -32,6 +33,8 @@ const Listening = () => {
 
 
     useEffect(() => {
+        console.log(listeningQuizz);
+        
         if (!isLoading && Object.keys(listeningQuizz).length > 0) {
             navigeUrl('quizz', {
                 state: { quizz: listeningQuizz }
@@ -57,7 +60,6 @@ const Listening = () => {
                                 />
                             </div>
                             <Button type='submit' text=' Generate Quizz' />
-                            <Button type='submit' text=' Generate Quizz' />
                         </div>
                     </form>
                     {showOverlay && (
@@ -66,15 +68,14 @@ const Listening = () => {
                                 <p className="font-bold text-black  text-[20px]">Processing generating quizz...</p>
                                 <div className="inline-block relative w-[80px] h-[80px] lds-ring"><div></div><div></div><div></div><div></div></div>
                             </div>
-                    )}
-                            <Carousel />
                         </div>
+                    )}
+                    <Carousel />
+                </div>
 
-                    {/* carousel */}
+                {/* carousel */}
 
-
-
-            </TitleCard>
+            </TitleCard >
         </>
 
 

@@ -22,10 +22,9 @@ const ResultListening = () => {
 
     return (
         <>
-            <TitleCard title="Listening Quizz" topMargin="0">
+            <TitleCard title={`Your result : ${markListening?.point}`} topMargin="0" titleStyle='text-3xl font-bold '>
                 <div className="bg-base-100  rounded-lg mt-[10px] h-[95%] p-4">
                     <div className=" gap-x-4 ">
-                        <p className="text-[30px] mb-[27px]">Your point : {markListening?.point}</p>
                         {
                             markListening?.results?.map((item: Question, index: number) => {
                                 return <div key={index}>

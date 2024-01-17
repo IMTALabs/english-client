@@ -65,7 +65,7 @@ const AssignmentQuizz: React.FC<Props> = ({ form, onChoiceSelect, onChoiceTextar
                             <ul>
                                 {Object.entries(item.choices).map(([key, choice]) => (
                                     <li key={key} className='my-3 flex justify-start items-center gap-1'>
-                                        <span className='w-[-10px]'>{key}.</span>
+                                        <div className='w-4 h-4 self-start'>   <span >{key}.</span></div>
                                         <input
                                             type="checkbox"
                                             name={`group_${index}`}  // Đặt cùng một tên cho tất cả checkboxes để tạo nhóm

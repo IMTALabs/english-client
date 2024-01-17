@@ -3,14 +3,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 
 interface ListeningState {
-    isLoading: boolean;
     listeningQuizz: Root; // Use null as the initial value
     errorText: string
 }
 
 
 const initialState: ListeningState = {
-    isLoading: false,
     listeningQuizz: {},
     errorText: ''
 };

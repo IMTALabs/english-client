@@ -48,9 +48,6 @@ const QuizzListening = () => {
     const handleConfirmQuizz = async () => {
         // Kiểm tra xem đã chọn hết lựa chọn hay chưa
         const allQuestionsAnswered = Object.keys(selectedChoices).length === questions?.length;
-        console.log(questions);
-        console.log(selectedChoices, "dap an");
-        console.log(body);
 
         if (allQuestionsAnswered) {
             // Nếu đã chọn hết, thì chuyển hướng hoặc thực hiện hành động khác
@@ -61,7 +58,7 @@ const QuizzListening = () => {
             try {
                 const response = await listeningApi.postMarkListening(formChoices)
                 if (response) {
-                    navigeUrl('/app/listening/result', {
+                    navigeUrl(`/app/listening/result/id=${hash}`, {
                         state: {
                             markListening: response
                         }

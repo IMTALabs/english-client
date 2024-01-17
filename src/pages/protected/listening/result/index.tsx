@@ -1,5 +1,4 @@
 import { useLocation } from 'react-router-dom';
-import BandScore from 'src/components/assessment/band-score';
 import Quizz from 'src/components/assessment/quizz';
 import TitleCard from 'src/components/cards/title-card';
 
@@ -17,32 +16,27 @@ interface Question {
 
 const ResultListening = () => {
     const {
-        CorrectAnswer, answerQuizz
+        markListening
     } = useLocation()?.state
+    console.log(markListening);
 
     return (
         <>
-            <TitleCard title="Profile Settings" topMargin="0">
+            <TitleCard title="Listening Quizz" topMargin="0">
                 <div className="bg-base-100  rounded-lg mt-[10px] h-[95%] p-4">
-                    <div className="sm:flex flex-1 gap-x-4 ">
-                        <div className="sm:w-3/5">
-                            <p className="font-bold text-[30px] mb-[22px]">Listening Quizz</p>
-                            <p className="text-[30px] mb-[27px]">Your submit</p>
-                            {
-                                CorrectAnswer?.map((item: Question, index: number) => {
-                                    return <div key={index}>
-                                        <Quizz index={index} title={item.question} answer={item.answer} explain={item.explanation} answerQuizz={answerQuizz[index]} />
-                                    </div>
-                                })
-                            }
-                        </div>
-                        <BandScore />
+                    <div className=" gap-x-4 ">
+                        <p className="text-[30px] mb-[27px]">Your point : {markListening?.point}</p>
+                        {
+                            markListening?.results?.map((item: Question, index: number) => {
+                                return <div key={index}>
+                                    <Quizz index={index} title={item.question} answer={item.answer} explain={item.explanation} user_answer={item.user_answer} />
+                                </div>
+                            })
+                        }
                     </div >
                 </div>
             </TitleCard>
         </>
-
-
     );
 };
 

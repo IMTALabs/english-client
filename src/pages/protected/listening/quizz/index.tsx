@@ -5,8 +5,9 @@ import { useAppDispatch } from 'src/app/store';
 import { Error } from 'src/components/alert';
 import AssignmentQuizz from 'src/components/assignment-quizz';
 import Button from 'src/components/button';
-import { clearListeningState } from 'src/features/common/listening-slice';
+import { clearListeningState, setErrorListeningState } from 'src/features/common/listening-slice';
 import { updateCharge } from 'src/features/common/user-slice';
+import listeningApi from 'src/features/services/listening/listening-api';
 
 
 interface Question {
@@ -25,7 +26,7 @@ interface Question {
 
 const QuizzListening = () => {
     const {
-        body, link, remaining_accounting_charge
+        body, link, remaining_accounting_charge, hash
     } = useLocation()?.state?.quizz
     const dispatch = useAppDispatch();
     const navigeUrl = useNavigate();
@@ -44,17 +45,34 @@ const QuizzListening = () => {
         dispatch(updateCharge(remaining_accounting_charge))
         dispatch(clearListeningState())
     }, []);
-    const handleConfirmQuizz = () => {
+    const handleConfirmQuizz = async () => {
         // Kiểm tra xem đã chọn hết lựa chọn hay chưa
         const allQuestionsAnswered = Object.keys(selectedChoices).length === questions?.length;
+        console.log(questions);
+        console.log(selectedChoices, "dap an");
+        console.log(body);
+
         if (allQuestionsAnswered) {
             // Nếu đã chọn hết, thì chuyển hướng hoặc thực hiện hành động khác
-            navigeUrl('/app/listening/result', {
-                state: {
-                    answerQuizz: selectedChoices,
-                    CorrectAnswer: questions
+            const formChoices = {
+                submit: selectedChoices,
+                hash: hash
+            }
+            try {
+                const response = await listeningApi.postMarkListening(formChoices)
+                if (response) {
+                    navigeUrl('/app/listening/result', {
+                        state: {
+                            markListening: response
+                        }
+                    });
                 }
-            });
+            } catch (error: any) {
+                dispatch(setErrorListeningState(error.message));
+            } finally {
+                setIsLoadingError(false)
+            }
+
         } else {
             setIsLoadingError(false)
         }

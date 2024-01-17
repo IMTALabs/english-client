@@ -45,8 +45,6 @@ const AppRouter = () => {
     const getHistory = async () => {
         try {
             const response = await historyApi.getHistory();
-            console.log(response, 'response');
-
             dispatch(setHistory(response));
         } catch (error) {
             console.log(error);

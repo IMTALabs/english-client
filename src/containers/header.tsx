@@ -1,36 +1,34 @@
-import { themeChange } from "theme-change";
-import { useEffect, useState } from "react";
-import BellIcon from "@heroicons/react/24/outline/BellIcon";
-import Bars3Icon from "@heroicons/react/24/outline/Bars3Icon";
+import {themeChange} from 'theme-change';
+import {useEffect, useState} from 'react';
+import BellIcon from '@heroicons/react/24/outline/BellIcon';
+import Bars3Icon from '@heroicons/react/24/outline/Bars3Icon';
 
-import { openRightDrawer } from "src/features/common/right-drawer-slice";
+import {openRightDrawer} from 'src/features/common/right-drawer-slice';
 
-import { RIGHT_DRAWER_TYPES } from "src/utils/global-constants";
-import { useAppDispatch, useAppSelector } from "src/app/store";
-import { NavLink } from "react-router-dom";
+import {RIGHT_DRAWER_TYPES} from 'src/utils/global-constants';
+import {useAppDispatch, useAppSelector} from 'src/app/store';
+import {NavLink} from 'react-router-dom';
 
 import RabbitLogo from 'assets/rabbit-logo.jpg';
 
 const Header = () => {
   const dispatch = useAppDispatch();
   const [currentTheme, setCurrentTheme] = useState(
-    localStorage.getItem("theme")
+    localStorage.getItem('theme'),
   );
 
-  const { noOfNotifications, pageTitle } = useAppSelector(
-    (state) => state.header
-  );
+  const {noOfNotifications, pageTitle} = useAppSelector(state => state.header);
 
   useEffect(() => {
     themeChange(false);
     if (currentTheme === null) {
       if (
         window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches
+        window.matchMedia('(prefers-color-scheme: dark)').matches
       ) {
-        setCurrentTheme("dark");
+        setCurrentTheme('dark');
       } else {
-        setCurrentTheme("light");
+        setCurrentTheme('light');
       }
     }
     // 👆 false parameter is required for react project
@@ -39,9 +37,9 @@ const Header = () => {
   const openNotification = () => {
     dispatch(
       openRightDrawer({
-        header: "Notifications",
+        header: 'Notifications',
         bodyType: RIGHT_DRAWER_TYPES.NOTIFICATION,
-      })
+      }),
     );
   };
 
@@ -52,16 +50,16 @@ const Header = () => {
       <div className="navbar sticky top-0 z-10 p-0 m-0 min-h-0 ">
         <div className="bg-primary w-full rounded-tr rounded-br pr-2 h-14">
           <li className=" ml-4 font-semibold text-xl flex flex-1 items-center justify-between ">
-            <NavLink to={'/app/welcome'} className="flex items-center justify-start gap-x-4 text-white max-lg:hidden" >
+            <NavLink
+              to={'/app/welcome'}
+              className="flex items-center justify-start gap-x-4 text-white max-lg:hidden">
               <img
                 className="mask mask-squircle w-10 h-10 object-cover aspect-square"
                 src={RabbitLogo}
                 alt="Doraemon Logo"
-
               />
-              <span className="text-xl"> English</span>
+              <span className="text-lg font-semibold"> English</span>
             </NavLink>{' '}
-
             <div className="flex-1">
               <label
                 htmlFor="left-sidebar-drawer"
@@ -69,16 +67,12 @@ const Header = () => {
                 <Bars3Icon className="h-8 inline-block w-8" />
               </label>
               <h1 className="text-2xl font-semibold ml-2">{pageTitle}</h1>
-
             </div>
           </li>
           {/* Menu toogle for mobile view or small screen */}
 
-
           <div className="flex-none ">
-            <button
-              className="btn btn-ghost btn-circle"
-              onClick={() => openNotification()}>
+            <button className="btn btn-ghost btn-circle">
               <div className="indicator">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -102,9 +96,7 @@ const Header = () => {
                   </g>
                 </svg>
               </div>
-
             </button>
-
 
             <button
               className="btn btn-ghost btn-circle"

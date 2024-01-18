@@ -2,7 +2,7 @@
 const NotificationBodyRightDrawer = () => {
   return (
     <>
-      {[...Array(15)].map((_, i) => {
+      {/* {[...Array(15)].map((_, i) => {
         return (
           <div
             key={i}
@@ -16,7 +16,7 @@ const NotificationBodyRightDrawer = () => {
               : `Total likes for instagram post - New launch this week,  has crossed 100k `}
           </div>
         );
-      })}
+      })} */}
     </>
   );
 };

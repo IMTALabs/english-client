@@ -16,7 +16,7 @@ interface HeaderAction {
 
 const initialState: HeaderState = {
     pageTitle: "Home",
-    noOfNotifications: 15,
+    noOfNotifications: 0,
     newNotificationMessage: "",
     newNotificationStatus: 1,
 };
@@ -32,8 +32,7 @@ export const headerSlice = createSlice({
       state.pageTitle = action.payload.title;
     },
 
-    removeNotificationMessage: (state, action: HeaderAction
-        ) => {
+    removeNotificationMessage: (state) => {
       state.newNotificationMessage = "";
     },
 

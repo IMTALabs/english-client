@@ -29,13 +29,11 @@ export interface Choices {
 interface ReadingState {
     isLoading?: boolean;
     readingQuizz?: ReadingInterface;
-    error?: string
 }
 
 const initialState: ReadingState = {
     isLoading: false,
     readingQuizz: {},
-    error: ''
 };
 
 
@@ -51,12 +49,9 @@ export const readingSlice = createSlice({
         setReadingState: (state, action) => {
             state.readingQuizz = action.payload
         },
-        setErrorReadingState: (state, action) => {
-            state.error = action.payload
-        }
     }
 });
 
-export const { clearReadingState, setReadingState, setErrorReadingState } = readingSlice.actions;
+export const { clearReadingState, setReadingState } = readingSlice.actions;
 
 export default readingSlice.reducer;

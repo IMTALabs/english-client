@@ -27,7 +27,6 @@ interface ToppicState {
 interface WritingState {
     isLoading: boolean;
     writingQuizz: WritingPros;
-    error: string;
 }
 
 export interface WritingPros {
@@ -39,7 +38,6 @@ export interface WritingPros {
 const initialState: WritingState = {
     isLoading: false,
     writingQuizz: {},
-    error: ''
 };
 
 export const writingSlice = createSlice({

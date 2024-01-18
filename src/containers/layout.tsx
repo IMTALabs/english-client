@@ -8,6 +8,9 @@ import { useAppSelector, useAppDispatch } from "src/app/store";
 import { useLocation } from "react-router-dom";
 import Header from "./header";
 
+import { Slide, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function Layout() {
   const dispatch = useAppDispatch();
   const searchParams = useLocation()
@@ -15,11 +18,17 @@ function Layout() {
     (state) => state.header
   );
 
-  useEffect(() => {
-    if (newNotificationStatus) {
-      dispatch(removeNotificationMessage('aha'));
-    }
-  }, [newNotificationStatus]);
+   useEffect(() => {
+      if(newNotificationMessage !== ""){
+          if(newNotificationStatus === 1) {
+              toast.success(newNotificationMessage)
+          }
+          if(newNotificationStatus === 0){
+              toast.error(newNotificationMessage)
+          }
+          dispatch(removeNotificationMessage())
+      }
+  }, [newNotificationMessage])
 
   const hideSidebar = searchParams.pathname.includes('quizz') || searchParams.pathname.includes('result')
 
@@ -40,6 +49,20 @@ function Layout() {
 
       {/* Right drawer - containing secondary content like notifications list etc.. */}
       <RightSidebar />
+        
+        {/* Toast container */}
+        <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        />
 
 
       {/* Modal layout container */}

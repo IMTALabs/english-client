@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from 'src/app/store';
-import { Error } from 'src/components/alert';
 import AssignmentQuizz from 'src/components/assignment-quizz';
 import Button from 'src/components/button';
 import { clearListeningState, setErrorListeningState } from 'src/features/common/listening-slice';
@@ -77,8 +76,6 @@ const QuizzListening = () => {
 
     return (
         <>
-            {!isLoadingError ? <Error text="Please complete all information" /> : null}
-
             <div className="sm:flex flex-1 gap-x-4">
                 <div className="sm:w-1/2  mb-3 py-2">
                     <p className="font-bold text-[30px] mb-[27px]">Listening Quizz</p>

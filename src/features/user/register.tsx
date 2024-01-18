@@ -6,6 +6,7 @@ import ErrorText from 'src/components/typo/error';
 import authenticationApi, { postLoginPayload } from '../services/authentication/authentication-api';
 import { useAppDispatch } from 'src/app/store';
 import { setLoginInfo, setUserInfo } from '../common/user-slice';
+import { showNotification } from '../common/header-slice';
 
 function Register() {
   const INITIAL_REGISTER_OBJ = {
@@ -26,16 +27,14 @@ function Register() {
     e.preventDefault();
     setErrorMessage('');
 
-    if (registerObj.full_name.trim() === '')
+    if (registerObj.full_name?.trim() === '')
       return setErrorMessage('Name is required! (use any value)');
-    if (registerObj.email.trim() === '')
+    if (registerObj.email?.trim() === '')
       return setErrorMessage('Email Id is required! (use any value)');
-    if (registerObj.password.trim() === '')
+    if (registerObj.password?.trim() === '')
       return setErrorMessage('Password is required! (use any value)');
     else {
       try {
-
-
         setLoading(true);
         // Call API to check user credentials and save token in localstorage
         const response = await authenticationApi.postRegister(registerObj)
@@ -44,9 +43,10 @@ function Register() {
           dispatch(setUserInfo(response?.data.user));
           dispatch(setLoginInfo({ isLoggedIn: true, accessToken: response.data.accessToken }));
         }
+        dispatch(showNotification({ message: "Register success", status: 1 }))
         localStorage.setItem('token', response?.data?.accessToken);
-      } catch (error) {
-        console.log(error);
+      } catch (error:any) {
+        dispatch(showNotification({ message: error.message, status: 0 }))
       } finally {
         setLoading(false);
         navigate('/app/welcome');

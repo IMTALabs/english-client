@@ -12,7 +12,6 @@ const Button = ({ text, type, onClick, disabled }: Props) => {
     return (
         <div className='text-center'>
             <div className="my-4">
-                {/* {!disabled ? '' : <Error text={'Giới hạn 400 từ'} />} */}
             </div>
             <button
                 onClick={onClick}

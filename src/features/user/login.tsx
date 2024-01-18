@@ -9,6 +9,7 @@ import {
   setUserInfo, setLoginInfo,
   UserState
 } from 'src/features/common/user-slice'
+import { showNotification } from '../common/header-slice';
 
 function Login() {
   const INITIAL_LOGIN_OBJ = {
@@ -39,9 +40,10 @@ function Login() {
           const { isLoggedIn, user, accessToken } = response.data as UserState
           dispatch(setUserInfo(user));
           dispatch(setLoginInfo({ isLoggedIn, accessToken }));
+          dispatch(showNotification({ message: "Login success", status: 1 }))
         }
-      } catch (error) {
-        console.log(error)
+      } catch (error: any) {
+        dispatch(showNotification({ message: error.message, status: 0 }))
       } finally {
         setLoading(false);
         window.location.href = '/app/welcome';

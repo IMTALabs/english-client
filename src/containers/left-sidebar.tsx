@@ -1,11 +1,15 @@
 import routes from "../routes/sidebar";
-import { NavLink, Link, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import SidebarSubmenu from "./sidebar-submenu";
 import XMarkIcon from "@heroicons/react/24/outline/XMarkIcon";
 import authenticationApi from "src/features/services/authentication/authentication-api";
+import { useAppDispatch } from "src/app/store";
+import { showNotification } from "src/features/common/header-slice";
 
 function LeftSidebar() {
   const location = useLocation();
+
+  const dispatch = useAppDispatch()
 
   const close = () => {
     document.getElementById("left-sidebar-drawer")?.click();
@@ -14,9 +18,10 @@ function LeftSidebar() {
   const logoutUser = async () => {
     try {
       await authenticationApi.postLogout()
+      dispatch(showNotification({ message: "Logout success", status: 1 }))
     }
-    catch (err) {
-      console.log(err);
+    catch (err:any) {
+      dispatch(showNotification({ message: err.message, status: 0 }))
     }
     finally {
       localStorage.removeItem("token");

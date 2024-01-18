@@ -48,12 +48,9 @@ export const listeningSlice = createSlice({
         setListeningState: (state, action) => {
             state.listeningQuizz = action.payload;
         },
-        setErrorListeningState: (state, action) => {
-            state.errorText = action.payload;
-        }
     },
 });
 
-export const { clearListeningState, setListeningState, setErrorListeningState } = listeningSlice.actions;
+export const { clearListeningState, setListeningState } = listeningSlice.actions;
 
 export default listeningSlice.reducer;

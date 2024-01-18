@@ -1,32 +1,29 @@
-import { createSlice } from '@reduxjs/toolkit';
-
+import {createSlice} from '@reduxjs/toolkit';
 
 type historyState = {
-    created_at: string,
-    id: number,
-    skill: string,
-}
+  created_at: string;
+  id: number;
+  skill: string;
+};
 
 type initialState = {
-    history: historyState[]
-}
-
+  history: historyState[];
+};
 
 const initialState: initialState = {
-    history: [],
+  history: [],
 };
 
 export const listeningSlice = createSlice({
-    name: 'history',
-    initialState: initialState,
-    reducers: {
-        setHistory: (state, action) => {
-            state.history = action.payload;
-        },
-        
+  name: 'history',
+  initialState: initialState,
+  reducers: {
+    setHistory: (state, action) => {
+      state.history = action.payload;
     },
+  },
 });
 
-export const { setHistory } = listeningSlice.actions;
+export const {setHistory} = listeningSlice.actions;
 
 export default listeningSlice.reducer;

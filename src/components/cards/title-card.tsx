@@ -1,3 +1,4 @@
+import { Icon } from 'src/assets/icon';
 import Subtitle from 'src/components/typo/sub-title';
 
 interface TitleCardProps {
@@ -23,7 +24,8 @@ function TitleCard({ title, children, topMargin, TopSideButtons, titleStyle }: T
               <p className={titleStyle}>{title}</p>
               {/* Top side button, show only if present */}
               {TopSideButtons && (
-                <div className="inline-block">{TopSideButtons}</div>
+
+                <div className="flex items-center gap-4"><button className="btn btn-sm btn-secondary"> <span dangerouslySetInnerHTML={{ __html: Icon('download') }}></span> Download</button>{TopSideButtons}</div>
               )}
             </div>
           </Subtitle>

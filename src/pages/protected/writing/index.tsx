@@ -1,35 +1,37 @@
-import {useEffect, useState} from 'react';
-import {useNavigate} from 'react-router-dom';
-import {useAppDispatch, useAppSelector} from 'src/app/store';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from 'src/app/store';
 import Button from 'src/components/button';
 import TitleCard from 'src/components/cards/title-card';
 import Tab from 'src/components/tab';
-import {showNotification} from 'src/features/common/header-slice';
-import {postReadingState} from 'src/features/common/writing-slice';
+import { showNotification } from 'src/features/common/header-slice';
+import { postReadingState } from 'src/features/common/writing-slice';
 import writingApi from 'src/features/services/writing/writing-api';
 
 const Writing = () => {
-  const {isLoading, writingQuizz} = useAppSelector(state => state.writing);
+  const { writingQuizz } = useAppSelector(state => state.writing);
   const [text, setText] = useState<string>('');
   const [mode, setMode] = useState<string>('topic');
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false);
   const navigateUrl = useNavigate();
   const dispatch = useAppDispatch();
+  const [isLoading, setIsLoading] = useState(false)
+
+
   const handleSubmit = async () => {
-    setIsLoading(true)
     if (mode != 'topic') {
       try {
         const response = await writingApi.postGenInstructionApi(text);
         dispatch(postReadingState(response));
       } catch (error: any) {
-        dispatch(showNotification({message: error.message, status: 0}));
+        dispatch(showNotification({ message: error.message, status: 0 }));
       }
       finally {
         setIsLoading(false)
       }
     } else {
       navigateUrl('quizz', {
-        state: {text},
+        state: { text },
       });
     }
   };
@@ -63,6 +65,7 @@ const Writing = () => {
         setMode={setMode}
         mode={mode}
         wordCount={wordCount}
+        title={['Generate Prompt', 'Your Prompt']}
       />
       <Button
         type="submit"

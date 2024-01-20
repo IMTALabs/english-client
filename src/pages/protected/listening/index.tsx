@@ -1,20 +1,20 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import TitleCard from 'src/components/cards/title-card';
-import {useNavigate} from 'react-router-dom';
-import {useAppDispatch, useAppSelector} from 'src/app/store';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from 'src/app/store';
 import Button from 'src/components/button';
 import listeningApi from 'src/features/services/listening/listening-api';
-import {setListeningState} from 'src/features/common/listening-slice';
+import { setListeningState } from 'src/features/common/listening-slice';
 import Carousel from 'src/components/carousel';
-import {showNotification} from 'src/features/common/header-slice';
+import { showNotification } from 'src/features/common/header-slice';
 
 const Listening = () => {
   const dispatch = useAppDispatch();
   const [linkUrl, setLinkUrl] = useState('');
   const [showOverlay, setShowOverlay] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
-  const {listeningQuizz} = useAppSelector(state => state.listening || '');
+  const [videoRandom, setVideoRandom] = useState<any>([])
+  const { listeningQuizz } = useAppSelector(state => state.listening || '');
 
   const navigeUrl = useNavigate();
   const handleSubmit = async (event: React.FormEvent) => {
@@ -25,17 +25,28 @@ const Listening = () => {
       const response = await listeningApi.postYoutubeLink(linkUrl);
       dispatch(setListeningState(response));
     } catch (error: any) {
-      dispatch(showNotification({message: error.message, status: 0}));
+      console.log(error);
+
+      dispatch(showNotification({ message: error.message, status: 0 }));
     } finally {
       setIsLoading(false);
       setShowOverlay(false);
     }
   };
 
+  // const handleGetVideo = async () => {
+  //   try {
+  //     const response = await listeningApi.getRandomVideoListening();
+  //     setVideoRandom(response)
+  //   } catch (error: any) {
+  //     console.log(error.message);
+  //   }
+  // }
+
   useEffect(() => {
     if (!isLoading && Object.keys(listeningQuizz).length > 0) {
       navigeUrl('quizz', {
-        state: {quizz: listeningQuizz},
+        state: { quizz: listeningQuizz },
       });
     }
   }, [isLoading]);
@@ -71,7 +82,7 @@ const Listening = () => {
               </div>
             </div>
           )}
-          <Carousel />
+          <Carousel  />
         </div>
 
         {/* carousel */}

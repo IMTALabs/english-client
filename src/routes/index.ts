@@ -66,7 +66,7 @@ const routes = [
     exact: true,
   },
   {
-    path: "/reading/result",
+    path: "/reading/result/:id",
     component: ResultReading,
     exact: true,
   },

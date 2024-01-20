@@ -18,16 +18,16 @@ function Layout() {
     (state) => state.header
   );
 
-   useEffect(() => {
-      if(newNotificationMessage !== ""){
-          if(newNotificationStatus === 1) {
-              toast.success(newNotificationMessage)
-          }
-          if(newNotificationStatus === 0){
-              toast.error(newNotificationMessage)
-          }
-          dispatch(removeNotificationMessage())
+  useEffect(() => {
+    if (newNotificationMessage !== "") {
+      if (newNotificationStatus === 1) {
+        toast.success(newNotificationMessage)
       }
+      if (newNotificationStatus === 0) {
+        toast.error(newNotificationMessage)
+      }
+      dispatch(removeNotificationMessage())
+    }
   }, [newNotificationMessage])
 
   const hideSidebar = searchParams.pathname.includes('quizz') || searchParams.pathname.includes('result')
@@ -49,9 +49,9 @@ function Layout() {
 
       {/* Right drawer - containing secondary content like notifications list etc.. */}
       <RightSidebar />
-        
-        {/* Toast container */}
-        <ToastContainer
+
+      {/* Toast container */}
+      <ToastContainer
         position="top-right"
         autoClose={5000}
         hideProgressBar={false}
@@ -62,7 +62,7 @@ function Layout() {
         draggable
         pauseOnHover
         theme="colored"
-        />
+      />
 
 
       {/* Modal layout container */}

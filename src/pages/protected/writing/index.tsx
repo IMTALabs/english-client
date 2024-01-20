@@ -9,20 +9,27 @@ import { postReadingState } from "src/features/common/writing-slice";
 import writingApi from "src/features/services/writing/writing-api";
 
 const Writing = () => {
-  const { isLoading, writingQuizz } = useAppSelector((state) => state.writing);
+  const { writingQuizz } = useAppSelector((state) => state.writing);
   const [text, setText] = useState<string>('')
   const [errorMessage, setErrorMessage] = useState<string>('')
   const [mode, setMode] = useState<string>('topic')
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+
+
   const navigateUrl = useNavigate()
   const dispatch = useAppDispatch()
   const handleSubmit = async () => {
-    if (mode === 'topic') {
+    setIsLoading(true)
+    if (mode != 'topic') {
       try {
         const response = await writingApi.postGenInstructionApi(text)
         dispatch(postReadingState(response))
       } catch (error: any) {
         setErrorMessage(error.message)
+      }
+      finally {
+        setIsLoading(false)
       }
     } else {
       navigateUrl('quizz', {
@@ -52,12 +59,12 @@ const Writing = () => {
   }, [wordCount])
 
   console.log(errorMessage);
-  
+
 
   return (
     <TitleCard title="Writing" topMargin="0">
       {<Error text={errorMessage} setErrorMessage={setErrorMessage} type={'error'} />}
-      <Tab isLoading={isLoading} quizz={writingQuizz} text={text} setText={setText} setMode={setMode} mode={mode} wordCount={wordCount} />
+      <Tab isLoading={isLoading} quizz={writingQuizz} text={text} setText={setText} setMode={setMode} mode={mode} wordCount={wordCount} text1={'Gen prompt'} text2={'Your Prompt Card'} />
       <Button type="submit" text="Generate Quizz" onClick={handleSubmit} disabled={isButtonDisabled} />
     </TitleCard>
   );

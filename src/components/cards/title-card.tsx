@@ -19,11 +19,13 @@ function TitleCard({ title, children, topMargin, TopSideButtons, titleStyle }: T
       {
         !title ? "" : <>
           <Subtitle styleClass={TopSideButtons ? 'inline-block' : ''}>
-            <p className={titleStyle}>{title}</p>
-            {/* Top side button, show only if present */}
-            {TopSideButtons && (
-              <div className="inline-block float-right">{TopSideButtons}</div>
-            )}
+            <div className='flex items-center justify-between'>
+              <p className={titleStyle}>{title}</p>
+              {/* Top side button, show only if present */}
+              {TopSideButtons && (
+                <div className="inline-block">{TopSideButtons}</div>
+              )}
+            </div>
           </Subtitle>
 
           <div className="divider mt-2"></div></>

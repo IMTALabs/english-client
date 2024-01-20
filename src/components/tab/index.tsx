@@ -9,10 +9,12 @@ type Props = {
     setText: (text: string) => void,
     setMode: (mode: string) => void,
     wordCount: number,
-    mode: string
+    mode: string,
+    text1?: string,
+    text2?: string
 }
 
-const Tab = ({ isLoading, quizz, text, setText, setMode, wordCount, mode }: Props) => {
+const Tab = ({ isLoading, quizz, text, setText, setMode, wordCount, mode, text1, text2 }: Props) => {
     const navigeUrl = useNavigate();
     useEffect(() => {
         if (!isLoading && Object.keys(quizz).length > 0) {
@@ -28,16 +30,16 @@ const Tab = ({ isLoading, quizz, text, setText, setMode, wordCount, mode }: Prop
                 <button
                     onClick={() => setMode('gen_topic')}
                     className={`${mode === 'gen_topic' && 'bg-secondary text-white'} text-gray-500 border text-center rounded-md py-2 font-semibold '`} >
-                    Gen Topic
+                    {text1}
                 </button>
                 <button
                     onClick={() => setMode('no_gen_topic')}
                     className={`${mode !== 'gen_topic' && 'bg-secondary text-white'} text-gray-500 border text-center rounded-md py-2 font-semibold '`} >
-                    Article
+                   {text2}
                 </button>
             </div >
             <TextareaRadio text={text} setText={setText} wordCount={wordCount} />
-            {!isLoading ? '' : <Spin />} 
+            {!isLoading ? '' : <Spin />}
         </div >
     )
 }

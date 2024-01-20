@@ -4,6 +4,8 @@ import { useAppDispatch, useAppSelector } from "src/app/store";
 import AssignmentContent from "src/components/assignment-content";
 import AssignmentQuizz from "src/components/assignment-quizz";
 import Button from "src/components/button";
+import TitleCard from "src/components/cards/title-card";
+import TimerApp from "src/components/time";
 import { clearWritingState, postWritingPoint } from "src/features/common/writing-slice";
 const QuizzWriting = () => {
 
@@ -47,15 +49,18 @@ const QuizzWriting = () => {
     }
   }, [isLoading, writingQuizz]);
   return (
-    <div className='flex '>
-      <div className="min-w-[400px]">
-        {textWriting ? <AssignmentContent paragraph={textWriting} /> : <AssignmentContent paragraph={QuizzWriting?.body} />}
+    <TitleCard title="Writing" topMargin="0" TopSideButtons={<TimerApp Active={true} />}>
+
+      <div className='flex'>
+        <div className="w-1/3">
+          {textWriting ? <AssignmentContent paragraph={textWriting} /> : <AssignmentContent paragraph={QuizzWriting?.body} />}
+        </div>
+        <div className="w-2/3">
+          <AssignmentQuizz onChoiceTextarea={handleChoiceTextarea} />
+          <Button type='submit' text='Submit' onClick={handleConfirmQuizz} />
+        </div>
       </div>
-      <div className="min-w-[400px]">
-        <AssignmentQuizz onChoiceTextarea={handleChoiceTextarea} />
-        <Button type='submit' text='Submit' onClick={handleConfirmQuizz} />
-      </div>
-    </div>
+    </TitleCard>
   );
 };
 export default QuizzWriting;

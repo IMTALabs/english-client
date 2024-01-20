@@ -7,13 +7,14 @@ import { setErrorReadingState, setReadingState } from "src/features/common/readi
 import readingApi from "src/features/services/reading/reading-api";
 
 const Reading = () => {
-    const { isLoading, readingQuizz, error } = useAppSelector((state) => state.reading);
+    const { readingQuizz, error } = useAppSelector((state) => state.reading);
     const [text, setText] = useState<string>('')
     const [mode, setMode] = useState<string>('gen_topic')
     const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false)
-
+    const [isLoading, setIsLoading] = useState<boolean>(false)
     const dispatch = useAppDispatch()
     const handleSubmit = async () => {
+        setIsLoading(true)
         //reading gen
         try {
             const response = await readingApi.postTopicReading({
@@ -24,6 +25,8 @@ const Reading = () => {
             dispatch(setReadingState(response))
         } catch (errors: any) {
             dispatch(setErrorReadingState(errors.message))
+        } finally {
+            setIsLoading(false)
         }
 
     };
@@ -50,7 +53,7 @@ const Reading = () => {
     return (
         <div >
             <TitleCard title="Reading" topMargin="0">
-                <Tab isLoading={isLoading} quizz={readingQuizz} text={text} setText={setText} setMode={setMode} mode={mode} wordCount={wordCount} />
+                <Tab isLoading={isLoading} quizz={readingQuizz} text={text} setText={setText} setMode={setMode} mode={mode} wordCount={wordCount} text1={'Generate Article'} text2={'Your Article'}/>
                 <Button type="submit" text="Generate Quizz" onClick={handleSubmit} disabled={isButtonDisabled} />
             </TitleCard>
         </div>

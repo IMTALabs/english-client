@@ -5,6 +5,7 @@ import { useAppDispatch } from 'src/app/store';
 import { Error } from 'src/components/alert';
 import AssignmentQuizz from 'src/components/assignment-quizz';
 import Button from 'src/components/button';
+import TitleCard from 'src/components/cards/title-card';
 import { clearListeningState, setErrorListeningState } from 'src/features/common/listening-slice';
 import { updateCharge } from 'src/features/common/user-slice';
 import listeningApi from 'src/features/services/listening/listening-api';
@@ -77,32 +78,34 @@ const QuizzListening = () => {
 
     return (
         <>
-            {!isLoadingError ? <Error text="Please complete all information" /> : null}
+            <TitleCard title="" topMargin="mt-0">
+                {!isLoadingError ? <Error text="Please complete all information" /> : null}
 
-            <div className="sm:flex flex-1 gap-x-4">
-                <div className="sm:w-1/2  mb-3 py-2">
-                    <p className="font-bold text-[30px] mb-[27px]">Listening Quizz</p>
-                    <div className="mx-auto h-[450px]">
-                        <ReactPlayer
-                            url={link}
-                            controls
-                            width="100%"
-                            playsinline
-                            height="100%"
-                            className="rounded-[10px] sm:w-full sm:h-[500px] flex justify-center" config={{
-                                youtube: {
-                                    playerVars: { showinfo: 1 }
-                                },
-                            }} />
+                <div className="sm:flex flex-1 gap-x-4">
+                    <div className="sm:w-1/2  mb-3 py-2">
+                        <p className="font-bold text-[30px] mb-[27px]">Listening Quizz</p>
+                        <div className="mx-auto h-[450px]">
+                            <ReactPlayer
+                                url={link}
+                                controls
+                                width="100%"
+                                playsinline
+                                height="100%"
+                                className="rounded-[10px] sm:w-full sm:h-[500px] flex justify-center" config={{
+                                    youtube: {
+                                        playerVars: { showinfo: 1 }
+                                    },
+                                }} />
+                        </div>
                     </div>
-                </div>
-                <div className="sm:w-1/2 border-l-2 px-2 ">
-                    <div>
-                        <AssignmentQuizz form={questions} onChoiceSelect={handleChoiceSelect} />
+                    <div className="sm:w-1/2 border-l-2 px-2 ">
+                        <div>
+                            <AssignmentQuizz form={questions} onChoiceSelect={handleChoiceSelect} />
+                        </div>
+                        <Button type='submit' text='Submit' onClick={handleConfirmQuizz} />
                     </div>
-                    <Button type='submit' text='Submit' onClick={handleConfirmQuizz} />
-                </div>
-            </div >
+                </div >
+            </TitleCard>
         </>
 
     );

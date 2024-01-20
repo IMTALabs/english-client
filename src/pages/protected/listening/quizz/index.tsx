@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 import ReactPlayer from 'react-player';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useAppDispatch } from 'src/app/store';
+import {useLocation, useNavigate} from 'react-router-dom';
+import {useAppDispatch} from 'src/app/store';
 import AssignmentQuizz from 'src/components/assignment-quizz';
 import Button from 'src/components/button';
 import TitleCard from 'src/components/cards/title-card';
@@ -11,20 +11,17 @@ import { clearListeningState } from 'src/features/common/listening-slice';
 import { updateCharge } from 'src/features/common/user-slice';
 import listeningApi from 'src/features/services/listening/listening-api';
 
-
 interface Question {
-    question: string;
-    choices: {
-        A: string;
-        B: string;
-        C: string;
-        D: string;
-    };
-    explanation: string;
-    answer: string;
+  question: string;
+  choices: {
+    A: string;
+    B: string;
+    C: string;
+    D: string;
+  };
+  explanation: string;
+  answer: string;
 }
-
-
 
 const QuizzListening = () => {
     const {

@@ -16,12 +16,16 @@ const Writing = () => {
   const navigateUrl = useNavigate();
   const dispatch = useAppDispatch();
   const handleSubmit = async () => {
-    if (mode === 'topic') {
+    setIsLoading(true)
+    if (mode != 'topic') {
       try {
         const response = await writingApi.postGenInstructionApi(text);
         dispatch(postReadingState(response));
       } catch (error: any) {
         dispatch(showNotification({message: error.message, status: 0}));
+      }
+      finally {
+        setIsLoading(false)
       }
     } else {
       navigateUrl('quizz', {

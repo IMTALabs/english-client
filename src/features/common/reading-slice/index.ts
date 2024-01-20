@@ -27,12 +27,10 @@ export interface Choices {
 
 
 interface ReadingState {
-    isLoading?: boolean;
     readingQuizz?: ReadingInterface;
 }
 
 const initialState: ReadingState = {
-    isLoading: false,
     readingQuizz: {},
 };
 

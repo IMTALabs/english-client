@@ -1,15 +1,16 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import {useState} from 'react';
+import {Link} from 'react-router-dom';
 import LandingIntro from './landing-intro';
 import ErrorText from 'src/components/typo/error';
 import InputText from 'src/components/input/input-text';
 import authenticationApi from 'src/features/services/authentication/authentication-api';
-import { useAppDispatch } from 'src/app/store';
+import {useAppDispatch} from 'src/app/store';
 import {
-  setUserInfo, setLoginInfo,
-  UserState
-} from 'src/features/common/user-slice'
-import { showNotification } from '../common/header-slice';
+  setUserInfo,
+  setLoginInfo,
+  UserState,
+} from 'src/features/common/user-slice';
+import {showNotification} from '../common/header-slice';
 
 function Login() {
   const INITIAL_LOGIN_OBJ = {
@@ -21,8 +22,7 @@ function Login() {
   const [errorMessage, setErrorMessage] = useState('');
   const [loginObj, setLoginObj] = useState(INITIAL_LOGIN_OBJ);
 
-  const dispatch = useAppDispatch()
-
+  const dispatch = useAppDispatch();
 
   const submitForm = async (e: any) => {
     e.preventDefault();
@@ -37,13 +37,13 @@ function Login() {
       try {
         const response = await authenticationApi.postLogin(loginObj);
         if (response) {
-          const { isLoggedIn, user, accessToken } = response.data as UserState
+          const {isLoggedIn, user, accessToken} = response.data as UserState;
           dispatch(setUserInfo(user));
-          dispatch(setLoginInfo({ isLoggedIn, accessToken }));
-          dispatch(showNotification({ message: "Login success", status: 1 }))
+          dispatch(setLoginInfo({isLoggedIn, accessToken}));
+          dispatch(showNotification({message: 'Login success', status: 1}));
         }
       } catch (error: any) {
-        dispatch(showNotification({ message: error.message, status: 0 }))
+        dispatch(showNotification({message: error.message, status: 0}));
       } finally {
         setLoading(false);
         window.location.href = '/app/welcome';
@@ -59,7 +59,7 @@ function Login() {
     value: any;
   }) => {
     setErrorMessage('');
-    setLoginObj({ ...loginObj, [updateType]: value });
+    setLoginObj({...loginObj, [updateType]: value});
   };
 
   return (
@@ -95,7 +95,10 @@ function Login() {
               </div>
 
               <ErrorText className="mt-8 text-sm">{errorMessage}</ErrorText>
-              <button type="submit" className={'btn mt-2 w-full btn-primary'} disabled={loading}>
+              <button
+                type="submit"
+                className={'btn mt-2 w-full btn-primary'}
+                disabled={loading}>
                 {loading ? (
                   <span className="loading loading-spinner"></span>
                 ) : null}

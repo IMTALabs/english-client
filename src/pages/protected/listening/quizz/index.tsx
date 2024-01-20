@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from 'src/app/store';
 import AssignmentQuizz from 'src/components/assignment-quizz';
 import Button from 'src/components/button';
-import { clearListeningState, setErrorListeningState } from 'src/features/common/listening-slice';
+import { clearListeningState } from 'src/features/common/listening-slice';
 import { updateCharge } from 'src/features/common/user-slice';
 import listeningApi from 'src/features/services/listening/listening-api';
 

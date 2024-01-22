@@ -34,7 +34,7 @@ const Reading = () => {
 
       dispatch(showNotification({ message: error.response.data.errors.message, status: 0 }));
     } finally {
-      setIsButtonDisabled(isButtonDisabled);
+      setIsButtonDisabled(false);
       setIsLoading(false)
     }
   };
@@ -42,6 +42,9 @@ const Reading = () => {
   const handleGenTopic = async () => {
     setIsLoading(true)
     if (article !== '') {
+      setMode('no_gen_topic')
+      console.log(mode);
+
       handleSubmit()
     } else {
       try {
@@ -52,16 +55,12 @@ const Reading = () => {
       } catch (error: any) {
         dispatch(showNotification({ message: error.response.data.errors.message, status: 0 }));
       } finally {
-        setIsButtonDisabled(isButtonDisabled);
+        setIsButtonDisabled(false);
         setIsLoading(false)
       }
     }
   }
 
-  const cancel = () => {
-    setText('')
-    setArticle('')
-  }
 
 
   const countWords = (text: string) => {
@@ -79,10 +78,13 @@ const Reading = () => {
   useEffect(() => {
     setArticle('')
     if (wordCount >= 400) {
-      setIsButtonDisabled(!isButtonDisabled);
+      setIsButtonDisabled(true);
+    } else {
+      setIsButtonDisabled(false);
     }
-    return setIsButtonDisabled(false);
   }, [wordCount, mode]);
+
+  console.log(isButtonDisabled);
 
   return (
     <div>
@@ -108,7 +110,7 @@ const Reading = () => {
           onClick={mode === 'gen_topic' ? handleGenTopic : handleSubmit}
           disabled={isButtonDisabled}
         />
-  
+
       </TitleCard>
     </div>
   );

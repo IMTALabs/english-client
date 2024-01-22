@@ -1,8 +1,22 @@
 import axios from "axios";
-const getInfoUser = () => {
-    return axios.get('english/v1/info_user');
+
+export type FeedbackProps = {
+    email?: string,
+    message?: string | '',
 }
 
 
 
-export default { getInfoUser }
+const getInfoUser = () => {
+    return axios.get('english/v1/info_user');
+}
+
+const postFeedBack = ({ email, message }: FeedbackProps) => {
+    console.log(email, message , 'ascsaca');
+    
+    return axios.post('english/v1/feedback', {
+        email, message
+    });
+}
+
+export default { getInfoUser, postFeedBack }

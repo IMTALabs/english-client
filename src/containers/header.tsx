@@ -1,15 +1,16 @@
-import {themeChange} from 'theme-change';
-import {useEffect, useState} from 'react';
+import { themeChange } from 'theme-change';
+import { useEffect, useState } from 'react';
 import BellIcon from '@heroicons/react/24/outline/BellIcon';
 import Bars3Icon from '@heroicons/react/24/outline/Bars3Icon';
 
-import {openRightDrawer} from 'src/features/common/right-drawer-slice';
+import { openRightDrawer } from 'src/features/common/right-drawer-slice';
 
-import {RIGHT_DRAWER_TYPES} from 'src/utils/global-constants';
-import {useAppDispatch, useAppSelector} from 'src/app/store';
-import {NavLink} from 'react-router-dom';
+import { RIGHT_DRAWER_TYPES } from 'src/utils/global-constants';
+import { useAppDispatch, useAppSelector } from 'src/app/store';
+import { NavLink } from 'react-router-dom';
 
 import RabbitLogo from 'assets/rabbit-logo.jpg';
+import Feedback from 'src/components/feedback';
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -17,7 +18,7 @@ const Header = () => {
     localStorage.getItem('theme'),
   );
 
-  const {noOfNotifications, pageTitle} = useAppSelector(state => state.header);
+  const { noOfNotifications, pageTitle } = useAppSelector(state => state.header);
 
   useEffect(() => {
     themeChange(false);
@@ -72,6 +73,8 @@ const Header = () => {
           {/* Menu toogle for mobile view or small screen */}
 
           <div className="flex-none ">
+            <Feedback />
+
             <button className="btn btn-ghost btn-circle">
               <div className="indicator">
                 <svg
@@ -114,7 +117,7 @@ const Header = () => {
             {/* Profile icon, opening menu on click */}
           </div>
         </div>
-      </div>
+      </div >
     </>
   );
 };

@@ -88,7 +88,7 @@ const QuizzReading = () => {
       <TitleCard title="Reading" topMargin="0" TopSideButtons={<TimerApp Active={true} />}>
         <div className="flex items-center">
           <div className='w-1/2'>
-            <AssignmentContent paragraph={data?.body?.paragraph} />
+            <AssignmentContent paragraph={data?.body?.paragraph} type={'text'} />
           </div>
           <div className="w-1/2">
             <AssignmentQuizz

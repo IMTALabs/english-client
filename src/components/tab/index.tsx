@@ -11,10 +11,10 @@ type Props = {
     wordCount: number,
     mode: string,
     title: string[];
-    setArticle : (x : string)=>void;
+    setArticle: (x: string) => void;
 }
 
-const Tab = ({ isLoading, quizz, text, setText, setMode, wordCount, mode, title , setArticle }: Props) => {
+const Tab = ({ isLoading, quizz, text, setText, setMode, wordCount, mode, title, setArticle }: Props) => {
     const navigeUrl = useNavigate();
 
     useEffect(() => {
@@ -24,6 +24,8 @@ const Tab = ({ isLoading, quizz, text, setText, setMode, wordCount, mode, title 
             });
         }
     }, [isLoading, quizz]);
+
+
     return (
 
         <div>
@@ -39,7 +41,7 @@ const Tab = ({ isLoading, quizz, text, setText, setMode, wordCount, mode, title 
                     {title[1]}
                 </button>
             </div >
-            <TextareaRadio text={text} setText={setText} wordCount={wordCount} mode={mode} setArticle={setArticle}/>
+            <TextareaRadio text={text} setText={setText} wordCount={wordCount} mode={mode} setArticle={setArticle} />
             {!isLoading ? '' : <Spin />}
         </div >
     )

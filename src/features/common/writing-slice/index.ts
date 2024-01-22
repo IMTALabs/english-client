@@ -25,7 +25,6 @@ interface ToppicState {
     band_score?: number
 }
 interface WritingState {
-    isLoading: boolean;
     writingQuizz: WritingPros;
 }
 
@@ -36,7 +35,6 @@ export interface WritingPros {
 
 
 const initialState: WritingState = {
-    isLoading: false,
     writingQuizz: {},
 };
 

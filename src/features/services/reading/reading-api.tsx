@@ -1,9 +1,9 @@
 import axios from "axios";
 
 interface ReadingTopic {
-    mode: string
-    topic: string
-    paragraph: string
+    mode?: string
+    topic?: string
+    paragraph?: string
 }
 
 type Pops = {
@@ -12,17 +12,23 @@ type Pops = {
 }
 
 
-const postTopicReading = ({ mode, topic, paragraph }: ReadingTopic) => {
+const postArticleReading = ({ mode, topic, paragraph }: ReadingTopic) => {
     return axios.post('/english/v1/reading', {
         mode, topic, paragraph
     });
 }
+
+const postTopicReading = ({ topic}: ReadingTopic) => {
+    return axios.post('/english/v1/reading/gen_topic', {
+        topic
+    });
+}
 const postMarkReading = (data: Pops) => {
-    return axios.post('/english/v1/listening/mark', {
+    return axios.post('/english/v1/reading/mark', {
         submit: data.submit,
         hash: data.hash
     });
 }
 
 
-export default { postTopicReading }
+export default { postTopicReading, postMarkReading ,postArticleReading }

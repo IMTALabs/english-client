@@ -62,7 +62,7 @@ function InternalPage() {
               </div>
             </div>
           </div>
-          <Link to="/app/dashboard">
+          <Link to="/app/listening">
             <button className="btn btn-primary">Get Started</button>
           </Link>
         </div>

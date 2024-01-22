@@ -17,4 +17,8 @@ const postMarkListening = (data: Pops) => {
         hash: data.hash
     });
 }
-export default { postYoutubeLink, postMarkListening }
+
+const getRandomVideoListening = () => {
+    return axios.get('/english/v1/listening/random_video')
+}
+export default { postYoutubeLink, postMarkListening, getRandomVideoListening }

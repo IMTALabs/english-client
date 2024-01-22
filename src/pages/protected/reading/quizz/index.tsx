@@ -1,12 +1,15 @@
-import {useEffect, useState} from 'react';
-import {useLocation, useNavigate} from 'react-router-dom';
-import {useAppDispatch} from 'src/app/store';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useAppDispatch } from 'src/app/store';
 import AssignmentContent from 'src/components/assignment-content';
 import AssignmentQuizz from 'src/components/assignment-quizz';
 import Button from 'src/components/button';
-import {showNotification} from 'src/features/common/header-slice';
-import {clearReadingState} from 'src/features/common/reading-slice';
-import {updateCharge} from 'src/features/common/user-slice';
+import TitleCard from 'src/components/cards/title-card';
+import TimerApp from 'src/components/time';
+import { showNotification } from 'src/features/common/header-slice';
+import { clearReadingState } from 'src/features/common/reading-slice';
+import { updateCharge } from 'src/features/common/user-slice';
+import readingApi from 'src/features/services/reading/reading-api';
 
 interface Question {
   question: string;
@@ -21,9 +24,14 @@ interface Question {
 }
 const QuizzReading = () => {
   const data = useLocation()?.state?.quizz;
+  console.log(data, "hash");
+
   const navigeUrl = useNavigate();
   const dispatch = useAppDispatch();
   const questions: Question[] = data?.body?.form;
+  const [isLoading, setIsLoading] = useState(false);
+
+
   const [selectedChoices, setSelectedChoices] = useState<
     Record<string, string>
   >({});
@@ -34,17 +42,32 @@ const QuizzReading = () => {
     }));
   };
 
-  const handleConfirmQuizz = () => {
+  const handleConfirmQuizz = async () => {
     const allQuestionsAnswered =
       Object.keys(selectedChoices).length === questions?.length;
 
     if (allQuestionsAnswered) {
-      navigeUrl('/app/reading/result', {
-        state: {
-          answerQuizz: selectedChoices,
-          CorrectAnswer: questions,
-        },
-      });
+      setIsLoading(true);
+      const formChoices = {
+        submit: selectedChoices,
+        hash: data.hash
+      }
+      try {
+        const response = await readingApi.postMarkReading(formChoices)
+        if (response) {
+          navigeUrl(`/app/reading/result/id=${data.hash}`, {
+            state: {
+              markReading: response,
+              article: data?.body?.paragraph
+            }
+          });
+        }
+      } catch (error: any) {
+        dispatch(showNotification({ message: error.message, status: 0 }));
+      } finally {
+        setIsLoading(false)
+      }
+
     } else {
       dispatch(
         showNotification({
@@ -62,18 +85,19 @@ const QuizzReading = () => {
 
   return (
     <div>
-      <div className="grid lg:grid-cols-2 mt-10 border rounded-[2.25rem]">
-        <div>
-          <AssignmentContent paragraph={data?.body?.paragraph} />
-        </div>
-        <div className="mb-2">
-          <AssignmentQuizz
-            form={data?.body?.form}
-            onChoiceSelect={handleChoiceSelect}
-          />
-          <Button type="submit" text="Submit" onClick={handleConfirmQuizz} />
-        </div>
-      </div>
+      <TitleCard title="Reading" topMargin="0" TopSideButtons={<TimerApp Active={true} />}>
+        <div className="flex items-center">
+          <div className='w-1/2'>
+            <AssignmentContent paragraph={data?.body?.paragraph} />
+          </div>
+          <div className="w-1/2">
+            <AssignmentQuizz
+              form={data?.body?.form}
+              onChoiceSelect={handleChoiceSelect}
+            />
+            <Button type="submit" text="Submit" onClick={handleConfirmQuizz} disabled={isLoading} />
+          </div>
+        </div></TitleCard>
     </div>
   );
 };

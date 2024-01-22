@@ -9,11 +9,14 @@ type Props = {
     setText: (text: string) => void,
     setMode: (mode: string) => void,
     wordCount: number,
-    mode: string
+    mode: string,
+    title: string[];
+    setArticle : (x : string)=>void;
 }
 
-const Tab = ({ isLoading, quizz, text, setText, setMode, wordCount, mode }: Props) => {
+const Tab = ({ isLoading, quizz, text, setText, setMode, wordCount, mode, title , setArticle }: Props) => {
     const navigeUrl = useNavigate();
+
     useEffect(() => {
         if (!isLoading && Object.keys(quizz).length > 0) {
             navigeUrl('quizz', {
@@ -27,17 +30,17 @@ const Tab = ({ isLoading, quizz, text, setText, setMode, wordCount, mode }: Prop
             < div className="grid lg:grid-cols-2 gap-4" >
                 <button
                     onClick={() => setMode('gen_topic')}
-                    className={`${mode === 'gen_topic' && 'bg-secondary text-white'} text-gray-500 border text-center rounded-md py-2 font-semibold '`} >
-                    Gen Topic
+                    className={`${(mode === 'gen_topic') && 'bg-secondary text-white'} text-gray-500 border text-center rounded-md py-2 font-semibold '`} >
+                    {title[0]}
                 </button>
                 <button
                     onClick={() => setMode('no_gen_topic')}
                     className={`${mode !== 'gen_topic' && 'bg-secondary text-white'} text-gray-500 border text-center rounded-md py-2 font-semibold '`} >
-                    Article
+                    {title[1]}
                 </button>
             </div >
-            <TextareaRadio text={text} setText={setText} wordCount={wordCount} />
-            {!isLoading ? '' : <Spin />} 
+            <TextareaRadio text={text} setText={setText} wordCount={wordCount} mode={mode} setArticle={setArticle}/>
+            {!isLoading ? '' : <Spin />}
         </div >
     )
 }

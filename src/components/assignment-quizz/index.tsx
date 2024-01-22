@@ -55,7 +55,7 @@ const AssignmentQuizz: React.FC<Props> = ({ form, onChoiceSelect, onChoiceTextar
     };
     if (form) {
         return (
-            <div className='overflow-y-auto h-[748px] '>
+            <div className='overflow-y-auto h-[calc(100vh-20rem)]'>
                 <div className='p-4 lg:mt-0 sm:mt-[70px]'>
                     <p className='font-bold bg-base-100 text-[30px]'>Question 1-10</p>
                     <p className='my-3'>Choose the correct letter, A, B, C, or D.</p>
@@ -86,11 +86,11 @@ const AssignmentQuizz: React.FC<Props> = ({ form, onChoiceSelect, onChoiceTextar
     // ... (your existing code for handling "No Questions Available")
 
     return (
-        <div className='p-4 lg:mt-0 sm:mt-[70px]'>
+        <div className='lg:mt-0  w-full h-[calc(100vh-20rem)]'>
             <textarea
                 id="message"
                 rows={4}
-                className="block p-2.5 w-full text-sm h-[400px]  rounded-lg border"
+                className="block p-2.5 w-full text-2xl  rounded-lg border h-full"
                 placeholder="Write your thoughts here..."
                 value={textAreaValue}
                 onChange={handleTextAreaChange}

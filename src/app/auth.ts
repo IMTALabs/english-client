@@ -32,7 +32,6 @@ const checkAuth = () => {
         config.headers['Accept'] = 'application/json';
 
         // UPDATE: Add this code to show global loading indicator
-        document.body.classList.add("loading-indicator");
         return config;
       },
       function (error) {
@@ -43,11 +42,9 @@ const checkAuth = () => {
     axios.interceptors.response.use(
       function (response) {
         // UPDATE: Add this code to hide global loading indicator
-        document.body.classList.remove("loading-indicator");
-        return response.data === undefined ? response : response.data;
+        return response.data === undefined || response.data === null ? response : response.data;
       },
       function (error) {
-        document.body.classList.remove("loading-indicator");
         if (error.response.status === 401 || error.response.status === 403 || error.response.status === 419) {
           localStorage.clear();
           window.location.href = "/login";

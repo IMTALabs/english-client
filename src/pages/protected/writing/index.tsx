@@ -11,15 +11,15 @@ import writingApi from 'src/features/services/writing/writing-api';
 const Writing = () => {
   const { writingQuizz } = useAppSelector(state => state.writing);
   const [text, setText] = useState<string>('');
-  const [mode, setMode] = useState<string>('topic');
+  const [mode, setMode] = useState<string>('gen_topic');
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false);
   const navigateUrl = useNavigate();
   const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState(false)
 
-
   const handleSubmit = async () => {
-    if (mode != 'topic') {
+    setIsLoading(true)
+    if (mode === 'gen_topic') {
       try {
         const response = await writingApi.postGenInstructionApi(text);
         dispatch(postReadingState(response));
@@ -27,6 +27,7 @@ const Writing = () => {
         dispatch(showNotification({ message: error.message, status: 0 }));
       }
       finally {
+        setIsLoading(false)
         setIsLoading(false)
       }
     } else {

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import LandingIntro from './landing-intro';
 import InputText from 'src/components/input/input-text';
 import ErrorText from 'src/components/typo/error';
@@ -21,8 +21,6 @@ function Register() {
 
   const dispatch = useAppDispatch()
 
-
-  const navigate = useNavigate()
   const submitForm = async (e: any) => {
     e.preventDefault();
     setErrorMessage('');
@@ -45,11 +43,13 @@ function Register() {
         }
         dispatch(showNotification({ message: "Register success", status: 1 }))
         localStorage.setItem('token', response?.data?.accessToken);
-      } catch (error:any) {
-        dispatch(showNotification({ message: error.message, status: 0 }))
+        window.location.href = '/app/welcome';
+      } catch (error: any) {
+        console.log(error);
+
+        dispatch(showNotification({ message: error.response.data.errors.email[0], status: 0 }))
       } finally {
         setLoading(false);
-        navigate('/app/welcome');
       }
     }
   };

@@ -5,6 +5,7 @@ import AssignmentContent from 'src/components/assignment-content';
 import AssignmentQuizz from 'src/components/assignment-quizz';
 import Button from 'src/components/button';
 import TitleCard from 'src/components/cards/title-card';
+import Spin from 'src/components/spin';
 import TimerApp from 'src/components/time';
 import { showNotification } from 'src/features/common/header-slice';
 import {
@@ -52,8 +53,8 @@ const QuizzWriting = () => {
     }
   }, [isLoading, writingQuizz]);
   return (
-    <TitleCard title="Writing" topMargin="0" TopSideButtons={<TimerApp Active={true}/>}>
-
+    <TitleCard title="Writing" topMargin="0" TopSideButtons={<TimerApp Active={true} />}>
+      {!isLoading ? '' : <Spin />}
       <div className="flex ">
         <div className="w-1/3">
           {textWriting ? (

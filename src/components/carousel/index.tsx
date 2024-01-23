@@ -1,9 +1,23 @@
 import { useState, useRef, useEffect } from 'react';
 
 // Data
-import data from './data.json';
 
-const Carousel = () => {
+
+export interface Root2 {
+  videoLink: string
+  title: string
+  description: string
+  thumbnails: string
+  duration: string
+}
+
+type videoRandomProps = {
+  videoRandom: Root2[],
+  setLinkUrl: (x: string) => void
+}
+
+const Carousel = ({ videoRandom, setLinkUrl }: videoRandomProps) => {
+
   const maxScrollWidth = useRef(0);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const carousel = useRef<HTMLDivElement | null>(null);
@@ -54,17 +68,22 @@ const Carousel = () => {
       <div
         ref={carousel}
         className="carousel rounded-box mt-4 w-full bg-base-200 py-2">
-        {data.resources.map((item, index) => (
+        {videoRandom?.map((item, index) => (
           <div key={index} className={`carousel-item w-1/2 pl-2`}>
-            <div className="card card-side bg-base-100 w-full px-2">
-              <figure>
-                <img src={item.imageUrl} alt="Movie" />
-              </figure>
+            <div className="card card-side bg-base-100 w-full px-2 flex items-center">
+
+              <div>
+                <img src={item.thumbnails} alt="Movie" />
+                <span >{item.duration}</span>
+              </div>
               <div className="card-body">
-                <h2 className="card-title">New movie is released!</h2>
-                <p>Click the button to watch on Jetflix app.</p>
+                <h2 className="card-title">{item.title}</h2>
+                <p>{item.description}</p>
                 <div className="card-actions justify-end">
-                  <button className="btn btn-primary">Watch</button>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => setLinkUrl(item.videoLink)}
+                  >Watch</button>
                 </div>
               </div>
             </div>

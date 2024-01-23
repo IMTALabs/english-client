@@ -34,14 +34,16 @@ const Listening = () => {
     }
   };
 
-  // const handleGetVideo = async () => {
-  //   try {
-  //     const response = await listeningApi.getRandomVideoListening();
-  //     setVideoRandom(response)
-  //   } catch (error: any) {
-  //     console.log(error.message);
-  //   }
-  // }
+  const handleGetVideo = async () => {
+    try {
+      const response = await listeningApi.getRandomVideoListening('listeing', 5);
+      setVideoRandom(response)
+
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  }
+
 
   useEffect(() => {
     if (!isLoading && Object.keys(listeningQuizz).length > 0) {
@@ -49,6 +51,7 @@ const Listening = () => {
         state: { quizz: listeningQuizz },
       });
     }
+    handleGetVideo()
   }, [isLoading]);
 
   return (
@@ -82,7 +85,7 @@ const Listening = () => {
               </div>
             </div>
           )}
-          <Carousel  />
+          <Carousel videoRandom={videoRandom} setLinkUrl={setLinkUrl} />
         </div>
 
         {/* carousel */}

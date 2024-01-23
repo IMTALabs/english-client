@@ -18,7 +18,13 @@ const postMarkListening = (data: Pops) => {
     });
 }
 
-const getRandomVideoListening = () => {
-    return axios.get('/english/v1/listening/random_video')
-}
+const getRandomVideoListening = (query: string, maxresults: number) => {
+    return axios.get('/english/v1/listening/random_video', {
+        params: {
+            query: query,
+            maxResults: maxresults
+        }
+    });
+};
+
 export default { postYoutubeLink, postMarkListening, getRandomVideoListening }

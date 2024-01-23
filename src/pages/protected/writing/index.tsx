@@ -5,8 +5,10 @@ import Button from 'src/components/button';
 import TitleCard from 'src/components/cards/title-card';
 import Tab from 'src/components/tab';
 import { showNotification } from 'src/features/common/header-slice';
+import { closeModal, openModal } from 'src/features/common/modal-slice';
 import { postReadingState } from 'src/features/common/writing-slice';
 import writingApi from 'src/features/services/writing/writing-api';
+import { MODAL_BODY_TYPES } from 'src/utils/global-constants';
 
 const Writing = () => {
   const { writingQuizz } = useAppSelector(state => state.writing);
@@ -15,20 +17,26 @@ const Writing = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false);
   const navigateUrl = useNavigate();
   const dispatch = useAppDispatch();
-  const [isLoading, setIsLoading] = useState(false)
+    const {isOpen} = useAppSelector(
+      state => state.modal,
+    );
 
   const handleSubmit = async () => {
-    setIsLoading(true)
     if (mode === 'gen_topic') {
       try {
+       dispatch(
+         openModal({
+           title: 'Imta Bot is working please wait for 10-30s',
+           bodyType: MODAL_BODY_TYPES.LOADING,
+         }),
+       );
         const response = await writingApi.postGenInstructionApi(text);
         dispatch(postReadingState(response));
       } catch (error: any) {
         dispatch(showNotification({ message: error.message, status: 0 }));
       }
       finally {
-        setIsLoading(false)
-        setIsLoading(false)
+        dispatch(closeModal())
       }
     } else {
       navigateUrl('quizz', {
@@ -59,7 +67,7 @@ const Writing = () => {
   return (
     <TitleCard title="Writing" topMargin="0">
       <Tab
-        isLoading={isLoading}
+        isLoading={isOpen}
         quizz={writingQuizz}
         text={text}
         setText={setText}
@@ -68,12 +76,14 @@ const Writing = () => {
         wordCount={wordCount}
         title={['Generate Prompt', 'Your Prompt']}
       />
+      <div className='mt-6'>
       <Button
         type="submit"
         text="Generate Quizz"
         onClick={handleSubmit}
         disabled={isButtonDisabled}
       />
+      </div>
     </TitleCard>
   );
 };

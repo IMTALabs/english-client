@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import TextareaRadio from '../textarea-radio';
 import { useNavigate } from 'react-router-dom';
-import Spin from '../spin';
 type Props = {
     isLoading?: boolean | false;
     quizz?: any,
@@ -42,7 +41,6 @@ const Tab = ({ isLoading, quizz, text, setText, setMode, wordCount, mode, title,
                 </button>
             </div >
             <TextareaRadio text={text} setText={setText} wordCount={wordCount} mode={mode} setArticle={setArticle} />
-            {!isLoading ? '' : <Spin />}
         </div >
     )
 }

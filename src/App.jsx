@@ -7,10 +7,11 @@ import AppRouter from "./routes/AppRouter";
 import { useAppDispatch, useAppSelector } from 'src/app/store';
 
 
-import { removeNotificationMessage, showNotification } from 'src/features/common/header-slice';
+import { removeNotificationMessage } from 'src/features/common/header-slice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // Importing pages
+
 
 // Initializing different libraries
 initializeApp();
@@ -38,24 +39,26 @@ const App = () => {
       }
       dispatch(removeNotificationMessage())
     }
-  }, [newNotificationMessage])
+  }, [dispatch, newNotificationMessage, newNotificationStatus])
 
 
-  return <>
-    <ToastContainer
-      position="top-right"
-      autoClose={2500}
-      hideProgressBar={false}
-      newestOnTop={false}
-      closeOnClick
-      rtl={false}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover
-      theme="colored"
-    />
-    <AppRouter />
-  </>
+  return (
+    <>
+      <ToastContainer
+        position="top-right"
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
+      <AppRouter />
+    </>
+  );
 }
 
 export default App;

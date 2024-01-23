@@ -24,7 +24,6 @@ interface Question {
 }
 const QuizzReading = () => {
   const data = useLocation()?.state?.quizz;
-  console.log(data, "hash");
 
   const navigeUrl = useNavigate();
   const dispatch = useAppDispatch();
@@ -85,7 +84,7 @@ const QuizzReading = () => {
 
   return (
     <div>
-      <TitleCard title="Reading" topMargin="0" TopSideButtons={<TimerApp Active={true} />}>
+      <TitleCard title="Reading" topMargin="0" TopSideButtons={<TimerApp Active={true} />}  skill={'reading'} skillHash={data.hash}>
         <div className="flex items-center">
           <div className='w-1/2'>
             <AssignmentContent paragraph={data?.body?.paragraph} type={'text'} />

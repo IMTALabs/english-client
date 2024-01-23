@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Icon } from 'src/assets/icon';
 import Subtitle from 'src/components/typo/sub-title';
 
@@ -6,11 +7,13 @@ interface TitleCardProps {
   children: JSX.Element | JSX.Element[];
   topMargin?: string;
   TopSideButtons?: string | JSX.Element,
-  titleStyle?: string
+  titleStyle?: string,
+  skill?: string,
+  skillHash?: string
 }
 
 
-function TitleCard({ title, children, topMargin, TopSideButtons, titleStyle }: TitleCardProps) {
+function TitleCard({ title, children, topMargin, TopSideButtons, titleStyle, skill, skillHash }: TitleCardProps) {
   return (
     <div
       className={
@@ -24,8 +27,18 @@ function TitleCard({ title, children, topMargin, TopSideButtons, titleStyle }: T
               <p className={titleStyle}>{title}</p>
               {/* Top side button, show only if present */}
               {TopSideButtons && (
-
-                <div className="flex items-center gap-4"><button className="btn btn-sm btn-secondary"> <span dangerouslySetInnerHTML={{ __html: Icon('download') }}></span> Download</button>{TopSideButtons}</div>
+                <div className="flex items-center gap-4">
+                  {skill && <a
+                    href={`https://api.imta-chatbot.online/api/english/${skill}/download?hash=${skillHash}`
+                    }
+                    target="_blank" rel="noopener noreferrer"
+                  >
+                    <button className="btn btn-sm btn-secondary">
+                      <span dangerouslySetInnerHTML={{ __html: Icon('download') }}></span>
+                      Download
+                    </button>
+                  </a>}
+                  {TopSideButtons}</div>
               )}
             </div>
           </Subtitle>

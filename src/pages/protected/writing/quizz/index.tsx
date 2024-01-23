@@ -53,7 +53,7 @@ const QuizzWriting = () => {
     }
   }, [isLoading, writingQuizz]);
   return (
-    <TitleCard title="Writing" topMargin="0" TopSideButtons={<TimerApp Active={true} />}>
+    <TitleCard title="Writing" topMargin="0" TopSideButtons={<TimerApp Active={true} />} skill={'writing'} skillHash={QuizzWriting.hash}>
       {!isLoading ? '' : <Spin />}
       <div className="flex ">
         <div className="w-1/3">

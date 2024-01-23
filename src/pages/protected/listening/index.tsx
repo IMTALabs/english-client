@@ -7,49 +7,41 @@ import listeningApi from 'src/features/services/listening/listening-api';
 import { setListeningState } from 'src/features/common/listening-slice';
 import Carousel from 'src/components/carousel';
 import { showNotification } from 'src/features/common/header-slice';
+import { MODAL_BODY_TYPES } from 'src/utils/global-constants';
+import { closeModal, openModal } from 'src/features/common/modal-slice';
 
 const Listening = () => {
   const dispatch = useAppDispatch();
   const [linkUrl, setLinkUrl] = useState('');
-  const [showOverlay, setShowOverlay] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [videoRandom, setVideoRandom] = useState<any>([])
   const { listeningQuizz } = useAppSelector(state => state.listening || '');
+  const {isOpen} = useAppSelector(state => state.modal)
 
   const navigeUrl = useNavigate();
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    setShowOverlay(true);
-    setIsLoading(true);
     try {
+        dispatch(
+          openModal({
+            title: 'Imta Bot is working please wait for 10-30s',
+            bodyType: MODAL_BODY_TYPES.LOADING,
+          }),
+        );
       const response = await listeningApi.postYoutubeLink(linkUrl);
       dispatch(setListeningState(response));
     } catch (error: any) {
-      console.log(error);
-
       dispatch(showNotification({ message: error.message, status: 0 }));
     } finally {
-      setIsLoading(false);
-      setShowOverlay(false);
+      dispatch(closeModal())
     }
   };
 
-  // const handleGetVideo = async () => {
-  //   try {
-  //     const response = await listeningApi.getRandomVideoListening();
-  //     setVideoRandom(response)
-  //   } catch (error: any) {
-  //     console.log(error.message);
-  //   }
-  // }
-
   useEffect(() => {
-    if (!isLoading && Object.keys(listeningQuizz).length > 0) {
+    if (!isOpen && Object.keys(listeningQuizz).length > 0) {
       navigeUrl('quizz', {
-        state: { quizz: listeningQuizz },
+        state: {quizz: listeningQuizz},
       });
     }
-  }, [isLoading]);
+  }, [isOpen]);
 
   return (
     <>
@@ -72,19 +64,8 @@ const Listening = () => {
               <Button type="submit" text=" Generate Quizz" />
             </div>
           </form>
-          {showOverlay && (
-            <div className="fixed top-0 left-0 w-full h-full bg-gray-300 z-50 opacity-80 flex justify-center gap-4 items-center">
-              <div className="fixed top-0 left-0 w-full h-full bg-gray-300 z-50 opacity-80 flex justify-center gap-4 items-center">
-                <p className="font-bold text-black  text-[20px]">
-                  Processing generating quizz...
-                </p>
-                <div className="inline-block relative w-[80px] h-[80px] lds-ring"></div>
-              </div>
-            </div>
-          )}
           <Carousel  />
         </div>
-
         {/* carousel */}
       </TitleCard>
     </>

@@ -2,15 +2,13 @@ import { themeChange } from 'theme-change';
 import { useEffect, useState } from 'react';
 import BellIcon from '@heroicons/react/24/outline/BellIcon';
 import Bars3Icon from '@heroicons/react/24/outline/Bars3Icon';
-
 import { openRightDrawer } from 'src/features/common/right-drawer-slice';
-
-import { RIGHT_DRAWER_TYPES } from 'src/utils/global-constants';
+import { MODAL_BODY_TYPES, RIGHT_DRAWER_TYPES } from 'src/utils/global-constants';
 import { useAppDispatch, useAppSelector } from 'src/app/store';
 import { NavLink } from 'react-router-dom';
-
 import RabbitLogo from 'assets/rabbit-logo.jpg';
-import Feedback from 'src/components/feedback';
+import { Icon } from 'src/assets/icon';
+import { openModal } from 'src/features/common/modal-slice';
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -46,7 +44,6 @@ const Header = () => {
 
   return (
     // navbar fixed  flex-none justify-between bg-base-300  z-10 shadow-md
-
     <>
       <div className="navbar sticky top-0 z-10 p-0 m-0 min-h-0 ">
         <div className="bg-primary w-full rounded-tr rounded-br pr-2 h-14">
@@ -73,7 +70,20 @@ const Header = () => {
           {/* Menu toogle for mobile view or small screen */}
 
           <div className="flex-none ">
-            <Feedback />
+            <div
+              onClick={() =>
+                  dispatch(
+                  openModal({
+                    bodyType: MODAL_BODY_TYPES.SEND_FEEDBACK,
+                  }),
+                )
+              }
+              className="tooltip tooltip-bottom"
+              data-tip="Feedback">
+              <span
+                className="btn btn-ghost btn-circle text-white text-2xl"
+                dangerouslySetInnerHTML={{__html: Icon('feedback')}}></span>
+            </div>
 
             <button className="btn btn-ghost btn-circle">
               <div className="indicator">
@@ -117,7 +127,7 @@ const Header = () => {
             {/* Profile icon, opening menu on click */}
           </div>
         </div>
-      </div >
+      </div>
     </>
   );
 };

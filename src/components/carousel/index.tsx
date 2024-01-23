@@ -67,23 +67,21 @@ const Carousel = ({ videoRandom, setLinkUrl }: videoRandomProps) => {
     <div className="relative">
       <div
         ref={carousel}
-        className="carousel rounded-box mt-4 w-full bg-base-200 py-2">
+        className="carousel rounded-box w-full bg-base-200 max-h-[360px] min-h-[360px] py-2 ">
         {videoRandom?.map((item, index) => (
-          <div key={index} className={`carousel-item w-1/2 pl-2`}>
-            <div className="card card-side bg-base-100 w-full px-2 flex items-center">
-
-              <div>
-                <img src={item.thumbnails} alt="Movie" />
-                <span >{item.duration}</span>
-              </div>
+          <div key={index} className={`carousel-item w-1/2 h-[calc(360px-24px)]] p-2`}>
+            <div className="card w-full h-full bg-base-100 shadow-xl ">
+              <figure><img src={item.thumbnails} alt="Shoes" className='object-fill' /></figure>
               <div className="card-body">
-                <h2 className="card-title">{item.title}</h2>
+                <h2 className="card-title">
+                  {item.title}
+                  <div className="badge badge-secondary ">{item.duration}</div>
+                </h2>
                 <p>{item.description}</p>
                 <div className="card-actions justify-end">
-                  <button
-                    className="btn btn-primary"
+                  <div className="badge badge-outline"><button
                     onClick={() => setLinkUrl(item.videoLink)}
-                  >Watch</button>
+                  >Watch</button></div>
                 </div>
               </div>
             </div>

@@ -85,7 +85,7 @@ const Listening = () => {
               </div>
             </div>
           )}
-          <Carousel videoRandom={videoRandom} setLinkUrl={setLinkUrl} />
+          {videoRandom.length > 0 && <Carousel videoRandom={videoRandom} setLinkUrl={setLinkUrl} />}
         </div>
 
         {/* carousel */}

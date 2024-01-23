@@ -27,10 +27,11 @@ const QuizzWriting = () => {
   };
   const handleConfirmQuizz = () => {
     if (textAreaValue.length > 0) {
+      
       dispatch(
         postWritingPoint({
           submission: textAreaValue,
-          instruction: questions?.body || textWriting?.text,
+          instruction: questions?.body || textWriting,
         }),
       );
     } else {
@@ -45,7 +46,7 @@ const QuizzWriting = () => {
   useEffect(() => {
     if (!isLoading && writingQuizz?.band_score) {
       navigeUrl('/app/writing/result', {
-        state: { writingQuizz },
+        state: { writingQuizz, textAreaValue, instruction : questions?.body || textWriting },
       });
     }
     if (Object.keys(writingQuizz).length > 0) {

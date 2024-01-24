@@ -1,19 +1,19 @@
-import { useState} from 'react';
-import {useAppDispatch, useAppSelector} from 'src/app/store';
+import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from 'src/app/store';
 import Button from 'src/components/button';
 import TitleCard from 'src/components/cards/title-card';
 import Tab from 'src/components/tab';
-import {showNotification} from 'src/features/common/header-slice';
-import {setReadingState} from 'src/features/common/reading-slice';
+import { showNotification } from 'src/features/common/header-slice';
+import { setReadingState } from 'src/features/common/reading-slice';
 import readingApi from 'src/features/services/reading/reading-api';
-import {closeModal, openModal} from 'src/features/common/modal-slice';
-import {MODAL_BODY_TYPES} from 'src/utils/global-constants';
+import { closeModal, openModal } from 'src/features/common/modal-slice';
+import { MODAL_BODY_TYPES } from 'src/utils/global-constants';
 import TextInput from 'src/components/text-input/text-input';
 import TextAreaInput from 'src/components/text-input/text-area-input';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Reading = () => {
-  const {readingQuizz} = useAppSelector(state => state.reading);
+  const { readingQuizz } = useAppSelector(state => state.reading);
   const [text, setText] = useState<string>('');
   const [mode, setMode] = useState<string>('gen_topic');
   const [article, setArticle] = useState<string>('');
@@ -44,7 +44,7 @@ const Reading = () => {
     } finally {
       dispatch(closeModal());
       navigate('quizz', {
-        state: {readingQuizz},
+        state: { readingQuizz },
       });
     }
   };
@@ -79,17 +79,17 @@ const Reading = () => {
   };
 
 
-   const handleInputChange = (e: any) => {
-     const inputText = e.target.value;
+  const handleInputChange = (e: any) => {
+    const inputText = e.target.value;
 
-     // Limit the input to 500 characters
-     const limitedText =
-       inputText.length <= 500
-         ? inputText
-         : inputText.substring(0, 497) + '...';
+    // Limit the input to 500 characters
+    const limitedText =
+      inputText.length <= 500
+        ? inputText
+        : inputText.substring(0, 497) + '...';
 
-     setArticle(limitedText);
-   };
+    setArticle(limitedText);
+  };
 
   return (
     <div>

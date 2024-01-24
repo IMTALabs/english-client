@@ -10,7 +10,7 @@ interface TitleCardProps {
 }
 
 
-function TitleCard({ title, children, topMargin, TopSideButtons, titleStyle }: TitleCardProps) {
+function TitleCard({ title, children, topMargin, TopSideButtons, titleStyle = "font-bold" }: TitleCardProps) {
   return (
     <div
       className={

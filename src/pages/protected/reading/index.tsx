@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import { useState} from 'react';
 import {useAppDispatch, useAppSelector} from 'src/app/store';
 import Button from 'src/components/button';
 import TitleCard from 'src/components/cards/title-card';
@@ -8,19 +8,18 @@ import {setReadingState} from 'src/features/common/reading-slice';
 import readingApi from 'src/features/services/reading/reading-api';
 import {closeModal, openModal} from 'src/features/common/modal-slice';
 import {MODAL_BODY_TYPES} from 'src/utils/global-constants';
+import TextInput from 'src/components/text-input/text-input';
+import TextAreaInput from 'src/components/text-input/text-area-input';
+import {useNavigate} from 'react-router-dom';
 
 const Reading = () => {
-  const {isOpen} = useAppSelector(state => state.modal);
   const {readingQuizz} = useAppSelector(state => state.reading);
   const [text, setText] = useState<string>('');
   const [mode, setMode] = useState<string>('gen_topic');
-  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false);
   const [article, setArticle] = useState<string>('');
-
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const handleSubmit = async () => {
-    //reading gen
-    setIsButtonDisabled(!isButtonDisabled);
     const paragraph = article !== '' ? article : text;
     try {
       dispatch(
@@ -43,13 +42,14 @@ const Reading = () => {
         }),
       );
     } finally {
-      setIsButtonDisabled(false);
       dispatch(closeModal());
+      navigate('quizz', {
+        state: {readingQuizz},
+      });
     }
   };
 
   const handleGenTopic = async () => {
-    
     if (article !== '') {
       setMode('no_gen_topic');
       handleSubmit();
@@ -73,66 +73,75 @@ const Reading = () => {
           }),
         );
       } finally {
-        setIsButtonDisabled(false);
         dispatch(closeModal());
       }
     }
   };
 
-  const countWords = (text: string) => {
-    // If there is no text, return 0
-    if (!text.trim()) {
-      return 0;
-    }
-    // Split the text into words and return the length
-    const words = text.trim().split(/\s+/);
-    return words.length;
-  };
 
-  const wordCount = countWords(text);
+   const handleInputChange = (e: any) => {
+     const inputText = e.target.value;
 
-  useEffect(() => {
-    setArticle('');
-    if (wordCount >= 400) {
-      setIsButtonDisabled(true);
-    } else {
-      setIsButtonDisabled(false);
-    }
-  }, [wordCount, mode]);
+     // Limit the input to 500 characters
+     const limitedText =
+       inputText.length <= 500
+         ? inputText
+         : inputText.substring(0, 497) + '...';
+
+     setArticle(limitedText);
+   };
+
   return (
     <div>
-      <TitleCard title="Reading" topMargin="0">
+      <TitleCard title="READING" topMargin="0">
         <Tab
-          isLoading={isOpen}
-          quizz={readingQuizz}
-          text={text}
-          setText={setText}
           setMode={setMode}
-          setArticle={setArticle}
           mode={mode}
-          wordCount={wordCount}
           title={['Generate Article', 'Your Article']}
         />
 
-        {article !== '' && (
+        {/* {article !== '' && (
           <div className="overflow-y-auto h-[calc(100vh-26rem)] border rounded mt-4 p-2">
             <p className="my-3 " dangerouslySetInnerHTML={{__html: article}} />
           </div>
-        )}
-        <div className='mt-4'>
-          <Button
-            type="submit"
-            text={
-              mode === 'gen_topic'
-                ? article !== ''
-                  ? 'Generate Quizz'
-                  : 'Generate Article'
-                : 'Generate Quizz'
-            }
-            onClick={mode === 'gen_topic' ? handleGenTopic : handleSubmit}
-            disabled={isButtonDisabled}
+        )} */}
+
+        {mode === 'gen_topic' ? (
+          <TextInput
+            value={text}
+            onChange={e => setText(e.target.value)}
+            label="Enter keyword for generation"
+            containerStyle="mt-4"
           />
-        </div>
+        ) : (
+          <div>
+            <TextAreaInput
+              value={article}
+              onChange={handleInputChange}
+              label="Enter your article"
+              containerStyle="mt-4"
+            />
+            {article.length > 0 && (
+              <div className="px-2">
+                <p className="text-md">{article.length} / 500 words</p>
+              </div>
+            )}
+          </div>
+        )}
+
+        <Button
+          type="submit"
+          text={
+            mode === 'gen_topic'
+              ? article !== ''
+                ? 'Generate Quizz'
+                : 'Generate Article'
+              : 'Generate Quizz'
+          }
+          onClick={mode === 'gen_topic' ? handleGenTopic : handleSubmit}
+          disabled={mode === 'gen_topic' ? text === '' : article === ''}
+          containerStyle="mt-4"
+        />
       </TitleCard>
     </div>
   );

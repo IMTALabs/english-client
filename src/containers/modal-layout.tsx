@@ -40,7 +40,7 @@ function ModalLayout() {
             </button>
           )}
 
-          <h3 className="font-semibold text-2xl pb-6 text-center">{title}</h3>
+          <h3 className="font-semibold text-xl pb-2 text-center">{title}</h3>
           {renderModalBody}
         </div>
       </div>

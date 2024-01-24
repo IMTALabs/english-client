@@ -10,7 +10,7 @@ import storage from 'redux-persist/lib/storage';
 const persistState = {
   key: 'root',
   storage,
-  whitelist: ['user'],
+  whitelist: ['user', 'history'],
   blacklist: ['modal', 'header', 'rightDrawer'],
 };
 

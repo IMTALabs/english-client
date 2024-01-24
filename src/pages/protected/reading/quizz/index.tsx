@@ -105,6 +105,7 @@ const QuizzReading = () => {
               onChoiceSelect={handleChoiceSelect}
             />
             <Button
+              containerStyle='mt-4'
               type="submit"
               text="Submit"
               onClick={handleConfirmQuizz}

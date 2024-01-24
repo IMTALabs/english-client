@@ -48,11 +48,12 @@ const QuizzListening = () => {
   const handleConfirmQuizz = async () => {
     // Kiểm tra xem đã chọn hết lựa chọn hay chưa
     const allQuestionsAnswered =
-      Object.keys(selectedChoices).length === questions?.length;
+      Object.keys(selectedChoices)?.length === questions?.length;
     if (allQuestionsAnswered) {
       // Nếu đã chọn hết, thì chuyển hướng hoặc thực hiện hành động khác
       dispatch(
         openModal({
+          title: 'Imta Bot is working please wait for 10-30s',
           bodyType: MODAL_BODY_TYPES.LOADING,
         }),
       );
@@ -118,6 +119,7 @@ const QuizzListening = () => {
               text="Submit"
               onClick={handleConfirmQuizz}
               disabled={isOpen}
+              containerStyle='mt-4'
             />
           </div>
         </div>

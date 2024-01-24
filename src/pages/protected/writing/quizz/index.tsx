@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from 'src/app/store';
+import {useEffect, useState} from 'react';
+import {useLocation, useNavigate} from 'react-router-dom';
+import {useAppDispatch, useAppSelector} from 'src/app/store';
 import AssignmentContent from 'src/components/assignment-content';
 import AssignmentQuizz from 'src/components/assignment-quizz';
 import Button from 'src/components/button';
 import TitleCard from 'src/components/cards/title-card';
 import TimerApp from 'src/components/time';
-import { showNotification } from 'src/features/common/header-slice';
+import {showNotification} from 'src/features/common/header-slice';
 import {
   clearWritingState,
   postWritingPoint,
@@ -22,8 +22,8 @@ const QuizzWriting = () => {
   const [textAreaValue, setTextAreaValue] = useState<string>('');
   const dispatch = useAppDispatch();
 
-  const { writingQuizz } = useAppSelector(state => state?.writing);
-    const {isOpen} = useAppSelector(state => state.modal);
+  const {writingQuizz} = useAppSelector(state => state?.writing);
+  const {isOpen} = useAppSelector(state => state.modal);
   const handleChoiceTextarea = (value: string) => {
     setTextAreaValue(value);
   };
@@ -55,9 +55,11 @@ const QuizzWriting = () => {
     }
   }, [isOpen, writingQuizz]);
   return (
-    <TitleCard title="Writing" topMargin="0" TopSideButtons={<TimerApp Active={true} />}>
-
-      <div className="flex ">
+    <TitleCard
+      title="Writing"
+      topMargin="0"
+      TopSideButtons={<TimerApp Active={true} />}>
+      <div className="flex flex-1">
         <div className="w-1/3">
           {textWriting ? (
             <AssignmentContent paragraph={textWriting} />
@@ -67,11 +69,10 @@ const QuizzWriting = () => {
         </div>
         <div className="w-2/3">
           <AssignmentQuizz onChoiceTextarea={handleChoiceTextarea} />
-          <Button type="submit" text="Submit" onClick={handleConfirmQuizz} />
+          <Button containerStyle='mt-4' type="submit" text="Submit" onClick={handleConfirmQuizz} />
         </div>
       </div>
     </TitleCard>
-
   );
 };
 export default QuizzWriting;

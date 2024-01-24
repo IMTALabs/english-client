@@ -6,12 +6,24 @@ type historyState = {
   skill: string;
 };
 
+export type recommendedVideo = {
+  videoLink: string;
+  title: string;
+  description: string;
+  thumbnails: string;
+  duration: string
+};
+
+
+
 type initialState = {
   history: historyState[];
+  youtubeRecommened: recommendedVideo[];
 };
 
 const initialState: initialState = {
   history: [],
+  youtubeRecommened: []
 };
 
 export const listeningSlice = createSlice({
@@ -21,9 +33,12 @@ export const listeningSlice = createSlice({
     setHistory: (state, action) => {
       state.history = action.payload;
     },
+    setRecommended: (state, action) => {
+      state.youtubeRecommened = action.payload;
+     }
   },
 });
 
-export const {setHistory} = listeningSlice.actions;
+export const {setHistory, setRecommended} = listeningSlice.actions;
 
 export default listeningSlice.reducer;

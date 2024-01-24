@@ -16,8 +16,9 @@ import {useAppDispatch, useAppSelector} from 'src/app/store';
 import {setUserInfo} from 'src/features/common/user-slice';
 import userApi from 'src/features/services/user/user-api';
 import historyApi from 'src/features/services/history/history-api';
-import {setHistory} from 'src/features/common/history-slice';
+import {setHistory, setRecommended} from 'src/features/common/history-slice';
 import {showNotification} from 'src/features/common/header-slice';
+import listeningApi from 'src/features/services/listening/listening-api';
 
 const AppRouter = () => {
   const token = checkAuth();
@@ -48,10 +49,23 @@ const AppRouter = () => {
     }
   };
 
+  const getYoutubeRecommenedVideo = async () => {
+    try {
+      const response = await listeningApi.getRandomVideoListening(
+        'listening',
+        10,
+      );
+      dispatch(setRecommended(response));
+    } catch (error) {
+      dispatch(showNotification({message: error, status: 0}));
+    }
+  };
+
   useLayoutEffect(() => {
     if (token) {
       getUser();
       getHistory();
+      getYoutubeRecommenedVideo();
     }
   }, []);
 

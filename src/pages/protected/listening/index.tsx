@@ -17,7 +17,9 @@ const Listening = () => {
   const {listeningQuizz} = useAppSelector(state => state.listening || '');
   const {isOpen} = useAppSelector(state => state.modal);
   const [isDisabled, setIsDisabled] = useState(true);
-
+  const {youtubeRecommened} = useAppSelector(
+    state => state.history,
+  );
   const navigeUrl = useNavigate();
   const handleSubmit = async (event: any) => {
     event.preventDefault();
@@ -77,7 +79,10 @@ const Listening = () => {
             disabled={isDisabled}
             containerStyle="mt-4"
           />
-          <Carousel />
+          <Carousel
+            listVideo={youtubeRecommened}
+            onSelectedVideo={setLinkUrl}
+          />
         </div>
         {/* carousel */}
       </TitleCard>

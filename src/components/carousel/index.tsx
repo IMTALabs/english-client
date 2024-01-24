@@ -1,9 +1,14 @@
-import { useState, useRef, useEffect } from 'react';
+import {useState, useRef, useEffect} from 'react';
 
 // Data
-import data from './data.json';
+import {recommendedVideo} from 'src/features/common/history-slice';
 
-const Carousel = () => {
+export interface CarouselProps {
+  listVideo: recommendedVideo[];
+  onSelectedVideo : (s: string) => void
+}
+
+const Carousel = ({listVideo, onSelectedVideo}: CarouselProps) => {
   const maxScrollWidth = useRef(0);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const carousel = useRef<HTMLDivElement | null>(null);
@@ -54,17 +59,20 @@ const Carousel = () => {
       <div
         ref={carousel}
         className="carousel rounded-box mt-4 w-full bg-base-200 py-2">
-        {data.resources.map((item, index) => (
-          <div key={index} className={`carousel-item w-1/2 pl-2`}>
-            <div className="card card-side bg-base-100 w-full px-2">
-              <figure>
-                <img src={item.imageUrl} alt="Movie" />
+        {listVideo?.map((item, index) => (
+          <div
+            onClick={()=> onSelectedVideo(item.videoLink)}
+            key={index}
+            className={`carousel-item w-[45%] pl-2 max-h-[80%]`}>
+            <div className="card card-side bg-base-100 w-full px-2 flex-col">
+              <figure className="mt-2">
+                <img src={item.thumbnails} alt="Movie" className="rounded-xl" />
               </figure>
               <div className="card-body">
-                <h2 className="card-title">New movie is released!</h2>
-                <p>Click the button to watch on Jetflix app.</p>
+                <h2 className="card-title">{item.title}</h2>
+                <p>{item.description}</p>
                 <div className="card-actions justify-end">
-                  <button className="btn btn-primary">Watch</button>
+                  <button className="btn btn-primary">{item.duration}</button>
                 </div>
               </div>
             </div>

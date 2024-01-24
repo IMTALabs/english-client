@@ -30,7 +30,7 @@ function LeftSidebar() {
   };
 
   return (
-    <div className="drawer-side z-30 h-[calc(100vh-56px)] ">
+    <div className="drawer-side z-30 h-[calc(100vh-56px)] top-14 ">
       <label htmlFor="left-sidebar-drawer" className="drawer-overlay"></label>
       <ul className="menu pt-2 w-80 bg-primary min-h-full text-accent">
         <button

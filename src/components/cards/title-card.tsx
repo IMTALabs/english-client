@@ -6,11 +6,13 @@ interface TitleCardProps {
   children: JSX.Element | JSX.Element[];
   topMargin?: string;
   TopSideButtons?: string | JSX.Element,
-  titleStyle?: string
+  titleStyle?: string,
+  skill?: string;
+  hash?: string;
 }
 
 
-function TitleCard({ title, children, topMargin, TopSideButtons, titleStyle = "font-bold" }: TitleCardProps) {
+function TitleCard({ title, children, topMargin, TopSideButtons, titleStyle = "font-bold", hash, skill }: TitleCardProps) {
   return (
     <div
       className={
@@ -24,8 +26,18 @@ function TitleCard({ title, children, topMargin, TopSideButtons, titleStyle = "f
               <p className={titleStyle}>{title}</p>
               {/* Top side button, show only if present */}
               {TopSideButtons && (
-
-                <div className="flex items-center gap-4"><button className="btn btn-sm btn-secondary"> <span dangerouslySetInnerHTML={{ __html: Icon('download') }}></span> Download</button>{TopSideButtons}</div>
+                <div className="flex items-center gap-4">
+                  {skill && <a
+                    href={`https://api.imta-chatbot.online/api/english/${skill}/download?hash=${hash}`
+                    }
+                    target="_blank" rel="noopener noreferrer"
+                  >
+                    <button className="btn btn-sm btn-secondary">
+                      <span dangerouslySetInnerHTML={{ __html: Icon('download') }}></span>
+                      Download
+                    </button>
+                  </a>}
+                  {TopSideButtons}</div>
               )}
             </div>
           </Subtitle>

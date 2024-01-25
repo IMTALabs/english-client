@@ -1,17 +1,17 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
-import {useLocation, useNavigate} from 'react-router-dom';
-import {useAppDispatch, useAppSelector} from 'src/app/store';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from 'src/app/store';
 import AssignmentQuizz from 'src/components/assignment-quizz';
 import Button from 'src/components/button';
 import TitleCard from 'src/components/cards/title-card';
 import TimerApp from 'src/components/time';
-import {showNotification} from 'src/features/common/header-slice';
-import {clearListeningState} from 'src/features/common/listening-slice';
-import {updateCharge} from 'src/features/common/user-slice';
+import { showNotification } from 'src/features/common/header-slice';
+import { clearListeningState } from 'src/features/common/listening-slice';
+import { updateCharge } from 'src/features/common/user-slice';
 import listeningApi from 'src/features/services/listening/listening-api';
-import {closeModal, openModal} from 'src/features/common/modal-slice';
-import {MODAL_BODY_TYPES} from 'src/utils/global-constants';
+import { closeModal, openModal } from 'src/features/common/modal-slice';
+import { MODAL_BODY_TYPES } from 'src/utils/global-constants';
 
 interface Question {
   question: string;
@@ -26,9 +26,9 @@ interface Question {
 }
 
 const QuizzListening = () => {
-  const {body, link, remaining_accounting_charge, hash} =
+  const { body, link, remaining_accounting_charge, hash } =
     useLocation()?.state?.quizz;
-  const {isOpen} = useAppSelector(state => state.modal);
+  const { isOpen } = useAppSelector(state => state.modal);
   const dispatch = useAppDispatch();
   const navigeUrl = useNavigate();
   const questions: Question[] = body?.form;
@@ -72,13 +72,13 @@ const QuizzListening = () => {
           });
         }
       } catch (error: any) {
-        dispatch(showNotification({message: error.message, status: 0}));
+        dispatch(showNotification({ message: error.message, status: 0 }));
       } finally {
         dispatch(closeModal());
       }
     } else {
       dispatch(
-        showNotification({message: 'Please answer all questions', status: 0}),
+        showNotification({ message: 'Please answer all questions', status: 0 }),
       );
     }
   };
@@ -88,6 +88,8 @@ const QuizzListening = () => {
       <TitleCard
         title="Listening"
         topMargin="mt-0"
+        skill='listening'
+        hash={hash}
         TopSideButtons={<TimerApp Active={true} />}>
         <div className="sm:flex flex-1 gap-x-4">
           <div className="sm:w-1/2  mb-3 py-2">
@@ -101,7 +103,7 @@ const QuizzListening = () => {
                 className=" sm:w-full sm:h-[500px] flex justify-center"
                 config={{
                   youtube: {
-                    playerVars: {showinfo: 1},
+                    playerVars: { showinfo: 1 },
                   },
                 }}
               />

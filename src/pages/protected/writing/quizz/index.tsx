@@ -1,18 +1,16 @@
-import {useEffect, useState} from 'react';
-import {useLocation, useNavigate} from 'react-router-dom';
-import {useAppDispatch, useAppSelector} from 'src/app/store';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from 'src/app/store';
 import AssignmentContent from 'src/components/assignment-content';
 import AssignmentQuizz from 'src/components/assignment-quizz';
 import Button from 'src/components/button';
 import TitleCard from 'src/components/cards/title-card';
 import TimerApp from 'src/components/time';
-import {showNotification} from 'src/features/common/header-slice';
+import { showNotification } from 'src/features/common/header-slice';
 import {
   clearWritingState,
   postWritingPoint,
 } from 'src/features/common/writing-slice';
-import {closeModal, openModal} from 'src/features/common/modal-slice';
-import {MODAL_BODY_TYPES} from 'src/utils/global-constants';
 const QuizzWriting = () => {
   const QuizzWriting = useLocation()?.state?.quizz;
   const textWriting = useLocation()?.state?.text;
@@ -22,8 +20,8 @@ const QuizzWriting = () => {
   const [textAreaValue, setTextAreaValue] = useState<string>('');
   const dispatch = useAppDispatch();
 
-  const {writingQuizz} = useAppSelector(state => state?.writing);
-  const {isOpen} = useAppSelector(state => state.modal);
+  const { writingQuizz } = useAppSelector(state => state?.writing);
+  const { isOpen } = useAppSelector(state => state.modal);
   const handleChoiceTextarea = (value: string) => {
     setTextAreaValue(value);
   };
@@ -32,7 +30,7 @@ const QuizzWriting = () => {
       dispatch(
         postWritingPoint({
           submission: textAreaValue,
-          instruction: questions?.body || textWriting?.text,
+          instruction: questions?.body || textWriting,
         }),
       );
     } else {
@@ -47,7 +45,7 @@ const QuizzWriting = () => {
   useEffect(() => {
     if (!isOpen && writingQuizz?.band_score) {
       navigeUrl('/app/writing/result', {
-        state: {writingQuizz},
+        state: {  writingQuizz, textAreaValue, instruction : questions?.body || textWriting  },
       });
     }
     if (Object.keys(writingQuizz).length > 0) {
@@ -58,6 +56,8 @@ const QuizzWriting = () => {
     <TitleCard
       title="Writing"
       topMargin="0"
+      skill='writing'
+      hash={QuizzWriting?.hash}
       TopSideButtons={<TimerApp Active={true} />}>
       <div className="flex flex-1">
         <div className="w-1/3">

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'src/app/store';
 import AssignmentContent from 'src/components/assignment-content';
 import AssignmentQuizz from 'src/components/assignment-quizz';
@@ -7,7 +7,6 @@ import Button from 'src/components/button';
 import TitleCard from 'src/components/cards/title-card';
 import TimerApp from 'src/components/time';
 import { showNotification } from 'src/features/common/header-slice';
-import { clearReadingState } from 'src/features/common/reading-slice';
 import { updateCharge } from 'src/features/common/user-slice';
 import readingApi from 'src/features/services/reading/reading-api';
 import { MODAL_BODY_TYPES } from 'src/utils/global-constants';
@@ -25,6 +24,7 @@ interface Question {
   answer: string;
 }
 const QuizzReading = () => {
+
   const { readingQuizz } = useAppSelector(state => state.reading);
 
   const navigeUrl = useNavigate();
@@ -83,7 +83,6 @@ const QuizzReading = () => {
   };
   useEffect(() => {
     dispatch(updateCharge(readingQuizz?.remaining_accounting_charge));
-    dispatch(clearReadingState());
   }, []);
 
   return (

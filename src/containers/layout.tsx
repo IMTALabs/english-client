@@ -23,6 +23,7 @@ function Layout() {
           className="drawer-toggle"
         />
         <PageContent />
+        
         {!hideSidebar && <LeftSidebar />}
       </div>
 

@@ -4,7 +4,7 @@ import {
   Routes,
   Navigate,
 } from 'react-router-dom';
-import {lazy, useLayoutEffect} from 'react';
+import { lazy, useLayoutEffect } from 'react';
 import checkAuth from 'src/app/auth';
 
 const Layout = lazy(() => import('src/containers/layout'));
@@ -12,19 +12,19 @@ const Login = lazy(() => import('src/pages/public/login'));
 const ForgotPassword = lazy(() => import('src/pages/public/forgot-password'));
 const Register = lazy(() => import('src/pages/public/register'));
 
-import {useAppDispatch, useAppSelector} from 'src/app/store';
-import {setUserInfo} from 'src/features/common/user-slice';
+import { useAppDispatch, useAppSelector } from 'src/app/store';
+import { setUserInfo } from 'src/features/common/user-slice';
 import userApi from 'src/features/services/user/user-api';
 import historyApi from 'src/features/services/history/history-api';
-import {setHistory, setRecommended} from 'src/features/common/history-slice';
-import {showNotification} from 'src/features/common/header-slice';
+import { setHistory, setRecommended } from 'src/features/common/history-slice';
+import { showNotification } from 'src/features/common/header-slice';
 import listeningApi from 'src/features/services/listening/listening-api';
 
 const AppRouter = () => {
   const token = checkAuth();
   const dispatch = useAppDispatch();
 
-  const {user} = useAppSelector(x => x.user);
+  const { user } = useAppSelector(x => x.user);
 
   const getUser = async () => {
     try {
@@ -34,7 +34,7 @@ const AppRouter = () => {
       }
     } catch (error) {
       dispatch(setUserInfo({}));
-      dispatch(showNotification({message: error, status: 0}));
+      dispatch(showNotification({ message: error, status: 0 }));
     }
   };
 
@@ -42,10 +42,12 @@ const AppRouter = () => {
 
   const getHistory = async () => {
     try {
-      const response = await historyApi.getHistory();
+      const response = await historyApi.getHistory(5);
+      console.log(response, 'response');
+
       dispatch(setHistory(response));
     } catch (error) {
-      dispatch(showNotification({message: error, status: 0}));
+      dispatch(showNotification({ message: error, status: 0 }));
     }
   };
 
@@ -57,7 +59,7 @@ const AppRouter = () => {
       );
       dispatch(setRecommended(response));
     } catch (error) {
-      dispatch(showNotification({message: error, status: 0}));
+      dispatch(showNotification({ message: error, status: 0 }));
     }
   };
 

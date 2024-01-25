@@ -13,7 +13,7 @@ import TextAreaInput from 'src/components/text-input/text-area-input';
 import { useNavigate } from 'react-router-dom';
 
 const Reading = () => {
-  const { readingQuizz } = useAppSelector(state => state.reading);
+
   const [text, setText] = useState<string>('');
   const [mode, setMode] = useState<string>('gen_topic');
   const [article, setArticle] = useState<string>('');
@@ -100,11 +100,7 @@ const Reading = () => {
           title={['Generate Article', 'Your Article']}
         />
 
-        {/* {article !== '' && (
-          <div className="overflow-y-auto h-[calc(100vh-26rem)] border rounded mt-4 p-2">
-            <p className="my-3 " dangerouslySetInnerHTML={{__html: article}} />
-          </div>
-        )} */}
+
 
         {mode === 'gen_topic' ? (
           <TextInput
@@ -128,7 +124,11 @@ const Reading = () => {
             )}
           </div>
         )}
-
+        {article !== '' && (
+          <div className="overflow-y-auto max-h-[calc(100vh-26rem)] border rounded mt-4 p-2 h-auto">
+            <p className="my-3 " dangerouslySetInnerHTML={{ __html: article }} />
+          </div>
+        )}
         <Button
           type="submit"
           text={

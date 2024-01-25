@@ -1,18 +1,12 @@
-import { useAppSelector } from 'src/app/store';
-import { Icon } from 'src/assets/icon';
+import {useAppSelector} from 'src/app/store';
+import {Icon} from 'src/assets/icon';
 import TitleCard from 'src/components/cards/title-card';
 
-
 const RightSidebarPageContent = () => {
-
-  const { user } = useAppSelector(state => state.user)
-
-  const { history } = useAppSelector(state => state.history)
-
-
-
-
-  const defaultAvataUrl = "https://1.bp.blogspot.com/-rt6mn1dJJ7M/XqZl2p-TboI/AAAAAAAAjO8/SzKdmwQAFhUH2CXgUH6kluj_G8Gig2-xgCLcBGAsYHQ/s1600/Anh-avatar-dep-cho-con-trai%2B%25281%2529.jpg"
+  const {user} = useAppSelector(state => state.user);
+  const {history} = useAppSelector(state => state.history);
+  const defaultAvataUrl =
+    'https://1.bp.blogspot.com/-rt6mn1dJJ7M/XqZl2p-TboI/AAAAAAAAjO8/SzKdmwQAFhUH2CXgUH6kluj_G8Gig2-xgCLcBGAsYHQ/s1600/Anh-avatar-dep-cho-con-trai%2B%25281%2529.jpg';
   return (
     <div>
       {/* Người dùng */}
@@ -58,13 +52,13 @@ const RightSidebarPageContent = () => {
               <div className="">
                 <p className="text-xl">
                   {Math.round(user?.accounting_charge ?? 0)}{' '}
-                  <strong className='text-sm'>IMTA Point</strong>
+                  <strong className="text-sm">IMTA Point</strong>
                 </p>
               </div>
             </div>
           </div>
           <div className="dropdown dropdown-hover">
-            <div tabIndex={0} >
+            <div tabIndex={0}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -76,27 +70,39 @@ const RightSidebarPageContent = () => {
                   d="M11 17h2v-6h-2zm1-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"></path>
               </svg>
             </div>
-            <div tabIndex={0} className="dropdown-content z-[1] menu p-4 shadow bg-base-100 rounded-box w-56 !-translate-x-48 space-y-1">
-              <div className='flex justify-between items-center'><p> Listening </p><p>1</p></div>
-              <div className='flex justify-between items-center'><p>Reading (Your article)</p><p>1</p></div>
-              <div className='flex justify-between items-center'><p>Reading ( Generate Article)</p><p>2</p></div>
-              <div className='flex justify-between items-center'><p>Writing</p> <p>8</p></div>
+            <div
+              tabIndex={0}
+              className="dropdown-content z-[1] menu p-4 shadow bg-base-100 rounded-box w-56 !-translate-x-48 space-y-1">
+              <div className="flex justify-between items-center">
+                <p> Listening </p>
+                <p>1</p>
+              </div>
+              <div className="flex justify-between items-center">
+                <p>Reading (Your article)</p>
+                <p>1</p>
+              </div>
+              <div className="flex justify-between items-center">
+                <p>Reading ( Generate Article)</p>
+                <p>2</p>
+              </div>
+              <div className="flex justify-between items-center">
+                <p>Writing</p> <p>8</p>
+              </div>
             </div>
           </div>
-
         </div>
       </TitleCard>
 
-      {
-        history.length > 0 && <TitleCard title="History" topMargin="mt-4 text-center">
+      {history.length > 0 && (
+        <TitleCard title="History" topMargin="mt-4 text-center">
           <div className="max-w-sm w-full lg:max-w-full mb-6 last:mb-0 space-y-2">
-            {history?.map((item: any) => {
+            {history.map((item: any) => {
               return (
                 <div className=" group" key={item.id}>
                   <div className=" py-2 px-4  border rounded-lg leading-none flex items-center justify-between space-x-6">
                     <div className="flex items-center gap-2">
                       <span
-                        dangerouslySetInnerHTML={{ __html: Icon(item.skill) }}
+                        dangerouslySetInnerHTML={{__html: Icon(item.skill)}}
                       />
                       <div className="space-y-2">
                         <p className="text-sm">{item.skill}</p>
@@ -111,7 +117,7 @@ const RightSidebarPageContent = () => {
             })}
           </div>
         </TitleCard>
-      }
+      )}
     </div>
   );
 };

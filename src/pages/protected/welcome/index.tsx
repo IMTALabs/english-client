@@ -51,7 +51,7 @@ function InternalPage() {
               </div>
             </div>
           </div>
-          <img src={image} alt="" className='w-full'/>
+          <img src={image} alt="" className='w-full rounded-xl'/>
         </div>
       </div>
     </div>

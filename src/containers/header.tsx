@@ -1,14 +1,14 @@
-import { themeChange } from 'theme-change';
-import { useEffect, useState } from 'react';
+import {themeChange} from 'theme-change';
+import {useEffect, useState} from 'react';
 import BellIcon from '@heroicons/react/24/outline/BellIcon';
 import Bars3Icon from '@heroicons/react/24/outline/Bars3Icon';
-import { openRightDrawer } from 'src/features/common/right-drawer-slice';
-import { MODAL_BODY_TYPES, RIGHT_DRAWER_TYPES } from 'src/utils/global-constants';
-import { useAppDispatch, useAppSelector } from 'src/app/store';
-import { NavLink } from 'react-router-dom';
+import {openRightDrawer} from 'src/features/common/right-drawer-slice';
+import {MODAL_BODY_TYPES, RIGHT_DRAWER_TYPES} from 'src/utils/global-constants';
+import {useAppDispatch, useAppSelector} from 'src/app/store';
+import {NavLink} from 'react-router-dom';
 import RabbitLogo from 'assets/rabbit-logo.jpg';
-import { Icon } from 'src/assets/icon';
-import { openModal } from 'src/features/common/modal-slice';
+import {Icon} from 'src/assets/icon';
+import {openModal} from 'src/features/common/modal-slice';
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -16,7 +16,7 @@ const Header = () => {
     localStorage.getItem('theme'),
   );
 
-  const { noOfNotifications, pageTitle } = useAppSelector(state => state.header);
+  const {noOfNotifications, pageTitle} = useAppSelector(state => state.header);
 
   useEffect(() => {
     themeChange(false);
@@ -46,7 +46,7 @@ const Header = () => {
     // navbar fixed  flex-none justify-between bg-base-300  z-10 shadow-md
     <>
       <div className="navbar sticky top-0 z-10 p-0 m-0 min-h-0 ">
-        <div className="bg-primary w-full rounded-tr rounded-br pr-2 h-14">
+        <div className="bg-primary w-full pr-2 h-14">
           <li className=" ml-4 font-semibold text-xl flex flex-1 items-center justify-between ">
             <NavLink
               to={'/app/welcome'}
@@ -72,7 +72,7 @@ const Header = () => {
           <div className="flex-none ">
             <div
               onClick={() =>
-                  dispatch(
+                dispatch(
                   openModal({
                     bodyType: MODAL_BODY_TYPES.SEND_FEEDBACK,
                   }),

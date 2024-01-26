@@ -1,14 +1,14 @@
-import {useState, useRef, useEffect} from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 // Data
-import {recommendedVideo} from 'src/features/common/history-slice';
+import { recommendedVideo } from 'src/features/common/history-slice';
 
 export interface CarouselProps {
   listVideo: recommendedVideo[];
-  onSelectedVideo : (s: string) => void
+  onSelectedVideo: (s: string) => void
 }
 
-const Carousel = ({listVideo, onSelectedVideo}: CarouselProps) => {
+const Carousel = ({ listVideo, onSelectedVideo }: CarouselProps) => {
   const maxScrollWidth = useRef(0);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const carousel = useRef<HTMLDivElement | null>(null);
@@ -59,9 +59,9 @@ const Carousel = ({listVideo, onSelectedVideo}: CarouselProps) => {
       <div
         ref={carousel}
         className="carousel rounded-box mt-4 w-full bg-base-200 py-2">
-        {listVideo?.map((item, index) => (
+        {listVideo?.data?.map((item, index) => (
           <div
-            onClick={()=> onSelectedVideo(item.videoLink)}
+            onClick={() => onSelectedVideo(item.videoLink)}
             key={index}
             className={`carousel-item w-[45%] pl-2 max-h-[80%]`}>
             <div className="card card-side bg-base-100 w-full px-2 flex-col">

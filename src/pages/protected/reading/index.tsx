@@ -17,10 +17,13 @@ const Reading = () => {
   const [text, setText] = useState<string>('');
   const [mode, setMode] = useState<string>('gen_topic');
   const [article, setArticle] = useState<string>('');
+
+  const { readingQuizz } = useAppSelector(state => state.reading);
+
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const handleSubmit = async () => {
-    const paragraph = article !== '' ? article : text;
+    const paragraph = article !== '' ? article.data[0] : text;
     try {
       dispatch(
         openModal({
@@ -33,7 +36,9 @@ const Reading = () => {
         topic: '',
         paragraph: paragraph,
       });
-      dispatch(setReadingState(response));
+      console.log(response, 'response ');
+
+      dispatch(setReadingState(response.data));
     } catch (error: any) {
       dispatch(
         showNotification({
@@ -64,7 +69,9 @@ const Reading = () => {
         const response = await readingApi.postTopicReading({
           topic: text,
         });
-        setArticle(response);
+        console.log(response.data, 'response');
+
+        setArticle(response.data);
       } catch (error: any) {
         dispatch(
           showNotification({
@@ -88,8 +95,10 @@ const Reading = () => {
         ? inputText
         : inputText.substring(0, 497) + '...';
 
-    setArticle(limitedText);
+    setText(limitedText);
   };
+
+
 
   return (
     <div>
@@ -112,21 +121,21 @@ const Reading = () => {
         ) : (
           <div>
             <TextAreaInput
-              value={article}
+              value={text}
               onChange={handleInputChange}
               label="Enter your article"
               containerStyle="mt-4"
             />
-            {article.length > 0 && (
+            {text.length > 0 && (
               <div className="px-2">
-                <p className="text-md">{article.length} / 500 words</p>
+                <p className="text-md">{text.length} / 500 words</p>
               </div>
             )}
           </div>
         )}
         {article !== '' && (
           <div className="overflow-y-auto max-h-[calc(100vh-26rem)] border rounded mt-4 p-2 h-auto">
-            <p className="my-3 " dangerouslySetInnerHTML={{ __html: article }} />
+            <p className="my-3 " dangerouslySetInnerHTML={{ __html: article.data[0] }} />
           </div>
         )}
         <Button
@@ -139,7 +148,7 @@ const Reading = () => {
               : 'Generate Quizz'
           }
           onClick={mode === 'gen_topic' ? handleGenTopic : handleSubmit}
-          disabled={mode === 'gen_topic' ? text === '' : article === ''}
+          disabled={text === ''}
           containerStyle="mt-4"
         />
       </TitleCard>

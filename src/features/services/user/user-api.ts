@@ -12,8 +12,6 @@ const getInfoUser = () => {
 }
 
 const postFeedBack = ({ email, message }: FeedbackProps) => {
-    console.log(email, message , 'ascsaca');
-    
     return axios.post('english/v1/feedback', {
         email, message
     });

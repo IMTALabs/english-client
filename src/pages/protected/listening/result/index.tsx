@@ -17,16 +17,17 @@ interface Question {
 
 const ResultListening = () => {
   const { markListening, video } = useLocation()?.state;
+  console.log(markListening, 'markListening');
 
   return (
     <>
       <TitleCard
-        title={`Your result : ${markListening?.point}`}
+        title={`Your result : ${markListening?.data?.point}`}
         topMargin="0"
         titleStyle="text-3xl font-bold ">
         <div className="bg-base-100  rounded-lg mt-[10px] flex justify-between gap-3">
           <div className="w-3/5 overflow-y-auto h-[calc(100vh-14rem)]">
-            {markListening?.results?.map((item: Question, index: number) => {
+            {markListening?.data?.results?.map((item: Question, index: number) => {
               return (
                 <div key={index}>
                   <Quizz

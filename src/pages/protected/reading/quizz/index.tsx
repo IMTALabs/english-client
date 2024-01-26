@@ -85,24 +85,27 @@ const QuizzReading = () => {
     dispatch(updateCharge(readingQuizz?.remaining_accounting_charge));
   }, []);
 
+  console.log(readingQuizz , 'readingQuizz');
+  
+
   return (
     <div>
       <TitleCard
         title="Reading"
         topMargin="0"
         skill='reading'
-        hash={readingQuizz?.hash}
+        hash={readingQuizz?.data?.hash}
         TopSideButtons={<TimerApp Active={true} />}>
         <div className="flex items-center">
           <div className="w-1/2">
             <AssignmentContent
-              paragraph={readingQuizz?.body?.paragraph}
+              paragraph={readingQuizz?.data?.body?.paragraph}
               type={'text'}
             />
           </div>
           <div className="w-1/2">
             <AssignmentQuizz
-              form={readingQuizz?.body?.form}
+              form={readingQuizz?.data?.body?.form}
               onChoiceSelect={handleChoiceSelect}
             />
             <Button

@@ -1,23 +1,23 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import TitleCard from 'src/components/cards/title-card';
-import {useNavigate} from 'react-router-dom';
-import {useAppDispatch, useAppSelector} from 'src/app/store';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from 'src/app/store';
 import Button from 'src/components/button';
 import listeningApi from 'src/features/services/listening/listening-api';
-import {setListeningState} from 'src/features/common/listening-slice';
+import { setListeningState } from 'src/features/common/listening-slice';
 import Carousel from 'src/components/carousel';
-import {showNotification} from 'src/features/common/header-slice';
-import {MODAL_BODY_TYPES} from 'src/utils/global-constants';
-import {closeModal, openModal} from 'src/features/common/modal-slice';
+import { showNotification } from 'src/features/common/header-slice';
+import { MODAL_BODY_TYPES } from 'src/utils/global-constants';
+import { closeModal, openModal } from 'src/features/common/modal-slice';
 import TextInput from 'src/components/text-input/text-input';
 
 const Listening = () => {
   const dispatch = useAppDispatch();
   const [linkUrl, setLinkUrl] = useState('');
-  const {listeningQuizz} = useAppSelector(state => state.listening || '');
-  const {isOpen} = useAppSelector(state => state.modal);
+  
+  const { isOpen } = useAppSelector(state => state.modal);
   const [isDisabled, setIsDisabled] = useState(true);
-  const {youtubeRecommened} = useAppSelector(
+  const { youtubeRecommened } = useAppSelector(
     state => state.history,
   );
   const navigeUrl = useNavigate();
@@ -31,21 +31,14 @@ const Listening = () => {
         }),
       );
       const response = await listeningApi.postYoutubeLink(linkUrl);
-      dispatch(setListeningState(response));
+      dispatch(setListeningState(response.data));
     } catch (error: any) {
-      dispatch(showNotification({message: error.message, status: 0}));
+      dispatch(showNotification({ message: error.message, status: 0 }));
     } finally {
       dispatch(closeModal());
+      navigeUrl('quizz')
     }
   };
-
-  useEffect(() => {
-    if (!isOpen && Object.keys(listeningQuizz).length > 0) {
-      navigeUrl('quizz', {
-        state: {quizz: listeningQuizz},
-      });
-    }
-  }, [isOpen]);
 
   const checkValidYoutubeUrl = (url: string) => {
     const regex = /^(https?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+$/;
@@ -79,10 +72,10 @@ const Listening = () => {
             disabled={isDisabled}
             containerStyle="mt-4"
           />
-          {/* <Carousel
+          <Carousel
             listVideo={youtubeRecommened}
             onSelectedVideo={setLinkUrl}
-          /> */}
+          />
         </div>
         {/* carousel */}
       </TitleCard>

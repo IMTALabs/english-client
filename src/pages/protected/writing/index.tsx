@@ -1,24 +1,24 @@
-import {useEffect, useState} from 'react';
-import {useNavigate} from 'react-router-dom';
-import {useAppDispatch, useAppSelector} from 'src/app/store';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from 'src/app/store';
 import Button from 'src/components/button';
 import TitleCard from 'src/components/cards/title-card';
 import Tab from 'src/components/tab';
 import TextAreaInput from 'src/components/text-input/text-area-input';
 import TextInput from 'src/components/text-input/text-input';
-import {showNotification} from 'src/features/common/header-slice';
-import {closeModal, openModal} from 'src/features/common/modal-slice';
-import {postReadingState} from 'src/features/common/writing-slice';
+import { showNotification } from 'src/features/common/header-slice';
+import { closeModal, openModal } from 'src/features/common/modal-slice';
+import { postReadingState } from 'src/features/common/writing-slice';
 import writingApi from 'src/features/services/writing/writing-api';
-import {MODAL_BODY_TYPES} from 'src/utils/global-constants';
+import { MODAL_BODY_TYPES } from 'src/utils/global-constants';
 
 const Writing = () => {
-  const {writingQuizz} = useAppSelector(state => state.writing);
+  const { writingQuizz } = useAppSelector(state => state.writing);
   const [text, setText] = useState<string>('');
   const [mode, setMode] = useState<string>('gen_topic');
   const navigateUrl = useNavigate();
   const dispatch = useAppDispatch();
-  const {isOpen} = useAppSelector(state => state.modal);
+  const { isOpen } = useAppSelector(state => state.modal);
 
   const handleSubmit = async () => {
     if (mode === 'gen_topic') {
@@ -30,15 +30,16 @@ const Writing = () => {
           }),
         );
         const response = await writingApi.postGenInstructionApi(text);
-        dispatch(postReadingState(response));
+        dispatch(postReadingState(response.data));
       } catch (error: any) {
-        dispatch(showNotification({message: error.message, status: 0}));
+        dispatch(showNotification({ message: error.message, status: 0 }));
       } finally {
         dispatch(closeModal());
+        navigateUrl('quizz');
       }
     } else {
       navigateUrl('quizz', {
-        state: {text},
+        state: { text },
       });
     }
   };

@@ -20,7 +20,7 @@ const Quizz = ({ index, title, explain, user_answer, answer }: QuizzProps) => {
                 {
                     user_answer == answer ? <p className="text-[#10B981] sm:text-[24px] mb-[20px] mt-[20px]">Correct Answer</p> : <p className="text-[#FF0000] sm:text-[24px] mb-[20px] mt-[20px]">Wrong answer</p>
                 }
-                <p className="sm:text-[24px] mb-[40px]">Answer:{explain}</p>
+                <p className="sm:text-[24px] mb-[40px]">Answer: {explain}</p>
             </div>
         </div>
     )

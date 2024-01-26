@@ -29,9 +29,7 @@ const AppRouter = () => {
   const getUser = async () => {
     try {
       const response = await userApi.getInfoUser();
-      if (Object.keys(response).length > 0) {
-        dispatch(setUserInfo(response.user));
-      }
+      dispatch(setUserInfo(response.data.user));
     } catch (error) {
       dispatch(setUserInfo({}));
       dispatch(showNotification({message: error, status: 0}));
@@ -42,8 +40,8 @@ const AppRouter = () => {
 
   const getHistory = async () => {
     try {
-      const response = await historyApi.getHistory();
-      dispatch(setHistory(response));
+      const response = await historyApi.getHistory(5);
+      dispatch(setHistory(response.data.data));
     } catch (error) {
       dispatch(showNotification({message: error, status: 0}));
     }
@@ -55,7 +53,10 @@ const AppRouter = () => {
         'listening',
         10,
       );
-      dispatch(setRecommended(response));
+
+      console.log(response, 'res ne');
+
+      dispatch(setRecommended(response.data));
     } catch (error) {
       dispatch(showNotification({message: error, status: 0}));
     }

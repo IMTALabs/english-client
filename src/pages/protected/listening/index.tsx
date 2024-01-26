@@ -79,10 +79,10 @@ const Listening = () => {
             disabled={isDisabled}
             containerStyle="mt-4"
           />
-          <Carousel
+          {/* <Carousel
             listVideo={youtubeRecommened}
             onSelectedVideo={setLinkUrl}
-          />
+          /> */}
         </div>
         {/* carousel */}
       </TitleCard>

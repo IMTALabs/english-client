@@ -1,16 +1,16 @@
-import {Route, Routes, useLocation} from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import routes from 'src/routes/index';
-import {Suspense, lazy} from 'react';
+import { Suspense, lazy } from 'react';
 import SuspenseContent from './suspense-content';
-import {useEffect, useRef} from 'react';
-import {useAppSelector} from 'src/app/store';
+import { useEffect, useRef } from 'react';
+import { useAppSelector } from 'src/app/store';
 import RightSidebarPageContent from '../containers/right-sidebar-page-content';
 
 const Page404 = lazy(() => import('src/pages/protected/404'));
 
 function PageContent() {
   const mainContentRef = useRef(null);
-  const {pageTitle} = useAppSelector(state => state.header);
+  const { pageTitle } = useAppSelector(state => state.header);
   const searchParams = useLocation();
   // side bar hide when screen is small
   const hideSidebar =
@@ -32,9 +32,8 @@ function PageContent() {
         ${hideSidebar && 'grid-cols-6'}`}
         ref={mainContentRef}>
         <div
-          className={`col-span-full ${
-            hideSidebar ? `lg:col-span-8` : `min-[1362px]:col-span-6`
-          }`}>
+          className={`col-span-full ${hideSidebar ? `lg:col-span-8` : `min-[1362px]:col-span-6`
+            } overflow-y-auto h-[calc(100vh-7rem)]`}>
           <Suspense fallback={<SuspenseContent />}>
             <Routes>
               {routes.map((route, key) => {

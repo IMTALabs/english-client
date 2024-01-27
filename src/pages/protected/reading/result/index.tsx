@@ -19,8 +19,6 @@ const ResultReading = () => {
     const {
         markReading, article
     } = useLocation()?.state
-    console.log(markReading);
-
 
     return (
         <TitleCard

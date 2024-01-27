@@ -35,16 +35,14 @@ function Login() {
       setLoading(true);
       try {
         const response = await authenticationApi.postLogin(loginObj);
-        if (response) {
-          const { isLoggedIn, user, accessToken } = response.data as UserState;
+        if (response.data) {
+          const { isLoggedIn, user, accessToken } = response.data.data as UserState;
           dispatch(setUserInfo(user));
           dispatch(setLoginInfo({ isLoggedIn, accessToken }));
           dispatch(showNotification({ message: 'Login success', status: 1 }));
           window.location.href = '/app/welcome';
         }
       } catch (error: any) {
-        console.log(error);
-
         dispatch(showNotification({ message: error.response.data.message, status: 0 }));
       } finally {
         setLoading(false);

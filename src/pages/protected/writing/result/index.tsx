@@ -1,11 +1,16 @@
 import { useLocation } from "react-router-dom";
+import { useAppSelector } from "src/app/store";
 import TitleCard from "src/components/cards/title-card";
 import Criterion from "src/components/criterion";
 import ScoreCriterion from "src/components/score-criterion";
 
 const ResultWriting = () => {
-  const { writingQuizz, textAreaValue, instruction } = useLocation()?.state;
-  const keysArray = writingQuizz?.criteria?.map((feedback: any) => Object.keys(feedback)[0]) as ('TA' | 'CC' | 'LR' | 'GRA')[];
+  const { textAreaValue, instruction } = useLocation()?.state;
+
+
+
+  const { writingQuizz } = useAppSelector(state => state?.writing);
+  const keysArray = writingQuizz?.data?.criteria?.map((feedback: any) => Object.keys(feedback)[0]) as ('TA' | 'CC' | 'LR' | 'GRA')[];
 
 
   return (
@@ -17,24 +22,23 @@ const ResultWriting = () => {
             <p >{textAreaValue}</p>
 
             {
-              writingQuizz?.bad_parts?.map((item, index) => {
+              writingQuizz?.data?.bad_parts?.map((item, index) => {
                 return <Criterion text={item} name={keysArray[index]} />
               })
             }
             {
-              writingQuizz?.criteria?.map((item, index) => {
+              writingQuizz?.data?.criteria?.map((item, index) => {
                 return <Criterion text={item} name={keysArray[index]} />
               })
             }
           </div>
-          {/* 2 */}
           <div className=' col-span-full lg:col-span-2'>
             <div className=" px-2">
-              <p className="text-[96px] text-center font-bold text-green-400 my-4 ">{writingQuizz?.band_score}</p>
+              <p className="text-[96px] text-center font-bold text-green-400 my-4 ">{writingQuizz?.data?.band_score}</p>
               <p className="text-[36px] font-normal text-center mb-[90px]">Overall Band Score</p>
               <div>
                 {
-                  writingQuizz?.criteria?.map((item, index) => {
+                  writingQuizz?.data?.criteria?.map((item, index) => {
                     return <ScoreCriterion name={keysArray[index]} point={item.score} />
                   })
                 }

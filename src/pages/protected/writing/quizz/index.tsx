@@ -7,32 +7,49 @@ import Button from 'src/components/button';
 import TitleCard from 'src/components/cards/title-card';
 import TimerApp from 'src/components/time';
 import { showNotification } from 'src/features/common/header-slice';
-import {
-  clearWritingState,
-  postWritingPoint,
-} from 'src/features/common/writing-slice';
+import { closeModal, openModal } from 'src/features/common/modal-slice';
+import { postReadingState, } from 'src/features/common/writing-slice';
+import writingApi from 'src/features/services/writing/writing-api';
+import { MODAL_BODY_TYPES } from 'src/utils/global-constants';
+
+
+
+
 const QuizzWriting = () => {
-  const QuizzWriting = useLocation()?.state?.quizz;
   const textWriting = useLocation()?.state?.text;
 
   const navigeUrl = useNavigate();
-  const questions: string = QuizzWriting;
   const [textAreaValue, setTextAreaValue] = useState<string>('');
   const dispatch = useAppDispatch();
-
   const { writingQuizz } = useAppSelector(state => state?.writing);
+
   const { isOpen } = useAppSelector(state => state.modal);
   const handleChoiceTextarea = (value: string) => {
     setTextAreaValue(value);
   };
-  const handleConfirmQuizz = () => {
+  const handleConfirmQuizz = async () => {
     if (textAreaValue.length > 0) {
-      dispatch(
-        postWritingPoint({
+      try {
+        dispatch(
+          openModal({
+            title: 'Imta Bot is working please wait for 10-30s',
+            bodyType: MODAL_BODY_TYPES.LOADING,
+          }),
+        );
+        const response = await writingApi.postInstructionApi({
           submission: textAreaValue,
-          instruction: questions?.body || textWriting,
-        }),
-      );
+          instruction: writingQuizz?.data?.body.instruction || textWriting,
+        })
+        dispatch(postReadingState(response.data));
+      } catch (error: any) {
+        dispatch(showNotification({ message: error.message, status: 0 }));
+      } finally {
+        dispatch(closeModal());
+        navigeUrl('/app/writing/result', {
+          state: { textAreaValue, instruction: writingQuizz?.data?.body.instruction || textWriting },
+        });
+      }
+
     } else {
       dispatch(
         showNotification({
@@ -42,29 +59,21 @@ const QuizzWriting = () => {
       );
     }
   };
-  useEffect(() => {
-    if (!isOpen && writingQuizz?.band_score) {
-      navigeUrl('/app/writing/result', {
-        state: {  writingQuizz, textAreaValue, instruction : questions?.body || textWriting  },
-      });
-    }
-    if (Object.keys(writingQuizz).length > 0) {
-      dispatch(clearWritingState());
-    }
-  }, [isOpen, writingQuizz]);
+
+
   return (
     <TitleCard
       title="Writing"
       topMargin="0"
       skill='writing'
-      hash={QuizzWriting?.hash}
+      hash={writingQuizz?.hash}
       TopSideButtons={<TimerApp Active={true} />}>
       <div className="flex flex-1">
         <div className="w-1/3">
           {textWriting ? (
             <AssignmentContent paragraph={textWriting} />
           ) : (
-            <AssignmentContent paragraph={QuizzWriting?.body} />
+            <AssignmentContent paragraph={writingQuizz?.data?.body} />
           )}
         </div>
         <div className="w-2/3">

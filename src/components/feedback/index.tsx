@@ -1,12 +1,12 @@
-import {useState} from 'react';
-import {useAppDispatch, useAppSelector} from 'src/app/store';
-import {showNotification} from 'src/features/common/header-slice';
-import {closeModal} from 'src/features/common/modal-slice';
-import userApi, {FeedbackProps} from 'src/features/services/user/user-api';
+import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from 'src/app/store';
+import { showNotification } from 'src/features/common/header-slice';
+import { closeModal } from 'src/features/common/modal-slice';
+import userApi, { FeedbackProps } from 'src/features/services/user/user-api';
 import TextAreaInput from 'src/components/text-input/text-area-input';
 
 const Feedback = () => {
-  const {user} = useAppSelector(e => e.user);
+  const { user } = useAppSelector(e => e.user);
 
   const dispatch = useAppDispatch();
   const [feedbackInfo, setFeedbackInfo] = useState<FeedbackProps>({
@@ -17,9 +17,9 @@ const Feedback = () => {
   const handleSubmit = async () => {
     try {
       await userApi.postFeedBack(feedbackInfo);
-      dispatch(showNotification({message: 'Success', status: 1}));
+      dispatch(showNotification({ message: 'Success', status: 1 }));
     } catch (error) {
-      console.log(error, 'acsc');
+      console.log(error);
     } finally {
       dispatch(closeModal());
       setFeedbackInfo({
@@ -45,7 +45,7 @@ const Feedback = () => {
           <TextAreaInput
             value={feedbackInfo.message}
             onChange={e =>
-              setFeedbackInfo({...feedbackInfo, message: e.target.value})
+              setFeedbackInfo({ ...feedbackInfo, message: e.target.value })
             }
             label="Write your feedback"
           />

@@ -7,7 +7,6 @@ import Button from 'src/components/button';
 import TitleCard from 'src/components/cards/title-card';
 import TimerApp from 'src/components/time';
 import { showNotification } from 'src/features/common/header-slice';
-import { clearListeningState } from 'src/features/common/listening-slice';
 import { updateCharge } from 'src/features/common/user-slice';
 import listeningApi from 'src/features/services/listening/listening-api';
 import { closeModal, openModal } from 'src/features/common/modal-slice';
@@ -26,8 +25,9 @@ interface Question {
 }
 
 const QuizzListening = () => {
-  const { body, link, remaining_accounting_charge, hash } =
-    useLocation()?.state?.quizz;
+  const { listeningQuizz } = useAppSelector(state => state.listening || '');
+  const { body, link, remaining_accounting_charge, hash } = listeningQuizz.data
+
   const { isOpen } = useAppSelector(state => state.modal);
   const dispatch = useAppDispatch();
   const navigeUrl = useNavigate();
@@ -43,7 +43,6 @@ const QuizzListening = () => {
   };
   useEffect(() => {
     dispatch(updateCharge(remaining_accounting_charge));
-    dispatch(clearListeningState());
   }, []);
   const handleConfirmQuizz = async () => {
     // Kiểm tra xem đã chọn hết lựa chọn hay chưa
@@ -63,10 +62,10 @@ const QuizzListening = () => {
       };
       try {
         const response = await listeningApi.postMarkListening(formChoices);
-        if (response) {
+        if (response.data) {
           navigeUrl(`/app/listening/result/id=${hash}`, {
             state: {
-              markListening: response,
+              markListening: response.data,
               video: link,
             },
           });

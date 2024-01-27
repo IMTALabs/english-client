@@ -1,10 +1,13 @@
-import {useAppSelector} from 'src/app/store';
-import {Icon} from 'src/assets/icon';
+import { useAppSelector } from 'src/app/store';
+import { Icon } from 'src/assets/icon';
 import TitleCard from 'src/components/cards/title-card';
 
 const RightSidebarPageContent = () => {
-  const {user} = useAppSelector(state => state.user);
-  const {history} = useAppSelector(state => state.history);
+  const { user } = useAppSelector(state => state.user);
+  const { history } = useAppSelector(state => state.history);
+
+
+
   const defaultAvataUrl =
     'https://1.bp.blogspot.com/-rt6mn1dJJ7M/XqZl2p-TboI/AAAAAAAAjO8/SzKdmwQAFhUH2CXgUH6kluj_G8Gig2-xgCLcBGAsYHQ/s1600/Anh-avatar-dep-cho-con-trai%2B%25281%2529.jpg';
   return (
@@ -93,16 +96,16 @@ const RightSidebarPageContent = () => {
         </div>
       </TitleCard>
 
-      {history.length > 0 && (
+      {history && (
         <TitleCard title="History" topMargin="mt-4 text-center">
           <div className="max-w-sm w-full lg:max-w-full mb-6 last:mb-0 space-y-2">
-            {history.map((item: any) => {
+            {history?.data?.map((item: any) => {
               return (
                 <div className=" group" key={item.id}>
                   <div className=" py-2 px-4  border rounded-lg leading-none flex items-center justify-between space-x-6">
                     <div className="flex items-center gap-2">
                       <span
-                        dangerouslySetInnerHTML={{__html: Icon(item.skill)}}
+                        dangerouslySetInnerHTML={{ __html: Icon(item.skill) }}
                       />
                       <div className="space-y-2">
                         <p className="text-sm">{item.skill}</p>

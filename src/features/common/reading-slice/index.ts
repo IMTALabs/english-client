@@ -45,6 +45,8 @@ export const readingSlice = createSlice({
             return initialState;
         },
         setReadingState: (state, action) => {
+            console.log(action.payload);
+            
             state.readingQuizz = action.payload
         },
     }

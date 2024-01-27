@@ -46,7 +46,7 @@ export const listeningSlice = createSlice({
             return initialState;
         },
         setListeningState: (state, action) => {
-            state.listeningQuizz = action.payload;
+            state.listeningQuizz = action.payload.data;
         },
     },
 });

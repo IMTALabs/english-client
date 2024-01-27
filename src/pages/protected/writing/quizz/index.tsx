@@ -27,6 +27,9 @@ const QuizzWriting = () => {
   const handleChoiceTextarea = (value: string) => {
     setTextAreaValue(value);
   };
+
+
+
   const handleConfirmQuizz = async () => {
     if (textAreaValue.length > 0) {
       try {
@@ -38,7 +41,7 @@ const QuizzWriting = () => {
         );
         const response = await writingApi.postInstructionApi({
           submission: textAreaValue,
-          instruction: writingQuizz?.data?.body.instruction || textWriting,
+          instruction: textWriting || writingQuizz?.data?.body.instruction,
         })
         dispatch(postReadingState(response.data));
       } catch (error: any) {
@@ -46,7 +49,7 @@ const QuizzWriting = () => {
       } finally {
         dispatch(closeModal());
         navigeUrl('/app/writing/result', {
-          state: { textAreaValue, instruction: writingQuizz?.data?.body.instruction || textWriting },
+          state: { textAreaValue, instruction: textWriting || writingQuizz?.data?.body.instruction },
         });
       }
 

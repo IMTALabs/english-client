@@ -17,7 +17,7 @@ const ResultWriting = () => {
     <div>
       <TitleCard title="Evaluation" topMargin="mt-0">
         <div className='grid grid-cols-8 gap-4 overflow-y-auto md:pt-4 pt-4 px-6 h-full w-full'>
-          <div className='col-span-full lg:col-span-6 overflow-y-auto h-[calc(100vh-15rem)]'>
+          <div className='col-span-full lg:col-span-6 overflow-y-auto h-[calc(100vh-16rem)]'>
             <h2>Instruction :  <span>{instruction}</span></h2>
             <p >{textAreaValue}</p>
 

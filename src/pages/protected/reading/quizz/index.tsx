@@ -29,7 +29,7 @@ const QuizzReading = () => {
 
   const navigeUrl = useNavigate();
   const dispatch = useAppDispatch();
-  const questions: Question[] = readingQuizz?.body?.form;
+  const questions: Question[] = readingQuizz?.data?.body?.form;
   const [selectedChoices, setSelectedChoices] = useState<
     Record<string, string>
   >({});
@@ -46,7 +46,6 @@ const QuizzReading = () => {
   const handleConfirmQuizz = async () => {
     const allQuestionsAnswered =
       Object.keys(selectedChoices).length === questions?.length;
-
     if (allQuestionsAnswered) {
       dispatch(
         openModal({
@@ -55,15 +54,15 @@ const QuizzReading = () => {
       );
       const formChoices = {
         submit: selectedChoices,
-        hash: readingQuizz.hash,
+        hash: readingQuizz?.data?.hash,
       };
       try {
         const response = await readingApi.postMarkReading(formChoices);
         if (response) {
-          navigeUrl(`/app/reading/result/id=${readingQuizz.hash}`, {
+          navigeUrl(`/app/reading/result/id=${readingQuizz?.data?.hash}`, {
             state: {
-              markReading: response,
-              article: readingQuizz?.body?.paragraph,
+              markReading: response.data,
+              article: readingQuizz?.data?.body?.paragraph,
             },
           });
         }
@@ -84,6 +83,7 @@ const QuizzReading = () => {
   useEffect(() => {
     dispatch(updateCharge(readingQuizz?.remaining_accounting_charge));
   }, []);
+  console.log(readingQuizz);
 
 
   return (

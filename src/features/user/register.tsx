@@ -36,13 +36,12 @@ function Register() {
         setLoading(true);
         // Call API to check user credentials and save token in localstorage
         const response = await authenticationApi.postRegister(registerObj)
-
-        if (response?.data?.user && response?.data?.accessToken) {
-          dispatch(setUserInfo(response?.data.user));
-          dispatch(setLoginInfo({ isLoggedIn: true, accessToken: response.data.accessToken }));
+        if (response?.data?.user && response?.data?.data?.accessToken) {
+          dispatch(setUserInfo(response?.data?.data?.user));
+          dispatch(setLoginInfo({ isLoggedIn: true, accessToken: response.data.data.accessToken }));
         }
         dispatch(showNotification({ message: "Register success", status: 1 }))
-        localStorage.setItem('token', response?.data?.accessToken);
+        localStorage.setItem('token', response?.data?.data?.accessToken);
         window.location.href = '/app/welcome';
       } catch (error: any) {
         dispatch(showNotification({ message: error.response.data.errors.email[0], status: 0 }))

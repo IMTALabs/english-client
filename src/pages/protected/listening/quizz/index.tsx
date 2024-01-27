@@ -26,7 +26,7 @@ interface Question {
 
 const QuizzListening = () => {
   const { listeningQuizz } = useAppSelector(state => state.listening || '');
-  const { body, link, remaining_accounting_charge, hash } = listeningQuizz.data
+  const { body, link, remaining_accounting_charge, hash } = listeningQuizz
 
   const { isOpen } = useAppSelector(state => state.modal);
   const dispatch = useAppDispatch();
@@ -44,6 +44,8 @@ const QuizzListening = () => {
   useEffect(() => {
     dispatch(updateCharge(remaining_accounting_charge));
   }, []);
+
+
   const handleConfirmQuizz = async () => {
     // Kiểm tra xem đã chọn hết lựa chọn hay chưa
     const allQuestionsAnswered =

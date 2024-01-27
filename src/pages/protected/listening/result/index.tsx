@@ -17,7 +17,6 @@ interface Question {
 
 const ResultListening = () => {
   const { markListening, video } = useLocation()?.state;
-  console.log(markListening, 'markListening');
 
   return (
     <>

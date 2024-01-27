@@ -43,8 +43,6 @@ function Login() {
           window.location.href = '/app/welcome';
         }
       } catch (error: any) {
-        console.log(error);
-
         dispatch(showNotification({ message: error.response.data.message, status: 0 }));
       } finally {
         setLoading(false);

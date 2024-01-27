@@ -36,8 +36,6 @@ const Reading = () => {
         topic: '',
         paragraph: paragraph,
       });
-      console.log(response, 'response ');
-
       dispatch(setReadingState(response.data));
     } catch (error: any) {
       dispatch(
@@ -69,8 +67,6 @@ const Reading = () => {
         const response = await readingApi.postTopicReading({
           topic: text,
         });
-        console.log(response.data, 'response');
-
         setArticle(response.data);
       } catch (error: any) {
         dispatch(

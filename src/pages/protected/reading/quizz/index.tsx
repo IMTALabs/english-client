@@ -85,8 +85,6 @@ const QuizzReading = () => {
     dispatch(updateCharge(readingQuizz?.remaining_accounting_charge));
   }, []);
 
-  console.log(readingQuizz , 'readingQuizz');
-  
 
   return (
     <div>

@@ -18,7 +18,7 @@ const Button = ({
       <button
         onClick={onClick}
         disabled={disabled}
-        className="btn btn-primary hover:bg-secondary border-none min-w-[90px]"
+        className="btn btn-secondary hover:bg-teal border-none min-w-[90px]"
         type={type}>
         {text}
       </button>

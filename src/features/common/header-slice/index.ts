@@ -2,23 +2,23 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 interface HeaderState {
-    pageTitle: string;
-    noOfNotifications: number;
-    newNotificationMessage: string;
-    newNotificationStatus: number;
+  pageTitle: string;
+  noOfNotifications: number;
+  newNotificationMessage: string;
+  newNotificationStatus: number;
 }
 
 interface HeaderAction {
-    type: string;
-    payload: any;
+  type: string;
+  payload: any;
 }
 
 
 const initialState: HeaderState = {
-    pageTitle: "Home",
-    noOfNotifications: 0,
-    newNotificationMessage: "",
-    newNotificationStatus: 1,
+  pageTitle: "Home",
+  noOfNotifications: 0,
+  newNotificationMessage: "",
+  newNotificationStatus: 1,
 };
 
 

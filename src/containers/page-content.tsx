@@ -53,7 +53,7 @@ function PageContent() {
           </Suspense>
         </div>
         {!hideSidebar && (
-          <div className="col-span-full lg:col-span-2 max-lg:hidden max-[1362px]:hidden ">
+          <div className="col-span-full lg:col-span-2 max-lg:hidden max-[1362px]:hidden  border-dashed border-l ">
             <RightSidebarPageContent />
           </div>
         )}

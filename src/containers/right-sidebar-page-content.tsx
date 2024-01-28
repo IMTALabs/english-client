@@ -11,7 +11,7 @@ const RightSidebarPageContent = () => {
   const defaultAvataUrl =
     'https://1.bp.blogspot.com/-rt6mn1dJJ7M/XqZl2p-TboI/AAAAAAAAjO8/SzKdmwQAFhUH2CXgUH6kluj_G8Gig2-xgCLcBGAsYHQ/s1600/Anh-avatar-dep-cho-con-trai%2B%25281%2529.jpg';
   return (
-    <div>
+    <div className='divide-y divide-dashed'>
       {/* Người dùng */}
       <TitleCard title="" topMargin="mb-4">
         <div className="flex justify-center items-center">
@@ -44,7 +44,7 @@ const RightSidebarPageContent = () => {
               width="32"
               height="32"
               viewBox="0 0 24 24"
-              className="text-secondary">
+              className="">
               <path
                 fill="currentColor"
                 fillRule="evenodd"
@@ -102,7 +102,7 @@ const RightSidebarPageContent = () => {
             {history?.data?.map((item: any) => {
               return (
                 <div className=" group" key={item.id}>
-                  <div className=" py-2 px-4  border rounded-lg leading-none flex items-center justify-between space-x-6">
+                  <div className=" py-2 px-4 leading-none flex items-center justify-between space-x-6 bg-gray-100 rounded-md">
                     <div className="flex items-center gap-2">
                       <span
                         dangerouslySetInnerHTML={{ __html: Icon(item.skill) }}

@@ -25,8 +25,8 @@ export default {
       {
         light: {
           ...require("daisyui/src/theming/themes")["lofi"],
-          primary: "black",
-          secondary: "teal",
+          primary: "#fcfcfc",
+          secondary: "#14161a",
           third: "gray",
           "accent": "#fff",
           "--rounded-btn": "0.5rem",

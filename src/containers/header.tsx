@@ -52,11 +52,11 @@ const Header = () => {
               to={'/app/welcome'}
               className="flex items-center justify-start  max-lg:hidden w-80 px-6">
               <img
-                className="mask mask-squircle w-24 h-24 object-cover aspect-square"
+                className="mask mask-squircle w-20 h-20 object-cover aspect-square"
                 src={Logo}
                 alt="Doraemon Logo"
               />
-              <span className="text-lg font-semibold"> English</span>
+              <span className="text-lg font-semibold">ENGLISH</span>
             </NavLink>{' '}
             <div className="flex-1">
               <label

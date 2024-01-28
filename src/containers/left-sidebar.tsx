@@ -32,25 +32,16 @@ function LeftSidebar() {
   return (
     <div className="drawer-side z-30 h-[calc(100vh-80px)] top-14 ">
       <label htmlFor="left-sidebar-drawer" className="drawer-overlay"></label>
-      <ul className="menu pt-2 w-80 bg-primary min-h-full text-accent  border-dashed border-r">
+      <ul className="menu pt-2 w-80 bg-white min-h-full text-accent  border-dashed border-r">
         <button
           className="btn btn-ghost bg-base-300 btn-circle z-50 top-0 right-0 mt-4 mr-2 absolute lg:hidden"
           onClick={e => close(e)}>
           <XMarkIcon className="h-5 inline-block w-5" />
         </button>
 
-        <div className="flex flex-1 flex-col justify-between text-black px-6 ">
-
+        <div className="flex flex-1 flex-col justify-between text-black px-6 pt-8 pb-4">
           <div className="">
-            <div className="flex items-center bg-gray-100  p-5 gap-x-4 rounded-md mb-12">
-              <img src="https://criptic.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fauthor.661cd724.jpg&w=256&q=75" alt="" className="h-10 w-10 rounded-full" />
-              <div>
-                <p className="font-bold">CAMERON WILLIAMSON</p>
-                <span>
-                  admin
-                </span>
-              </div>
-            </div>
+            <span className="px-4 text-gray-400 text-xs font-bold">Skill</span>
             {routes.map((route, k) => {
               return (
                 <li className="text-base pt-2" key={k}>
@@ -62,7 +53,7 @@ function LeftSidebar() {
                       to={route.path}
                       className={({ isActive }) =>
                         `${(isActive) ? 'font-semibold text-white bg-[#14161a]' : 'font-normal'
-                        } hover:font-semibold hover:bg-[#14161a] item-link hover:text-white transition-all text-gray-500`
+                        } hover:font-semibold hover:bg-[#14161a] item-link hover:text-white transition-all text-gray-700`
                       }
                     >
                       <span dangerouslySetInnerHTML={{ __html: route.icon }}></span> {route.name}
@@ -78,11 +69,11 @@ function LeftSidebar() {
               );
             })}
             <div className="relative mt-20 hidden flex-col rounded-lg bg-gray-200 p-6 lg:flex">
-              <div className="-mt-12">
-                <img alt="Shape image" loading="lazy" width="200" height="144" decoding="async" data-nimg="1" src="https://criptic.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsidebar-shape.47682628.png&w=256&q=75" />
+              <div className="-mt-20">
+                <img alt="Shape image" loading="lazy" width="200" height="144" decoding="async" data-nimg="1" src="https://3dicons.sgp1.cdn.digitaloceanspaces.com/v1/dynamic/premium/notebook-dynamic-premium.png" />
               </div>
-              <h2 className="mb-7 mt-5 text-center text-[20px] font-semibold leading-8 text-light-dark ">Explore the new Blockchain System</h2>
-              <button className="h-12 rounded-lg bg-secondary text-white">Try Now </button>
+              <h2 className="mb-7 mt-4 text-center text-[20px] font-semibold leading-8 text-light-dark ">Explore the new Ecosystem</h2>
+              <a className="btn h-12 btn-primary" target="_blank" href="https://imtaedu.com">Try Now</a>
             </div>
           </div>
 

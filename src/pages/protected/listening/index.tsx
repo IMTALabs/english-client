@@ -34,8 +34,6 @@ const Listening = () => {
       dispatch(setListeningState(response.data));
       navigeUrl('quizz')
     } catch (error: any) {
-      console.log(error);
-      
       dispatch(showNotification({ message: error.response.data.errors.message, status: 0 }));
     } finally {
       dispatch(closeModal());

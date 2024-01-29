@@ -19,11 +19,10 @@ const ResultReading = () => {
     const {
         markReading, article
     } = useLocation()?.state
-    console.log(markReading );
-    
+
     return (
         <TitleCard
-            title={`Your result : ${markReading?.data?.point}`}
+            title={`Your result : ${markReading?.point}`}
             topMargin="0"
             titleStyle="text-3xl font-bold "
         >
@@ -31,7 +30,7 @@ const ResultReading = () => {
                 <div className="sm:flex flex-1 gap-4 ">
                     <div className="w-1/2">
                         <div className="overflow-y-auto h-[calc(100vh-18rem)]">
-                            {markReading?.data?.results?.map((item: Question, index: number) => {
+                            {markReading?.results?.map((item: Question, index: number) => {
                                 return (
                                     <div key={index}>
                                         <Quizz

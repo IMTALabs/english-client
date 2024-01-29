@@ -36,7 +36,7 @@ const Reading = () => {
         topic: '',
         paragraph: paragraph,
       });
-      dispatch(setReadingState(response.data));
+      dispatch(setReadingState(response.data.data));
       if (response.data) {
         navigate('quizz', {
           state: { readingQuizz },

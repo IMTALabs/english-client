@@ -1,6 +1,7 @@
 // AssignmentQuizz.jsx
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import TextAreaInput from '../text-input/text-area-input';
+import Quizz from '../quizz';
 
 interface Props {
   form?: Root;
@@ -66,32 +67,10 @@ const AssignmentQuizz: React.FC<Props> = ({
         <div className="p-4 lg:mt-0 sm:mt-[70px]">
           <p className="font-bold bg-base-100 text-[30px]">Question 1-10</p>
           <p className="my-3">Choose the correct letter, A, B, C, or D.</p>
+
+
           {form.map((item, index) => (
-            <div key={index}>
-              <p className="bg-base-100 text-[15px] font-bold">
-                {index + 1}. {item.question}
-              </p>
-              <ul>
-                {Object.entries(item.choices).map(([key, choice]) => (
-                  <li
-                    key={key}
-                    className="my-3 flex justify-start items-center gap-1">
-                    <div className="w-4 h-4 self-start">
-                      {' '}
-                      <span>{key}.</span>
-                    </div>
-                    <input
-                      type="checkbox"
-                      name={`group_${index}`} // Đặt cùng một tên cho tất cả checkboxes để tạo nhóm
-                      id={`checkbox_${index}_${key}`} // ID định danh duy nhất cho mỗi checkbox
-                      className="checkbox checkbox-xs"
-                      onChange={() => handleChoiceSelection(index, key)}
-                    />
-                    {choice}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <Quizz index={index} question={item.question} choices={item.choices} handleChoiceSelection={handleChoiceSelection} />
           ))}
         </div>
       </div>

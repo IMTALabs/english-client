@@ -42,7 +42,7 @@ function Register() {
         }
         dispatch(showNotification({ message: "Register success", status: 1 }))
         localStorage.setItem('token', response?.data?.data?.accessToken);
-        window.location.href = '/app/welcome';
+        window.location.href = '/welcome';
       } catch (error: any) {
         dispatch(showNotification({ message: error.response.data.errors.email[0], status: 0 }))
       } finally {

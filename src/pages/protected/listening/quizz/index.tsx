@@ -65,7 +65,7 @@ const QuizzListening = () => {
       try {
         const response = await listeningApi.postMarkListening(formChoices);
         if (response.data) {
-          navigeUrl(`/app/listening/result/id=${hash}`, {
+          navigeUrl(`/listening/result/id=${hash}`, {
             state: {
               markListening: response.data,
               video: link,

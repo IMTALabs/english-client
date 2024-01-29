@@ -15,6 +15,7 @@ import { useNavigate } from 'react-router-dom';
 const Reading = () => {
 
   const [text, setText] = useState<string>('');
+  const [paragraphText, setParagraphText] = useState<string>('');
   const [mode, setMode] = useState<string>('gen_topic');
   const [article, setArticle] = useState<string>('');
 
@@ -57,7 +58,6 @@ const Reading = () => {
 
   const handleGenTopic = async () => {
     if (article !== '') {
-      setMode('no_gen_topic');
       handleSubmit();
     } else {
       try {
@@ -68,7 +68,7 @@ const Reading = () => {
           }),
         );
         const response = await readingApi.postTopicReading({
-          topic: text,
+          topic: paragraphText,
         });
         setArticle(response.data);
       } catch (error: any) {
@@ -85,6 +85,9 @@ const Reading = () => {
   };
 
 
+
+
+
   const handleInputChange = (e: any) => {
     const inputText = e.target.value;
 
@@ -96,6 +99,7 @@ const Reading = () => {
 
     setText(limitedText);
   };
+
 
 
 
@@ -112,8 +116,8 @@ const Reading = () => {
 
         {mode === 'gen_topic' ? (
           <TextInput
-            value={text}
-            onChange={e => setText(e.target.value)}
+            value={paragraphText}
+            onChange={e => setParagraphText(e.target.value)}
             label="Enter keyword for generation"
             containerStyle="mt-4"
           />
@@ -132,7 +136,7 @@ const Reading = () => {
             )}
           </div>
         )}
-        {article !== '' && (
+        {(article !== '' && mode === 'gen_topic') && (
           <div className="overflow-y-auto max-h-[calc(100vh-26rem)] border rounded mt-4 p-2 h-auto">
             <p className="my-3 " dangerouslySetInnerHTML={{ __html: article.data[0] }} />
           </div>
@@ -147,7 +151,7 @@ const Reading = () => {
               : 'Generate Quizz'
           }
           onClick={mode === 'gen_topic' ? handleGenTopic : handleSubmit}
-          disabled={text === ''}
+          disabled={!(text !== '' || paragraphText !== '')}
           containerStyle="mt-4"
         />
       </TitleCard>

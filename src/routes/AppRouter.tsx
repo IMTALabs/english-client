@@ -19,6 +19,7 @@ import historyApi from 'src/features/services/history/history-api';
 import { setHistory, setRecommended } from 'src/features/common/history-slice';
 import { showNotification } from 'src/features/common/header-slice';
 import listeningApi from 'src/features/services/listening/listening-api';
+import readingApi from 'src/features/services/reading/reading-api';
 
 const AppRouter = () => {
   const token = checkAuth();
@@ -59,11 +60,23 @@ const AppRouter = () => {
     }
   };
 
+
+  // const randomSuggetReading = async () => {
+  //   try {
+  //     const response = await readingApi.getRandomSuggest();
+  //     console.log(response, response);
+  //   } catch (error) {
+  //     dispatch(showNotification({ message: error, status: 0 }));
+  //   }
+  // }
+
+
   useLayoutEffect(() => {
     if (token) {
       getUser();
       getHistory();
       getYoutubeRecommenedVideo();
+      // randomSuggetReading();
     }
   }, []);
 
@@ -75,12 +88,12 @@ const AppRouter = () => {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/register" element={<Register />} />
           {/* Place new routes over this */}
-          <Route path="/app/*" element={<Layout />} />
+          <Route path="/*" element={<Layout />} />
           <Route
             path="*"
             element={
               <Navigate
-                to={alreadyHaveInfo ? '/app/welcome' : '/login'}
+                to={alreadyHaveInfo ? '/welcome' : '/login'}
                 replace
               />
             }

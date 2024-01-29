@@ -49,7 +49,7 @@ const Header = () => {
         <div className="bg-[#fefefe] w-full pr-2 h-20">
           <li className="font-semibold text-xl flex flex-1 items-center justify-between ">
             <NavLink
-              to={'/app/welcome'}
+              to={'/welcome'}
               className="flex items-center justify-start  max-lg:hidden w-80 px-6">
               <img
                 className="mask mask-squircle w-20 h-20 object-cover aspect-square"

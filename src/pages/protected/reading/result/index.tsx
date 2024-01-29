@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import Quizz from "src/components/assessment/quizz";
+import Quizz from "src/components/assessment/submission";
 import TitleCard from "src/components/cards/title-card";
 
 interface Question {
@@ -19,8 +19,8 @@ const ResultReading = () => {
     const {
         markReading, article
     } = useLocation()?.state
-    console.log(markReading );
-    
+    console.log(markReading);
+
     return (
         <TitleCard
             title={`Your result : ${markReading?.data?.point}`}

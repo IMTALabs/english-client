@@ -3,7 +3,7 @@ import { formatDistance, differenceInMilliseconds } from 'date-fns';
 import CustomCheckbox from 'src/components/checkbox';
 
 function InternalPage() {
-  const targetDate = new Date('2024-02-01T00:00:00'); // Ngày cần ddeesm
+  const targetDate = new Date('2024-06-01T00:00:00'); // Ngày cần ddeesm
   const [days, setDays] = useState<number>(0);
   const [hours, setHours] = useState<number>(0);
   const [minutes, setMinutes] = useState<number>(0);

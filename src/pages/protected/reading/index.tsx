@@ -36,7 +36,12 @@ const Reading = () => {
         topic: '',
         paragraph: paragraph,
       });
-      dispatch(setReadingState(response.data));
+      dispatch(setReadingState(response.data.data));
+      if (response.data) {
+        navigate('quizz', {
+          state: { readingQuizz },
+        });
+      }
     } catch (error: any) {
       dispatch(
         showNotification({
@@ -46,9 +51,7 @@ const Reading = () => {
       );
     } finally {
       dispatch(closeModal());
-      navigate('quizz', {
-        state: { readingQuizz },
-      });
+
     }
   };
 
@@ -87,9 +90,9 @@ const Reading = () => {
 
     // Limit the input to 500 characters
     const limitedText =
-      inputText.length <= 500
+      inputText.length <= 3000
         ? inputText
-        : inputText.substring(0, 497) + '...';
+        : inputText.substring(0, 2996) + '...';
 
     setText(limitedText);
   };
@@ -124,7 +127,7 @@ const Reading = () => {
             />
             {text.length > 0 && (
               <div className="px-2">
-                <p className="text-md">{text.length} / 500 words</p>
+                <p className="text-md">{text.length} / 3000 characters</p>
               </div>
             )}
           </div>

@@ -31,11 +31,14 @@ const Writing = () => {
         );
         const response = await writingApi.postGenInstructionApi(text);
         dispatch(postReadingState(response.data));
+        if (response.data) {
+          navigateUrl('quizz');
+        }
       } catch (error: any) {
         dispatch(showNotification({ message: error.message, status: 0 }));
       } finally {
         dispatch(closeModal());
-        navigateUrl('quizz');
+
       }
     } else {
       navigateUrl('quizz', {
@@ -48,7 +51,7 @@ const Writing = () => {
     const inputText = e.target.value;
     // Limit the input to 500 characters
     const limitedText =
-      inputText.length <= 500 ? inputText : inputText.substring(0, 497) + '...';
+      inputText.length <= 3000 ? inputText : inputText.substring(0, 2996) + '...';
     setText(limitedText);
   };
 
@@ -76,7 +79,7 @@ const Writing = () => {
           />
           {text.length > 0 && (
             <div className="px-2">
-              <p className="text-md">{text.length} / 500 words</p>
+              <p className="text-md">{text.length} / 3000 characters</p>
             </div>
           )}
         </div>

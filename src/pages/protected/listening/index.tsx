@@ -14,7 +14,7 @@ import TextInput from 'src/components/text-input/text-input';
 const Listening = () => {
   const dispatch = useAppDispatch();
   const [linkUrl, setLinkUrl] = useState('');
-  
+
   const { isOpen } = useAppSelector(state => state.modal);
   const [isDisabled, setIsDisabled] = useState(true);
   const { youtubeRecommened } = useAppSelector(
@@ -32,16 +32,16 @@ const Listening = () => {
       );
       const response = await listeningApi.postYoutubeLink(linkUrl);
       dispatch(setListeningState(response.data));
+      navigeUrl('quizz')
     } catch (error: any) {
-      dispatch(showNotification({ message: error.message, status: 0 }));
+      dispatch(showNotification({ message: error.response.data.errors.message, status: 0 }));
     } finally {
       dispatch(closeModal());
-      navigeUrl('quizz')
     }
   };
 
   const checkValidYoutubeUrl = (url: string) => {
-    const regex = /^(https?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+$/;
+    const regex = /^(https?\:\/\/)?(www\.youtube\.com|youtube\.com|youtu\.?be)\/.+$/;
     return regex.test(url);
   };
 

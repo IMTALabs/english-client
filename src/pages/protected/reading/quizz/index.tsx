@@ -46,7 +46,6 @@ const QuizzReading = () => {
   const handleConfirmQuizz = async () => {
     const allQuestionsAnswered =
       Object.keys(selectedChoices).length === questions?.length;
-
     if (allQuestionsAnswered) {
       dispatch(
         openModal({
@@ -55,14 +54,14 @@ const QuizzReading = () => {
       );
       const formChoices = {
         submit: selectedChoices,
-        hash: readingQuizz.hash,
+        hash: readingQuizz?.hash,
       };
       try {
         const response = await readingApi.postMarkReading(formChoices);
         if (response) {
-          navigeUrl(`/app/reading/result/id=${readingQuizz.hash}`, {
+          navigeUrl(`/app/reading/result/id=${readingQuizz?.hash}`, {
             state: {
-              markReading: response,
+              markReading: response.data.data,
               article: readingQuizz?.body?.paragraph,
             },
           });
@@ -84,6 +83,7 @@ const QuizzReading = () => {
   useEffect(() => {
     dispatch(updateCharge(readingQuizz?.remaining_accounting_charge));
   }, []);
+  console.log(readingQuizz);
 
 
   return (
@@ -92,18 +92,18 @@ const QuizzReading = () => {
         title="Reading"
         topMargin="0"
         skill='reading'
-        hash={readingQuizz?.data?.hash}
+        hash={readingQuizz?.hash}
         TopSideButtons={<TimerApp Active={true} />}>
         <div className="flex items-center">
           <div className="w-1/2">
             <AssignmentContent
-              paragraph={readingQuizz?.data?.body?.paragraph}
+              paragraph={readingQuizz?.body?.paragraph}
               type={'text'}
             />
           </div>
           <div className="w-1/2">
             <AssignmentQuizz
-              form={readingQuizz?.data?.body?.form}
+              form={readingQuizz?.body?.form}
               onChoiceSelect={handleChoiceSelect}
             />
             <Button

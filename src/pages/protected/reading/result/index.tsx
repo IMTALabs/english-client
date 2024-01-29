@@ -29,7 +29,7 @@ const ResultReading = () => {
             <div className="bg-base-100  rounded-lg mt-[10px] h-[95%] p-4">
                 <div className="sm:flex flex-1 gap-4 ">
                     <div className="w-1/2">
-                        <div className="overflow-y-auto h-[calc(100vh-16rem)]">
+                        <div className="overflow-y-auto h-[calc(100vh-18rem)]">
                             {markReading?.results?.map((item: Question, index: number) => {
                                 return (
                                     <div key={index}>
@@ -45,7 +45,7 @@ const ResultReading = () => {
                             })}
                         </div>
                     </div >
-                    <div className="w-1/2" >
+                    <div className="w-1/2 overflow-y-auto h-[calc(100vh-18rem)]" >
                         <p className='my-3' dangerouslySetInnerHTML={{ __html: article }} />
                     </div>
                 </div>

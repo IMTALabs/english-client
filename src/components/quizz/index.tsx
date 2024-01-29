@@ -43,7 +43,8 @@ const Quizz = ({ index, question, choices, is_correct, type, user_answer, explan
                             disabled={type === 'submission' ? true : false}
                             name={`group_${index}`}
                             onClick={() => type === 'submission' ? null : onCheckboxChange(key)}
-                            className={`checkbox checkbox-xs`}
+                            className={`disabled:bg-transparent checkbox checkbox-xs ${key === answer ? '[--chkbg:theme(colors.green.700)] [--chkfg:white]' : key === user_answer ? '[--chkbg:theme(colors.red.700)] [--chkfg:white]' : ''}`}
+                            defaultChecked={type === 'submission' ? (key === user_answer || key === answer ? true : false) : false}
                         />
                         <div className={`${(is_correct && key === user_answer) ? 'text-green-700' : (!is_correct && key === user_answer) ? 'text-red-700' : (!is_correct && key === answer) ? 'text-green-700' : ''}`}>
                             <label htmlFor={`checkbox_${index}_${key}`}>{key}.</label> {choice}

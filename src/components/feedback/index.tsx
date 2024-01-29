@@ -1,15 +1,13 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'src/app/store';
 import { showNotification } from 'src/features/common/header-slice';
-import { closeModal, openModal } from 'src/features/common/modal-slice';
+import { closeModal } from 'src/features/common/modal-slice';
 import userApi, { FeedbackProps } from 'src/features/services/user/user-api';
 import TextAreaInput from 'src/components/text-input/text-area-input';
-import { MODAL_BODY_TYPES } from 'src/utils/global-constants';
 import Button from '../button';
 
 const Feedback = () => {
   const { user } = useAppSelector(e => e.user);
-  const [isDisabled, setIsDisabled] = useState(false);
   const dispatch = useAppDispatch();
   const [feedbackInfo, setFeedbackInfo] = useState<FeedbackProps>({
     email: user.email,
@@ -17,7 +15,6 @@ const Feedback = () => {
   });
 
   const handleSubmit = async () => {
-    setIsDisabled(true)
     try {
       await userApi.postFeedBack(feedbackInfo);
       dispatch(showNotification({ message: 'Success', status: 1 }));
@@ -30,7 +27,6 @@ const Feedback = () => {
         email: '',
         message: '',
       });
-      setIsDisabled(false)
     }
   };
 
@@ -59,7 +55,6 @@ const Feedback = () => {
       <Button
         text=" Submit"
         onClick={handleSubmit}
-        disabled={isDisabled}
         containerStyle="mt-4"
       />
     </div>

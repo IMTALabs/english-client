@@ -29,7 +29,7 @@ const QuizzReading = () => {
 
   const navigeUrl = useNavigate();
   const dispatch = useAppDispatch();
-  const questions: Question[] = readingQuizz?.data?.body?.form;
+  const questions: Question[] = readingQuizz?.body?.form;
   const [selectedChoices, setSelectedChoices] = useState<
     Record<string, string>
   >({});
@@ -54,15 +54,15 @@ const QuizzReading = () => {
       );
       const formChoices = {
         submit: selectedChoices,
-        hash: readingQuizz?.data?.hash,
+        hash: readingQuizz?.hash,
       };
       try {
         const response = await readingApi.postMarkReading(formChoices);
         if (response) {
-          navigeUrl(`/app/reading/result/id=${readingQuizz?.data?.hash}`, {
+          navigeUrl(`/app/reading/result/id=${readingQuizz?.hash}`, {
             state: {
-              markReading: response.data,
-              article: readingQuizz?.data?.body?.paragraph,
+              markReading: response.data.data,
+              article: readingQuizz?.body?.paragraph,
             },
           });
         }
@@ -92,18 +92,18 @@ const QuizzReading = () => {
         title="Reading"
         topMargin="0"
         skill='reading'
-        hash={readingQuizz?.data?.hash}
+        hash={readingQuizz?.hash}
         TopSideButtons={<TimerApp Active={true} />}>
         <div className="flex items-center">
           <div className="w-1/2">
             <AssignmentContent
-              paragraph={readingQuizz?.data?.body?.paragraph}
+              paragraph={readingQuizz?.body?.paragraph}
               type={'text'}
             />
           </div>
           <div className="w-1/2">
             <AssignmentQuizz
-              form={readingQuizz?.data?.body?.form}
+              form={readingQuizz?.body?.form}
               onChoiceSelect={handleChoiceSelect}
             />
             <Button

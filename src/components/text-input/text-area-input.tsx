@@ -18,7 +18,7 @@ const TextAreaInput = ({
   containerStyle,
 }: TextInputProps) => {
   return (
-    <div className={`relative w-full min-w-[200px] h-11, ${containerStyle}`}>
+    <div className={`relative w-full min-w-[200px] ${containerStyle}`}>
       <textarea
         onChange={onChange}
         value={value}

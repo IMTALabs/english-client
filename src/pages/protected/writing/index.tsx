@@ -75,7 +75,7 @@ const Writing = () => {
             value={text}
             onChange={handleInputChange}
             label="Enter your prompt"
-            containerStyle="mt-4"
+            containerStyle="mt-4 h-[300px]"
           />
           {text.length > 0 && (
             <div className="px-2">

@@ -37,17 +37,14 @@ function InternalPage() {
 
 
   return (
-    <div className="hero h-full">
-      <div className="hero-content flex-col lg:flex-row">
-        <section className="container mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {
-              data.map((item) => {
-                return <IntroCard title={item.title} paragraph={item.paragraph} image={item.image} />
-              })
-            }
-          </div>
-        </section>
+    <div>
+      <h1 className='text-center my-10'>What's New ?</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mx-10">
+        {
+          data.map((item) => {
+            return <IntroCard title={item.title} paragraph={item.paragraph} image={item.image} />
+          })
+        }
       </div>
     </div>
   );

@@ -20,7 +20,6 @@ interface Choices {
 
 const Quizz = ({ index, question, choices, is_correct, type, user_answer, explanation, answer, handleChoiceSelection }: Props) => {
     const onCheckboxChange = (choice: string) => {
-        console.log(choice);
         handleChoiceSelection(index, choice);
     };
 

@@ -40,7 +40,7 @@ function Login() {
           dispatch(setUserInfo(user));
           dispatch(setLoginInfo({ isLoggedIn, accessToken }));
           dispatch(showNotification({ message: 'Login success', status: 1 }));
-          window.location.href = '/app/welcome';
+          window.location.href = '/welcome';
         }
       } catch (error: any) {
         dispatch(showNotification({ message: error.response.data.message, status: 0 }));

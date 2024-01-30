@@ -46,7 +46,7 @@ const Header = () => {
     // navbar fixed  flex-none justify-between bg-base-300  z-10 shadow-md
     <>
       <div className="navbar sticky top-0 z-10 p-0 m-0 min-h-0 border-b ">
-        <div className="bg-[#fefefe] w-full pr-2 h-20">
+        <div className="bg-[#fefefe] w-full pr-2 h-16">
           <li className="font-semibold text-xl flex flex-1 items-center justify-between ">
             <NavLink
               to={'/welcome'}
@@ -110,7 +110,7 @@ const Header = () => {
               </div>
             </button>
 
-            <button
+            {/* <button
               className="btn btn-ghost btn-circle"
               onClick={() => openNotification()}>
               <div className="indicator">
@@ -121,7 +121,7 @@ const Header = () => {
                   </span>
                 ) : null}
               </div>
-            </button>
+            </button> */}
 
             {/* Profile icon, opening menu on click */}
           </div>

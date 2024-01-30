@@ -13,7 +13,7 @@ const RightSidebarPageContent = () => {
   return (
     <div className='divide-y divide-dashed'>
       {/* Người dùng */}
-      <TitleCard title="" topMargin="mb-4">
+      <TitleCard title="" topMargin="mt-4">
         <div className="flex justify-center items-center">
           <img
             src={
@@ -51,7 +51,7 @@ const RightSidebarPageContent = () => {
                 d="M12 21a9 9 0 1 0 0-18a9 9 0 0 0 0 18m-1.58-3.89l6.215-5.966a.2.2 0 0 0-.14-.344l-4.519.052a.2.2 0 0 1-.184-.283l1.654-3.64c.09-.2-.16-.378-.32-.227l-5.76 5.448a.2.2 0 0 0 .137.345h4.641a.2.2 0 0 1 .176.295l-2.215 4.08c-.11.2.15.397.314.24"
                 clipRule="evenodd"></path>
             </svg>
-            <div className="rounded-b lg:rounded-b-none lg:rounded-r pl-4 flex flex-col justify-between leading-normal">
+            <div className=" pl-4 flex flex-col justify-between leading-normal">
               <div className="">
                 <p className="text-xl">
                   {Math.round(user?.accounting_charge ?? 0)}{' '}

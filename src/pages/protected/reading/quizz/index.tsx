@@ -59,10 +59,11 @@ const QuizzReading = () => {
       try {
         const response = await readingApi.postMarkReading(formChoices);
         if (response) {
-          navigeUrl(`/app/reading/result/id=${readingQuizz?.hash}`, {
+          navigeUrl(`/reading/result/id=${readingQuizz?.hash}`, {
             state: {
               markReading: response.data.data,
               article: readingQuizz?.body?.paragraph,
+              readingQuizz: readingQuizz
             },
           });
         }

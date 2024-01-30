@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { formatDistance, differenceInMilliseconds } from 'date-fns';
+// import { formatDistance, differenceInMilliseconds } from 'date-fns';
 import CustomCheckbox from 'src/components/checkbox';
 
 function InternalPage() {
@@ -10,24 +10,24 @@ function InternalPage() {
   const [seconds, setSeconds] = useState<number>(0);
 
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      const now = new Date();
-      const distance = differenceInMilliseconds(targetDate, now);
+  // useEffect(() => {
+  //   const intervalId = setInterval(() => {
+  //     const now = new Date();
+  //     const distance = differenceInMilliseconds(targetDate, now);
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      setDays(days);
-      setHours(hours);
-      setMinutes(minutes);
-      setSeconds(seconds);
-    }, 1000);
+  //     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  //     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  //     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  //     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  //     setDays(days);
+  //     setHours(hours);
+  //     setMinutes(minutes);
+  //     setSeconds(seconds);
+  //   }, 1000);
 
 
-    return () => clearInterval(intervalId);
-  }, [targetDate]);
+  //   return () => clearInterval(intervalId);
+  // }, [targetDate]);
 
   return (
     <div className="hero h-4/5 my-4">

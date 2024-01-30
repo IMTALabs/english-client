@@ -5,6 +5,7 @@ import XMarkIcon from "@heroicons/react/24/outline/XMarkIcon";
 import authenticationApi from "src/features/services/authentication/authentication-api";
 import { useAppDispatch } from "src/app/store";
 import { showNotification } from "src/features/common/header-slice";
+import { Icon } from "src/assets/icon";
 
 function LeftSidebar() {
   const location = useLocation();
@@ -30,7 +31,7 @@ function LeftSidebar() {
   };
 
   return (
-    <div className="drawer-side z-30 h-[calc(100vh-80px)] top-14 ">
+    <div className="drawer-side z-30 h-[calc(100vh-66px)] top-14 ">
       <label htmlFor="left-sidebar-drawer" className="drawer-overlay"></label>
       <ul className="menu pt-2 w-80 bg-white min-h-full text-accent  border-dashed border-r">
         <button
@@ -68,13 +69,27 @@ function LeftSidebar() {
                 </li>
               );
             })}
-            <div className="relative mt-20 hidden flex-col rounded-lg bg-gray-200 p-6 lg:flex">
+            <div className="relative mt-36 hidden flex-col rounded-lg bg-gray-200 p-6 lg:flex">
               <div className="-mt-20">
                 <img alt="Shape image" loading="lazy" width="200" height="144" decoding="async" data-nimg="1" src="https://3dicons.sgp1.cdn.digitaloceanspaces.com/v1/dynamic/premium/notebook-dynamic-premium.png" />
               </div>
-              <h2 className="mb-7 mt-4 text-center text-[20px] font-semibold leading-8 text-light-dark ">Explore the new Ecosystem</h2>
+              <h2 className="mb-7 mt-4 text-center text-[20px] font-semibold leading-8 text-light-dark ">Explore Imta Edu Learning Platform</h2>
               <a className="btn h-12 btn-primary" target="_blank" href="https://imtaedu.com">Try Now</a>
             </div>
+          </div>
+          <div className="flex items-center w-full gap-x-4">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://english.imtaedu.com/" target="_blank">
+              <p dangerouslySetInnerHTML={{ __html: Icon('facebook') }}></p>
+
+            </a>
+            <a href="https://twitter.com/intent/tweet?url=https://english.imtaedu.com/&text=" target="_blank">
+              <p dangerouslySetInnerHTML={{ __html: Icon('linkedin') }}></p>
+
+            </a>
+
+            <a href="https://pinterest.com/pin/create/button/?url=https://english.imtaedu.com/&media=&description=" target="_blank">
+              <p dangerouslySetInnerHTML={{ __html: Icon('pinterest') }}></p>
+            </a>
           </div>
 
           <button onClick={logoutUser} className="btn btn-ghost flex justify-start items-center px-4 py-2 gap-x-2 hover:bg-[#14161a] font-semibold hover:text-white">

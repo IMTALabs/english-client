@@ -111,9 +111,6 @@ const Reading = () => {
           mode={mode}
           title={['Generate Article', 'Your Article']}
         />
-
-
-
         {mode === 'gen_topic' ? (
           <TextInput
             value={paragraphText}

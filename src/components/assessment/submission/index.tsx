@@ -8,7 +8,7 @@ type QuizzProps = {
 };
 
 const Submission = ({ index, question, explanation, user_answer, is_correct }: QuizzProps) => {
-
+    
     return (
         <div className='border border-1 rounded-md p-5 my-8'>
             <div className='flex -mt-[30px]'>

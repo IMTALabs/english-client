@@ -15,22 +15,22 @@ function InternalPage() {
     {
       title: 'Listening',
       paragraph: 'Transform your video-watching experience into a fun learning opportunity! Imta generates quizzes from your favorite YouTube videos, turning passive watching into active engagement.',
-      image: 'https://icons8.com/icon/NJKARrx4jLfJ/book'
+      image: 'https://img.icons8.com/parakeet/48/open-book.png'
     },
     {
       title: 'Reading',
       paragraph: '    Elevate your comprehension skills! Paste any content - news articles, papers, blogs - into Imta Bot and receive a personalized quiz in just 10-30 seconds. Share it with friends or students. No content? No problem! Imta Bot can create quizzes for you based on your chosen topic.',
-      image: 'https://icons8.com/icon/NJKARrx4jLfJ/book'
+      image: 'https://img.icons8.com/parakeet/48/open-book.png'
     },
     {
       title: 'Writing',
       paragraph: 'Refine your writing skills effortlessly! Imta Bot meticulously identifies errors and evaluates your submissions against IELTS writing criteria, empowering you to enhance your writing proficiency.',
-      image: 'https://icons8.com/icon/NJKARrx4jLfJ/book'
+      image: 'https://img.icons8.com/parakeet/48/open-book.png'
     },
     {
       title: 'Speaking',
       paragraph: "Exciting developments await! We're currently working on a virtual speaking room, set to be released in the near future.Stay tuned for an immersive speaking experience that will take your language skills to new heights!",
-      image: 'https://icons8.com/icon/NJKARrx4jLfJ/book'
+      image: 'https://img.icons8.com/parakeet/48/open-book.png'
     },
   ]
 

@@ -14,4 +14,10 @@ const postGenInstructionApi = (topic: string) => {
         topic
     });
 }
-export default { postInstructionApi, postGenInstructionApi }
+
+
+const getRandomSuggestWriting = () => {
+    return axios.get('/english/v1/writing/randomWriting');
+}
+
+export default { postInstructionApi, postGenInstructionApi, getRandomSuggestWriting }

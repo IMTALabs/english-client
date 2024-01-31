@@ -9,9 +9,7 @@ import { Icon } from "src/assets/icon";
 
 function LeftSidebar() {
   const location = useLocation();
-
   const dispatch = useAppDispatch()
-
   const close = () => {
     document.getElementById("left-sidebar-drawer")?.click();
   };

@@ -20,6 +20,9 @@ import { setHistory, setRecommended } from 'src/features/common/history-slice';
 import { showNotification } from 'src/features/common/header-slice';
 import listeningApi from 'src/features/services/listening/listening-api';
 import readingApi from 'src/features/services/reading/reading-api';
+import { setSuggestReading } from 'src/features/common/reading-slice';
+import writingApi from 'src/features/services/writing/writing-api';
+import { setSuggestWriting } from 'src/features/common/writing-slice';
 
 const AppRouter = () => {
   const token = checkAuth();
@@ -61,14 +64,24 @@ const AppRouter = () => {
   };
 
 
-  // const randomSuggetReading = async () => {
-  //   try {
-  //     const response = await readingApi.getRandomSuggest();
-  //     console.log(response, response);
-  //   } catch (error) {
-  //     dispatch(showNotification({ message: error, status: 0 }));
-  //   }
-  // }
+  const randomSuggetReading = async () => {
+    try {
+      const response = await readingApi.getRandomSuggest();
+      dispatch(setSuggestReading(response.data.data.topics));
+    } catch (error) {
+      dispatch(showNotification({ message: error, status: 0 }));
+    }
+  }
+
+  const randomSuggetWriting = async () => {
+    try {
+      const response = await writingApi.getRandomSuggestWriting();
+      dispatch(setSuggestWriting(response.data.data.topics));
+    } catch (error) {
+      dispatch(showNotification({ message: error, status: 0 }));
+    }
+  }
+
 
 
   useLayoutEffect(() => {
@@ -76,7 +89,8 @@ const AppRouter = () => {
       getUser();
       getHistory();
       getYoutubeRecommenedVideo();
-      // randomSuggetReading();
+      randomSuggetReading();
+      randomSuggetWriting();
     }
   }, []);
 

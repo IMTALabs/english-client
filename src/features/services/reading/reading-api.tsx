@@ -31,7 +31,7 @@ const postMarkReading = (data: Pops) => {
 }
 
 const getRandomSuggest = () => {
-    return axios.get('/english/v1/randomReading');
+    return axios.get('/english/v1/reading/randomReading');
 }
 
 

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'src/app/store';
 import Button from 'src/components/button';
 import TitleCard from 'src/components/cards/title-card';
+import Suggest from 'src/components/suggest';
 import Tab from 'src/components/tab';
 import TextAreaInput from 'src/components/text-input/text-area-input';
 import TextInput from 'src/components/text-input/text-input';
@@ -13,13 +14,12 @@ import writingApi from 'src/features/services/writing/writing-api';
 import { MODAL_BODY_TYPES } from 'src/utils/global-constants';
 
 const Writing = () => {
-  const { writingQuizz } = useAppSelector(state => state.writing);
   const [text, setText] = useState<string>('');
   const [mode, setMode] = useState<string>('gen_topic');
   const navigateUrl = useNavigate();
   const dispatch = useAppDispatch();
-  const { isOpen } = useAppSelector(state => state.modal);
 
+  const { suggest } = useAppSelector(state => state.writing);
   const handleSubmit = async () => {
     if (mode === 'gen_topic') {
       try {
@@ -92,6 +92,10 @@ const Writing = () => {
         disabled={text.length === 0}
         containerStyle="mt-4"
       />
+
+      {
+        mode === 'gen_topic' && <Suggest data={suggest} setParagraphText={setText} />
+      }
     </TitleCard>
   );
 };

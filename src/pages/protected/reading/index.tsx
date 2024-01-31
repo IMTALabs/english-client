@@ -11,6 +11,7 @@ import { MODAL_BODY_TYPES } from 'src/utils/global-constants';
 import TextInput from 'src/components/text-input/text-input';
 import TextAreaInput from 'src/components/text-input/text-area-input';
 import { useNavigate } from 'react-router-dom';
+import Suggest from 'src/components/suggest';
 
 const Reading = () => {
 
@@ -19,10 +20,12 @@ const Reading = () => {
   const [mode, setMode] = useState<string>('gen_topic');
   const [article, setArticle] = useState<string>('');
 
-  const { readingQuizz } = useAppSelector(state => state.reading);
+  const { readingQuizz, suggest } = useAppSelector(state => state.reading);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  console.log(paragraphText, 'article');
+
   const handleSubmit = async () => {
     const paragraph = article !== '' ? article.data[0] : text;
     try {
@@ -83,7 +86,6 @@ const Reading = () => {
       }
     }
   };
-
 
 
 
@@ -151,6 +153,11 @@ const Reading = () => {
           disabled={!(text !== '' || paragraphText !== '')}
           containerStyle="mt-4"
         />
+
+
+        {
+          mode === 'gen_topic' && <Suggest data={suggest} setParagraphText={setParagraphText} />
+        }
       </TitleCard>
     </div>
   );

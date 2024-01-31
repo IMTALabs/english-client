@@ -36,7 +36,7 @@ const RightSidebarPageContent = () => {
         </div>
       </TitleCard>
       {/* {tiền} */}
-      <TitleCard title="" topMargin="mt-4">
+      <TitleCard title="" topMargin="mt-4 rounded-none">
         <div className="max-w-sm w-full lg:max-w-full flex last:mb-0 items-center justify-between">
           <div className="flex items-center">
             <svg
@@ -97,7 +97,7 @@ const RightSidebarPageContent = () => {
       </TitleCard>
 
       {history && (
-        <TitleCard title="Generation History" topMargin="mt-4 text-center">
+        <TitleCard title="Generation History" topMargin="mt-4 text-center rounded-none">
           <div className="max-w-sm w-full lg:max-w-full mb-6 last:mb-0 space-y-2">
             {history?.data?.map((item: any) => {
               return (

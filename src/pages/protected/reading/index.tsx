@@ -116,7 +116,10 @@ const Reading = () => {
         {mode === 'gen_topic' ? (
           <TextInput
             value={paragraphText}
-            onChange={e => setParagraphText(e.target.value)}
+            onChange={e => {
+              setParagraphText(e.target.value)
+              setArticle('')
+            }}
             label="Enter keyword for generation"
             containerStyle="mt-4"
           />
@@ -155,9 +158,11 @@ const Reading = () => {
         />
 
 
-        {
-          mode === 'gen_topic' && <Suggest data={suggest} setParagraphText={setParagraphText} />
-        }
+        <div className='mt-4'>
+          {
+            mode === 'gen_topic' && <Suggest data={suggest} setParagraphText={setParagraphText} />
+          }
+        </div>
       </TitleCard>
     </div>
   );

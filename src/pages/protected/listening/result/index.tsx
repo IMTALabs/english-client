@@ -28,7 +28,7 @@ const ResultListening = () => {
         topMargin="0"
         titleStyle="text-3xl font-bold ">
         <div className="bg-base-100  rounded-lg mt-[10px] flex justify-between gap-3">
-          <div className="w-3/5 overflow-y-auto h-[calc(100vh-14rem)] ">
+          <div className="w-3/5 overflow-y-auto h-[calc(100vh-16rem)] ">
             {markListening?.data?.results?.map((item: Question, index: number) => {
               return (
                 <div key={index} className='mx-4'>

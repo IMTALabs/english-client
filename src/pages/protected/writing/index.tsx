@@ -93,9 +93,11 @@ const Writing = () => {
         containerStyle="mt-4"
       />
 
-      {
-        mode === 'gen_topic' && <Suggest data={suggest} setParagraphText={setText} />
-      }
+      <div className='mt-4'>
+        {
+          mode === 'gen_topic' && <Suggest data={suggest} setParagraphText={setText} />
+        }
+      </div>
     </TitleCard>
   );
 };

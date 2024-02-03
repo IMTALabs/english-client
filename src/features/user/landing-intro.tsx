@@ -1,7 +1,6 @@
-
 function LandingIntro() {
   return (
-    <div className="hero min-h-full rounded-l-xl bg-base-200 border-r bg-[url('https://res.cloudinary.com/dyxp9ndma/image/upload/v1706711918/30d9ea5b-96f2-410a-a649-e625788b5431_pbmuf9.jpg')]"></div>
+    <div className="hero min-h-full rounded-l-xl bg-[#f9f9f9] border-r bg-[url('https://res.cloudinary.com/dyxp9ndma/image/upload/v1706904191/OIG1_urzf4y.jpg')] bg-contain bg-no-repeat"></div>
   );
 }
 

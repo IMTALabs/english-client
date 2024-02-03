@@ -75,7 +75,7 @@ function LeftSidebar() {
               <a className="btn h-12 btn-primary" target="_blank" href="https://imtaedu.com">Try Now</a>
             </div>
           </div>
-          <div className="flex items-center w-full gap-x-4">
+          <div className="flex items-center w-full gap-x-4 my-4 justify-center">
             <a href="https://www.facebook.com/sharer/sharer.php?u=https://english.imtaedu.com/" target="_blank">
               <p dangerouslySetInnerHTML={{ __html: Icon('facebook') }}></p>
 

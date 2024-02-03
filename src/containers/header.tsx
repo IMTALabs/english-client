@@ -52,7 +52,7 @@ const Header = () => {
               to={'/welcome'}
               className="flex items-center justify-start  max-lg:hidden w-80 px-6">
               <img
-                className="mask mask-squircle w-20 h-20 object-cover aspect-square"
+                className="mask mask-squircle w-16 h-16 object-cover aspect-square"
                 src={Logo}
                 alt="Doraemon Logo"
               />

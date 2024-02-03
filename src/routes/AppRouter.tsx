@@ -67,7 +67,7 @@ const AppRouter = () => {
   const randomSuggetReading = async () => {
     try {
       const response = await readingApi.getRandomSuggest();
-      dispatch(setSuggestReading(response.data.data.topics));
+      dispatch(setSuggestReading(response.data.data));
     } catch (error) {
       dispatch(showNotification({ message: error, status: 0 }));
     }
@@ -76,7 +76,7 @@ const AppRouter = () => {
   const randomSuggetWriting = async () => {
     try {
       const response = await writingApi.getRandomSuggestWriting();
-      dispatch(setSuggestWriting(response.data.data.topics));
+      dispatch(setSuggestWriting(response.data.data));
     } catch (error) {
       dispatch(showNotification({ message: error, status: 0 }));
     }

@@ -30,10 +30,8 @@ interface ReadingState {
     readingQuizz?: ReadingInterface;
     suggest: suggestState[]
 }
-export interface suggestState {
-    id: number
-    topic: string
-}
+
+type suggestState = string;
 
 const initialState: ReadingState = {
     readingQuizz: {},

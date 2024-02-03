@@ -20,6 +20,7 @@ const Writing = () => {
   const dispatch = useAppDispatch();
 
   const { suggest } = useAppSelector(state => state.writing);
+  
   const handleSubmit = async () => {
     if (mode === 'gen_topic') {
       try {

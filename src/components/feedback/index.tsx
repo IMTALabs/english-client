@@ -16,9 +16,13 @@ const Feedback = () => {
 
   const handleSubmit = async () => {
     try {
+      if (!feedbackInfo.message) {
+        dispatch(showNotification({ message: 'Message is required', status: 0 }));
+        return;
+      }
+      
       await userApi.postFeedBack(feedbackInfo);
       dispatch(showNotification({ message: 'Success', status: 1 }));
-
     } catch (error) {
       console.log(error);
     } finally {

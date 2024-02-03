@@ -24,7 +24,6 @@ const Reading = () => {
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  console.log(paragraphText, 'article');
 
   const handleSubmit = async () => {
     const paragraph = article !== '' ? article.data[0] : text;

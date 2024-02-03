@@ -28,7 +28,7 @@ function Login() {
     setErrorMessage('');
 
     if (loginObj.email.trim() === '')
-      return setErrorMessage('Email Id is required! (use any value)');
+      return setErrorMessage('Email is required! (use any value)');
     if (loginObj.password.trim() === '')
       return setErrorMessage('Password is required! (use any value)');
     else {
@@ -93,7 +93,7 @@ function Login() {
                 />
               </div>
 
-              <ErrorText className="mt-8 text-sm">{errorMessage}</ErrorText>
+              <ErrorText className="mt-8 text-sm text-red-500">{errorMessage}</ErrorText>
               <button
                 type="submit"
                 className={'btn mt-2 w-full btn-primary'}

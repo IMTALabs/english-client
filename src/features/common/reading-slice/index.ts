@@ -28,13 +28,15 @@ export interface Choices {
 
 interface ReadingState {
     readingQuizz?: ReadingInterface;
+    suggest: suggestState[]
 }
+
+type suggestState = string;
 
 const initialState: ReadingState = {
     readingQuizz: {},
+    suggest: []
 };
-
-
 
 
 export const readingSlice = createSlice({
@@ -47,9 +49,12 @@ export const readingSlice = createSlice({
         setReadingState: (state, action) => {
             state.readingQuizz = action.payload
         },
+        setSuggestReading: (state, action) => {
+            state.suggest = action.payload
+        }
     }
 });
 
-export const { clearReadingState, setReadingState } = readingSlice.actions;
+export const { clearReadingState, setReadingState, setSuggestReading } = readingSlice.actions;
 
 export default readingSlice.reducer;

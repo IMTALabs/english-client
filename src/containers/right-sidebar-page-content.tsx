@@ -11,9 +11,9 @@ const RightSidebarPageContent = () => {
   const defaultAvataUrl =
     'https://1.bp.blogspot.com/-rt6mn1dJJ7M/XqZl2p-TboI/AAAAAAAAjO8/SzKdmwQAFhUH2CXgUH6kluj_G8Gig2-xgCLcBGAsYHQ/s1600/Anh-avatar-dep-cho-con-trai%2B%25281%2529.jpg';
   return (
-    <div>
+    <div className='divide-y divide-dashed'>
       {/* Người dùng */}
-      <TitleCard title="" topMargin="mb-4">
+      <TitleCard title="" topMargin="mt-4">
         <div className="flex justify-center items-center">
           <img
             src={
@@ -36,7 +36,7 @@ const RightSidebarPageContent = () => {
         </div>
       </TitleCard>
       {/* {tiền} */}
-      <TitleCard title="" topMargin="mt-4">
+      <TitleCard title="" topMargin="mt-4 rounded-none">
         <div className="max-w-sm w-full lg:max-w-full flex last:mb-0 items-center justify-between">
           <div className="flex items-center">
             <svg
@@ -44,14 +44,14 @@ const RightSidebarPageContent = () => {
               width="32"
               height="32"
               viewBox="0 0 24 24"
-              className="text-secondary">
+              className="">
               <path
                 fill="currentColor"
                 fillRule="evenodd"
                 d="M12 21a9 9 0 1 0 0-18a9 9 0 0 0 0 18m-1.58-3.89l6.215-5.966a.2.2 0 0 0-.14-.344l-4.519.052a.2.2 0 0 1-.184-.283l1.654-3.64c.09-.2-.16-.378-.32-.227l-5.76 5.448a.2.2 0 0 0 .137.345h4.641a.2.2 0 0 1 .176.295l-2.215 4.08c-.11.2.15.397.314.24"
                 clipRule="evenodd"></path>
             </svg>
-            <div className="rounded-b lg:rounded-b-none lg:rounded-r pl-4 flex flex-col justify-between leading-normal">
+            <div className=" pl-4 flex flex-col justify-between leading-normal">
               <div className="">
                 <p className="text-xl">
                   {Math.round(user?.accounting_charge ?? 0)}{' '}
@@ -97,12 +97,12 @@ const RightSidebarPageContent = () => {
       </TitleCard>
 
       {history && (
-        <TitleCard title="Generation History" topMargin="mt-4 text-center">
+        <TitleCard title="Generation History" topMargin="mt-4 text-center rounded-none">
           <div className="max-w-sm w-full lg:max-w-full mb-6 last:mb-0 space-y-2">
             {history?.data?.map((item: any) => {
               return (
                 <div className=" group" key={item.id}>
-                  <div className=" py-2 px-4  border rounded-lg leading-none flex items-center justify-between space-x-6">
+                  <div className=" py-2 px-4 leading-none flex items-center justify-between space-x-6 bg-gray-100 rounded-md">
                     <div className="flex items-center gap-2">
                       <span
                         dangerouslySetInnerHTML={{ __html: Icon(item.skill) }}

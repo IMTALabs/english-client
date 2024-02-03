@@ -72,7 +72,7 @@ const Carousel = ({ listVideo, onSelectedVideo }: CarouselProps) => {
                 <h2 className="card-title">{item.title}</h2>
                 <p>{item.description}</p>
                 <div className="card-actions justify-end">
-                  <button className="btn btn-primary">{item.duration}</button>
+                  <button className="btn btn-secondary">{item.duration}</button>
                 </div>
               </div>
             </div>

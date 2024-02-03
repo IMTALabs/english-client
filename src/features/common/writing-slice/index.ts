@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import writing from 'src/features/services/writing/writing-api';
+import { suggestState } from '../reading-slice';
 
 
 
@@ -15,6 +16,7 @@ interface ToppicState {
 }
 interface WritingState {
     writingQuizz: WritingPros;
+    suggest: suggestState[];
 }
 
 export interface WritingPros {
@@ -25,6 +27,7 @@ export interface WritingPros {
 
 const initialState: WritingState = {
     writingQuizz: {},
+    suggest: []
 };
 
 export const writingSlice = createSlice({
@@ -36,10 +39,13 @@ export const writingSlice = createSlice({
         },
         postReadingState: (state, action) => {
             state.writingQuizz = action.payload
+        },
+        setSuggestWriting: (state, action) => {
+            state.suggest = action.payload
         }
     }
 });
 
-export const { clearWritingState, postReadingState } = writingSlice.actions;
+export const { clearWritingState, postReadingState, setSuggestWriting } = writingSlice.actions;
 
 export default writingSlice.reducer;

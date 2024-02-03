@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'src/app/store';
 import AssignmentQuizz from 'src/components/assignment-quizz';
 import Button from 'src/components/button';
@@ -50,6 +50,8 @@ const QuizzListening = () => {
     // Kiểm tra xem đã chọn hết lựa chọn hay chưa
     const allQuestionsAnswered =
       Object.keys(selectedChoices)?.length === questions?.length;
+    console.log(selectedChoices);
+
     if (allQuestionsAnswered) {
       // Nếu đã chọn hết, thì chuyển hướng hoặc thực hiện hành động khác
       dispatch(
@@ -65,10 +67,11 @@ const QuizzListening = () => {
       try {
         const response = await listeningApi.postMarkListening(formChoices);
         if (response.data) {
-          navigeUrl(`/app/listening/result/id=${hash}`, {
+          navigeUrl(`/listening/result/id=${hash}`, {
             state: {
               markListening: response.data,
               video: link,
+              listeningQuizz: listeningQuizz.body?.form
             },
           });
         }

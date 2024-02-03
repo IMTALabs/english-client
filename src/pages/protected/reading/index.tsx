@@ -11,17 +11,20 @@ import { MODAL_BODY_TYPES } from 'src/utils/global-constants';
 import TextInput from 'src/components/text-input/text-input';
 import TextAreaInput from 'src/components/text-input/text-area-input';
 import { useNavigate } from 'react-router-dom';
+import Suggest from 'src/components/suggest';
 
 const Reading = () => {
 
   const [text, setText] = useState<string>('');
+  const [paragraphText, setParagraphText] = useState<string>('');
   const [mode, setMode] = useState<string>('gen_topic');
   const [article, setArticle] = useState<string>('');
 
-  const { readingQuizz } = useAppSelector(state => state.reading);
+  const { readingQuizz, suggest } = useAppSelector(state => state.reading);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
   const handleSubmit = async () => {
     const paragraph = article !== '' ? article.data[0] : text;
     try {
@@ -57,7 +60,6 @@ const Reading = () => {
 
   const handleGenTopic = async () => {
     if (article !== '') {
-      setMode('no_gen_topic');
       handleSubmit();
     } else {
       try {
@@ -68,7 +70,7 @@ const Reading = () => {
           }),
         );
         const response = await readingApi.postTopicReading({
-          topic: text,
+          topic: paragraphText,
         });
         setArticle(response.data);
       } catch (error: any) {
@@ -85,6 +87,8 @@ const Reading = () => {
   };
 
 
+
+
   const handleInputChange = (e: any) => {
     const inputText = e.target.value;
 
@@ -99,6 +103,7 @@ const Reading = () => {
 
 
 
+
   return (
     <div>
       <TitleCard title="READING" topMargin="0">
@@ -107,13 +112,13 @@ const Reading = () => {
           mode={mode}
           title={['Generate Article', 'Your Article']}
         />
-
-
-
         {mode === 'gen_topic' ? (
           <TextInput
-            value={text}
-            onChange={e => setText(e.target.value)}
+            value={paragraphText}
+            onChange={e => {
+              setParagraphText(e.target.value)
+              setArticle('')
+            }}
             label="Enter keyword for generation"
             containerStyle="mt-4"
           />
@@ -123,7 +128,7 @@ const Reading = () => {
               value={text}
               onChange={handleInputChange}
               label="Enter your article"
-              containerStyle="mt-4"
+              containerStyle="mt-4 h-[300px]"
             />
             {text.length > 0 && (
               <div className="px-2">
@@ -132,7 +137,7 @@ const Reading = () => {
             )}
           </div>
         )}
-        {article !== '' && (
+        {(article !== '' && mode === 'gen_topic') && (
           <div className="overflow-y-auto max-h-[calc(100vh-26rem)] border rounded mt-4 p-2 h-auto">
             <p className="my-3 " dangerouslySetInnerHTML={{ __html: article.data[0] }} />
           </div>
@@ -147,9 +152,16 @@ const Reading = () => {
               : 'Generate Quizz'
           }
           onClick={mode === 'gen_topic' ? handleGenTopic : handleSubmit}
-          disabled={text === ''}
+          disabled={!(text !== '' || paragraphText !== '')}
           containerStyle="mt-4"
         />
+
+
+        <div className='mt-4'>
+          {
+            mode === 'gen_topic' && <Suggest data={suggest} setParagraphText={setParagraphText} />
+          }
+        </div>
       </TitleCard>
     </div>
   );

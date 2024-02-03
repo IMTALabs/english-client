@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 type historyState = {
   created_at: string;
@@ -23,7 +23,8 @@ type initialState = {
 
 const initialState: initialState = {
   history: [],
-  youtubeRecommened: []
+  youtubeRecommened: [],
+  suggestReadings : []
 };
 
 export const listeningSlice = createSlice({
@@ -35,10 +36,13 @@ export const listeningSlice = createSlice({
     },
     setRecommended: (state, action) => {
       state.youtubeRecommened = action.payload;
-     }
+    },
+    setSuggestReadings: (state, action) => {
+      state.suggestReadings = action.payload;
+    }
   },
 });
 
-export const {setHistory, setRecommended} = listeningSlice.actions;
+export const { setHistory, setRecommended } = listeningSlice.actions;
 
 export default listeningSlice.reducer;

@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
-import Quizz from "src/components/assessment/quizz";
 import TitleCard from "src/components/cards/title-card";
+import Quizz from "src/components/quizz";
 
 interface Question {
     question: string;
@@ -13,12 +13,16 @@ interface Question {
     explanation: string;
     user_answer: string;
     answer: string;
+    is_correct: boolean
 }
 
 const ResultReading = () => {
     const {
-        markReading, article
+
+        markReading, article, readingQuizz
     } = useLocation()?.state
+    console.log(readingQuizz?.body?.form[1].choices);
+    console.log(markReading, 'markReading');
 
     return (
         <TitleCard
@@ -32,13 +36,16 @@ const ResultReading = () => {
                         <div className="overflow-y-auto h-[calc(100vh-18rem)]">
                             {markReading?.results?.map((item: Question, index: number) => {
                                 return (
-                                    <div key={index}>
+                                    <div key={index} className="mx-4">
                                         <Quizz
                                             index={index}
-                                            title={item.question}
-                                            answer={item.answer}
-                                            explain={item.explanation}
+                                            question={item.question}
+                                            explanation={item.explanation}
                                             user_answer={item?.user_answer}
+                                            is_correct={item.is_correct}
+                                            choices={readingQuizz?.body?.form[index].choices}
+                                            type={'submission'}
+                                            answer={item.answer}
                                         />
                                     </div>
                                 );

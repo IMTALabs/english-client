@@ -48,7 +48,7 @@ const QuizzWriting = () => {
         dispatch(showNotification({ message: error.message, status: 0 }));
       } finally {
         dispatch(closeModal());
-        navigeUrl('/app/writing/result', {
+        navigeUrl('/writing/result', {
           state: { textAreaValue, instruction: textWriting || writingQuizz?.data?.body.instruction },
         });
       }

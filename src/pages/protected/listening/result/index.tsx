@@ -1,7 +1,7 @@
 import ReactPlayer from 'react-player';
 import { useLocation } from 'react-router-dom';
-import Quizz from 'src/components/assessment/quizz';
 import TitleCard from 'src/components/cards/title-card';
+import Quizz from 'src/components/quizz';
 
 interface Question {
   question: string;
@@ -13,10 +13,13 @@ interface Question {
   };
   explanation: string;
   answer: string;
+  user_answer: string;
+  is_correct: boolean;
 }
 
 const ResultListening = () => {
-  const { markListening, video } = useLocation()?.state;
+  const { markListening, video, listeningQuizz } = useLocation()?.state;
+  console.log(markListening);
 
   return (
     <>
@@ -25,17 +28,21 @@ const ResultListening = () => {
         topMargin="0"
         titleStyle="text-3xl font-bold ">
         <div className="bg-base-100  rounded-lg mt-[10px] flex justify-between gap-3">
-          <div className="w-3/5 overflow-y-auto h-[calc(100vh-14rem)]">
+          <div className="w-3/5 overflow-y-auto h-[calc(100vh-16rem)] ">
             {markListening?.data?.results?.map((item: Question, index: number) => {
               return (
-                <div key={index}>
+                <div key={index} className='mx-4'>
                   <Quizz
                     index={index}
-                    title={item.question}
-                    answer={item.answer}
-                    explain={item.explanation}
+                    question={item.question}
+                    explanation={item.explanation}
                     user_answer={item?.user_answer}
+                    is_correct={item.is_correct}
+                    choices={listeningQuizz[index].choices}
+                    type={'submission'}
+                    answer={item.answer}
                   />
+
                 </div>
               );
             })}

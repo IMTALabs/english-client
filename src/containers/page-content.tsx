@@ -28,7 +28,7 @@ function PageContent() {
   return (
     <div className="drawer-content flex flex-col h-full">
       <main
-        className={`grid grid-cols-8 gap-4 overflow-y-auto md:pt-4 pt-4 h-full p-4
+        className={`grid grid-cols-8 gap-4 overflow-y-auto h-full py-4
         ${hideSidebar && 'grid-cols-6'}`}
         ref={mainContentRef}>
         <div
@@ -53,7 +53,7 @@ function PageContent() {
           </Suspense>
         </div>
         {!hideSidebar && (
-          <div className="col-span-full lg:col-span-2 max-lg:hidden max-[1362px]:hidden ">
+          <div className="col-span-full lg:col-span-2 max-lg:hidden max-[1362px]:hidden  border-dashed border-l ">
             <RightSidebarPageContent />
           </div>
         )}

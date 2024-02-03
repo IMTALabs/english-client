@@ -28,7 +28,7 @@ function Register() {
     if (registerObj.full_name?.trim() === '')
       return setErrorMessage('Name is required! (use any value)');
     if (registerObj.email?.trim() === '')
-      return setErrorMessage('Email Id is required! (use any value)');
+      return setErrorMessage('Email is required! (use any value)');
     if (registerObj.password?.trim() === '')
       return setErrorMessage('Password is required! (use any value)');
     else {
@@ -42,7 +42,7 @@ function Register() {
         }
         dispatch(showNotification({ message: "Register success", status: 1 }))
         localStorage.setItem('token', response?.data?.data?.accessToken);
-        window.location.href = '/app/welcome';
+        window.location.href = '/welcome';
       } catch (error: any) {
         dispatch(showNotification({ message: error.response.data.errors.email[0], status: 0 }))
       } finally {
@@ -104,7 +104,7 @@ function Register() {
                 />
               </div>
 
-              <ErrorText className="mt-8 text-sm">{errorMessage}</ErrorText>
+              <ErrorText className="mt-8 text-sm text-red-500">{errorMessage}</ErrorText>
               <button type="submit" className={'btn mt-2 w-full btn-primary'} disabled={loading}>
                 {loading ? (
                   <span className="loading loading-spinner"></span>

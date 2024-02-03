@@ -1,14 +1,14 @@
-import {themeChange} from 'theme-change';
-import {useEffect, useState} from 'react';
+import { themeChange } from 'theme-change';
+import { useEffect, useState } from 'react';
 import BellIcon from '@heroicons/react/24/outline/BellIcon';
 import Bars3Icon from '@heroicons/react/24/outline/Bars3Icon';
-import {openRightDrawer} from 'src/features/common/right-drawer-slice';
-import {MODAL_BODY_TYPES, RIGHT_DRAWER_TYPES} from 'src/utils/global-constants';
-import {useAppDispatch, useAppSelector} from 'src/app/store';
-import {NavLink} from 'react-router-dom';
-import RabbitLogo from 'assets/rabbit-logo.jpg';
-import {Icon} from 'src/assets/icon';
-import {openModal} from 'src/features/common/modal-slice';
+import { openRightDrawer } from 'src/features/common/right-drawer-slice';
+import { MODAL_BODY_TYPES, RIGHT_DRAWER_TYPES } from 'src/utils/global-constants';
+import { useAppDispatch, useAppSelector } from 'src/app/store';
+import { NavLink } from 'react-router-dom';
+import Logo from 'assets/logo.svg';
+import { Icon } from 'src/assets/icon';
+import { openModal } from 'src/features/common/modal-slice';
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -16,7 +16,7 @@ const Header = () => {
     localStorage.getItem('theme'),
   );
 
-  const {noOfNotifications, pageTitle} = useAppSelector(state => state.header);
+  const { noOfNotifications, pageTitle } = useAppSelector(state => state.header);
 
   useEffect(() => {
     themeChange(false);
@@ -45,18 +45,18 @@ const Header = () => {
   return (
     // navbar fixed  flex-none justify-between bg-base-300  z-10 shadow-md
     <>
-      <div className="navbar sticky top-0 z-10 p-0 m-0 min-h-0 ">
-        <div className="bg-primary w-full pr-2 h-14">
-          <li className=" ml-4 font-semibold text-xl flex flex-1 items-center justify-between ">
+      <div className="navbar sticky top-0 z-10 p-0 m-0 min-h-0 border-b ">
+        <div className="bg-[#fefefe] w-full pr-2 h-16">
+          <li className="font-semibold text-xl flex flex-1 items-center justify-between ">
             <NavLink
-              to={'/app/welcome'}
-              className="flex items-center justify-start gap-x-4 text-white max-lg:hidden">
+              to={'/welcome'}
+              className="flex items-center justify-start  max-lg:hidden w-80 px-6">
               <img
-                className="mask mask-squircle w-10 h-10 object-cover aspect-square"
-                src={RabbitLogo}
+                className="mask mask-squircle w-16 h-16 object-cover aspect-square"
+                src={Logo}
                 alt="Doraemon Logo"
               />
-              <span className="text-lg font-semibold"> English</span>
+              <span className="text-lg font-semibold">ENGLISH</span>
             </NavLink>{' '}
             <div className="flex-1">
               <label
@@ -64,7 +64,6 @@ const Header = () => {
                 className="btn btn-primary drawer-button lg:hidden border-none">
                 <Bars3Icon className="h-8 inline-block w-8" />
               </label>
-              <h1 className="text-2xl font-semibold ml-2">{pageTitle}</h1>
             </div>
           </li>
           {/* Menu toogle for mobile view or small screen */}
@@ -81,8 +80,8 @@ const Header = () => {
               className="tooltip tooltip-bottom"
               data-tip="Feedback">
               <span
-                className="btn btn-ghost btn-circle text-white text-2xl"
-                dangerouslySetInnerHTML={{__html: Icon('feedback')}}></span>
+                className="btn btn-ghost btn-circle  text-2xl"
+                dangerouslySetInnerHTML={{ __html: Icon('feedback') }}></span>
             </div>
 
             <button className="btn btn-ghost btn-circle">
@@ -111,18 +110,18 @@ const Header = () => {
               </div>
             </button>
 
-            <button
+            {/* <button
               className="btn btn-ghost btn-circle"
               onClick={() => openNotification()}>
               <div className="indicator">
-                <BellIcon className="h-6 w-6 text-white" />
+                <BellIcon className="h-6 w-6 " />
                 {noOfNotifications > 0 ? (
                   <span className="indicator-item badge badge-secondary badge-sm px-1">
                     {noOfNotifications}
                   </span>
                 ) : null}
               </div>
-            </button>
+            </button> */}
 
             {/* Profile icon, opening menu on click */}
           </div>

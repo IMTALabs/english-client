@@ -18,7 +18,7 @@ const postArticleReading = ({ mode, topic, paragraph }: ReadingTopic) => {
     });
 }
 
-const postTopicReading = ({ topic}: ReadingTopic) => {
+const postTopicReading = ({ topic }: ReadingTopic) => {
     return axios.post('/english/v1/reading/gen_topic', {
         topic
     });
@@ -30,5 +30,9 @@ const postMarkReading = (data: Pops) => {
     });
 }
 
+const getRandomSuggest = () => {
+    return axios.get('/english/v1/reading/randomReading');
+}
 
-export default { postTopicReading, postMarkReading ,postArticleReading }
+
+export default { postTopicReading, postMarkReading, postArticleReading, getRandomSuggest }
